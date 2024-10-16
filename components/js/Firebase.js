@@ -1,7 +1,10 @@
-{/* <script type="module"> */}
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+import { child, get, getDatabase, ref } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+ 
+
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,5 +23,25 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+  export {child, get, getDatabase, ref }
   
-// </script>
+  // const db = getDatabase();
+  // let studid = 1;
+  // function getStudent() {
+  //   const dref = ref(db);
+  //   get(child(dref,'/')).then((student)=>{
+  //       student.forEach(std => {
+  //           // console.log(std.val());
+  //           let value = std.val();
+  //           let name = document.createElement('p');
+  //           name.innerHTML = value.displayName ;
+  //           document.body.appendChild(name);
+            
+  //       });
+  //   })
+  // }
+  // getStudent();
+   
+
+
