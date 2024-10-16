@@ -22,6 +22,15 @@
     height: 100vh;
 }
 
+.hr {
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    height: 1px;
+    width: 46vw;
+    background-color: black;
+}
+
 .login-section {
     position: absolute;
     background-color: antiquewhite;
@@ -33,9 +42,30 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#username,
+#password {
+    padding-left: 5px;
+    margin-top: 8%;
+    height: 25px;
+    width: 220px;
+    border-radius: 10px;
 }
 
 .button {
+    width: 80px;
     font-size: 10px;
     padding: 5px 12px;
     color: white;
@@ -43,10 +73,11 @@
     border: none;
     border: 4px solid rgb(77, 77, 77);
     border-radius: 20px;
+    margin-top: 8%;
     cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
     background-color: rgb(35, 35, 35);
     border-color: rgb(35, 35, 35);
 }
