@@ -1,7 +1,6 @@
 import { storage,database} from "../Firebase.js";
-import { child, get, getDatabase, set,ref } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase, set,ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
-
 
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
@@ -71,5 +70,38 @@ function saveFileMetadata(fileName, fileURL) {
         console.error('Error saving file metadata:', error);
       });
     });
+  });
+}
+
+window.getAllFiles=function() {
+  const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
+  
+  get(filesRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const filesData = snapshot.val();
+      
+      // Iterate over all the files
+      for (const fileIndex in filesData) {
+        if (filesData.hasOwnProperty(fileIndex)) {
+          const fileData = filesData[fileIndex];
+          const fileURL = fileData.fileURL;
+          const fileName = fileData.fileName;
+
+          // Create an image element to display each file
+          const img = document.createElement('img');
+          img.src = fileURL;
+          img.alt = fileName;
+          img.style.width = '200px'; // Optionally, set the image width
+          img.style.margin = '10px'; // Optionally, add some margin between images
+
+          // Append the image to the body or any container in your HTML
+          document.body.appendChild(img);
+        }
+      }
+    } else {
+      console.log("No files found.");
+    }
+  }).catch((error) => {
+    console.error("Error retrieving files:", error);
   });
 }

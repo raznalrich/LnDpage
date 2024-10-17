@@ -25,7 +25,7 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } f
   const analytics = getAnalytics(app);
   const storage = getStorage(app);
   const database = getDatabase(app);
-  export {storage,database,child, get,ref}
+  export {storage,database,child, get,ref,app}
   
   // const db = getDatabase();
   // let studid = 1;
