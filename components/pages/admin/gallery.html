@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    
 </head>
 <body>
-    <input type="file" name="" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg">
-    <label for="fileInp">+</label>
-    <span class="fileText"></span>
-    <button onclick="uploadImage()">upload</button>
+    
+    <form action="">
+        <input type="file" name="" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg">
+        <label for="fileInp">+</label>
+        <span class="fileText"></span><br>
+        <input type="text" placeholder="Enter a category" id="category-input"><br>
+        <input type="text" placeholder="Enter description" id="description-input"><br>
+
+        <button onclick="uploadImage()">upload</button>
+    </form>
+    
     <div class="bar">
         <div class="progress"></div>
     </div>

@@ -8,23 +8,31 @@ let progress = document.querySelector(".progress");
 let percentVal;
 let fileItem;
 let fileName;
+let category;
+let description;
 
 window.getFile=function(e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
 }
+window.getDetails=function(e){
+
+}
+
 
 window.uploadImage=function() {
-  if (!fileItem) {
-    alert("Please select a file first.");
+  category=document.getElementById("category-input").value;
+  description=document.getElementById("description-input").value;
+  if (!fileItem || !description || !category) {
+    alert("Please fill all fields");
     return;
   }
 
   // Reference to the storage path
   const storageReference = storageRef(storage, "image/" + fileName);
   const uploadTask = uploadBytesResumable(storageReference, fileItem);
-
+  
   uploadTask.on("state_changed", 
     (snapshot) => {
       // Progress calculation
@@ -40,18 +48,18 @@ window.uploadImage=function() {
       // Get the download URL on successful upload
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
         console.log("File available at:", url);
-        saveFileMetadata(fileName, url);
+        saveFileMetadata(fileName, url,category,description);
       });
     }
   );
 }
-function saveFileMetadata(fileName, fileURL) {
+function saveFileMetadata(fileName, fileURL,fileCategory,fileDescription) {
   const db = database;
   const indexRef = ref(db, 'fileIndex'); // Reference to a counter for file index
 
   // Read the current index value and increment it
   get(indexRef).then((snapshot) => {
-    let newIndex = snapshot.exists() ? snapshot.val() + 1 : 1; // Increment the index, or start at 1
+    let newIndex = snapshot.exists() ? parseInt(snapshot.val(),10) + 1 : 1; // Increment the index, or start at 1
 
     // Save the incremented index to the database
     set(indexRef, newIndex).then(() => {
@@ -61,7 +69,9 @@ function saveFileMetadata(fileName, fileURL) {
       set(filesRef, {
         fileName: fileName,
         fileURL: fileURL,
-        index: newIndex
+        index: newIndex,
+        fileCat:fileCategory,
+        fileDesc:fileDescription
       })
       .then(() => {
         console.log('File metadata with index saved successfully!');
