@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <input type="file" name="" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg">
+    <label for="fileInp">+</label>
+    <span class="fileText"></span>
+    <button onclick="uploadImage()">upload</button>
+    <div class="bar">
+        <div class="progress"></div>
+    </div>
+    <div class="uploadPercentage">0%</div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js" ></script>
+    <script type="module" src="../../js/admin/gallery.js"></script>
+</body>
+</html>
