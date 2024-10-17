@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Items | Admin</title>
+    <link rel="stylesheet" href="../../css/adminMenuitems.css">
+</head>
+<body>
+    <div class="menuHeader">
+      
+            <h3>Menu Item</h3>
+
+     
+    
+        <div class="buttonadd">
+
+            <button class="addMenu">Add new</button>
+        </div>
+       
+ 
+    </div>
+    <div class="menuitemslist">
+        <div class="left">
+
+            <h3 class="menuHead">Active Menu</h3>
+            <ul>
+                <li><img src="../../assets/reading-book (1) 1.png" alt="" srcset=""/>Learning Platform</li>
+            </ul>
+        </div>
+        <div class="right">
+            <h3 class="menuHead">Disabled Menu</h3>
+            <ul>
+                <li><img src="../../assets/reading-book (1) 1.png" alt="" srcset=""/>Learning Platform</li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="addnewmenu">
+        <form id="uploadForm">
+
+            <label for="image">Select Image:</label><br>
+            <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+    
+            <label for="url">URL:</label><br>
+            <input type="url" id="url" name="url" required><br><br>
+       
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
