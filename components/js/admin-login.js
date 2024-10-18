@@ -1,15 +1,18 @@
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { app } from "../js/Firebase.js";
 
 const auth = getAuth(app);  // Initialize Firebase Authentication
 const db = getFirestore(app);  // Initialize Firestore
 
+// reset password/ forgot password
+// const resetPasswordForm = 
+
 const loginForm = document.getElementById('loginForm');
 const errorMessage = document.getElementById('error-message');
 
 loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();  // Prevents default form submission
+    e.preventDefault();  // Prevents default form submission - to reload the page
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
