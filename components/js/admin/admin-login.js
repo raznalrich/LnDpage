@@ -1,7 +1,6 @@
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import { app } from "./Firebase.JS";
-
+import { app } from "../../js/admin/Firebase.js";
 
 const auth = getAuth(app);  // Initialize Firebase Authentication
 const db = getFirestore(app);  // Initialize Firestore
@@ -29,7 +28,7 @@ loginForm.addEventListener('submit', async (e) => {
 
             if (userData.role === "admin") {
                 alert("Welcome, Admin!");
-                window.location.href = "../../pages/admin/gallery.html";
+                window.location.href = "../../pages/admin/adminMenuItems.html";
             } else {
                 alert("Access denied! You are not an admin.");
                 auth.signOut();
