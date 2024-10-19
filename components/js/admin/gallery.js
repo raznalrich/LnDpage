@@ -105,7 +105,9 @@ window.getAllFiles = function () {
           img.style.margin = '10px'; // Optionally, add some margin between images
 
           // Append the image to the body or any container in your HTML
-          document.body.appendChild(img);
+          // document.body.appendChild(img);
+          let imageContainer=document.getElementById("image-container");
+          imageContainer.appendChild(img);
         }
       }
     } else {
@@ -133,4 +135,5 @@ window.previewBox = function () {
 window.discardBox=function(){
   document.getElementById("addimage").style.display = "none"
 }
+window.addEventListener('DOMContentLoaded',getAllFiles())
 

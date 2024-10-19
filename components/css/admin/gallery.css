@@ -4,7 +4,8 @@
 }
 .menu-sidebar{
     width: 20vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color:#64A2F5;
 }
 body{
@@ -26,7 +27,8 @@ body{
 }
  .inner-section{
     width: 67vw;
-    height: 80%;
+    height: auto;
+    max-height: 150%;
     border: 1px solid black;
     position: relative;
     left: 10%;
@@ -54,6 +56,7 @@ body{
     top : 20%;
     left: 30%;
     flex-wrap: wrap;
+    background-color: white;
 }
 .input-image{
     display: flex;

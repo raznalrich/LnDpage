@@ -5,6 +5,9 @@ import { child, get, getDatabase, set,ref } from "https://www.gstatic.com/fireba
 
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,6 +30,7 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } f
   const database = getDatabase(app);
   export {storage,database,child, get,ref,app}
   
+
   // const db = getDatabase();
   // let studid = 1;
   // function getStudent() {
