@@ -81,6 +81,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
         });
     });
   });
+
 }
 
 window.getAllFiles = function () {
@@ -107,6 +108,7 @@ window.getAllFiles = function () {
           // Append the image to the body or any container in your HTML
           // document.body.appendChild(img);
           let imageContainer=document.getElementById("image-container");
+          img.id="image";
           imageContainer.appendChild(img);
         }
       }
@@ -117,10 +119,6 @@ window.getAllFiles = function () {
     console.error("Error retrieving files:", error);
   });
 
-  fileItem.innerHTML="";
-  fileName.innerHTML="";
-  category.innerHTML="";
-  description.innerHTML="";
 }
 let previewIndex=0
 
