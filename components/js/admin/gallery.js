@@ -1,5 +1,5 @@
-import { storage,database} from "../Firebase.js";
-import { child, get, getDatabase, set,ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { storage, database } from "../Firebase.js";
+import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
@@ -11,19 +11,19 @@ let fileName;
 let category;
 let description;
 
-window.getFile=function(e) {
+window.getFile = function (e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
 }
-window.getDetails=function(e){
+window.getDetails = function (e) {
 
 }
 
 
-window.uploadImage=function() {
-  category=document.getElementById("category-input").value;
-  description=document.getElementById("description-input").value;
+window.uploadImage = function () {
+  category = document.getElementById("category-input").value;
+  description = document.getElementById("description-input").value;
   if (!fileItem || !description || !category) {
     alert("Please fill all fields");
     return;
@@ -32,8 +32,8 @@ window.uploadImage=function() {
   // Reference to the storage path
   const storageReference = storageRef(storage, "image/" + fileName);
   const uploadTask = uploadBytesResumable(storageReference, fileItem);
-  
-  uploadTask.on("state_changed", 
+
+  uploadTask.on("state_changed",
     (snapshot) => {
       // Progress calculation
       percentVal = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -48,48 +48,48 @@ window.uploadImage=function() {
       // Get the download URL on successful upload
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
         console.log("File available at:", url);
-        saveFileMetadata(fileName, url,category,description);
+        saveFileMetadata(fileName, url, category, description);
       });
     }
   );
 }
-function saveFileMetadata(fileName, fileURL,fileCategory,fileDescription) {
+function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   const db = database;
-  const indexRef = ref(db, 'fileIndex'); // Reference to a counter for file index
+  const indexRef = dbRef(db, 'fileIndex'); // Reference to a counter for file index
 
   // Read the current index value and increment it
   get(indexRef).then((snapshot) => {
-    let newIndex = snapshot.exists() ? parseInt(snapshot.val(),10) + 1 : 1; // Increment the index, or start at 1
+    let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1; // Increment the index, or start at 1
 
     // Save the incremented index to the database
     set(indexRef, newIndex).then(() => {
-      const filesRef = ref(db, 'files/' + newIndex); // Use the index as the key
+      const filesRef = dbRef(db, 'files/' + newIndex); // Use the index as the key
 
       // Save the file metadata under the indexed entry
       set(filesRef, {
         fileName: fileName,
         fileURL: fileURL,
         index: newIndex,
-        fileCat:fileCategory,
-        fileDesc:fileDescription
+        fileCat: fileCategory,
+        fileDesc: fileDescription
       })
-      .then(() => {
-        console.log('File metadata with index saved successfully!');
-      })
-      .catch((error) => {
-        console.error('Error saving file metadata:', error);
-      });
+        .then(() => {
+          console.log('File metadata with index saved successfully!');
+        })
+        .catch((error) => {
+          console.error('Error saving file metadata:', error);
+        });
     });
   });
 }
 
-window.getAllFiles=function() {
+window.getAllFiles = function () {
   const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
-  
+
   get(filesRef).then((snapshot) => {
     if (snapshot.exists()) {
       const filesData = snapshot.val();
-      
+
       // Iterate over all the files
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
@@ -114,4 +114,23 @@ window.getAllFiles=function() {
   }).catch((error) => {
     console.error("Error retrieving files:", error);
   });
+
+  fileItem.innerHTML="";
+  fileName.innerHTML="";
+  category.innerHTML="";
+  description.innerHTML="";
 }
+let previewIndex=0
+
+window.previewBox = function () {
+  if (document.getElementById("addimage").style.display != "none" && previewIndex!=1) {
+    document.getElementById("addimage").style.display = "none"
+  } else {
+    document.getElementById("addimage").style.display = "flex"
+    previewIndex=1;
+  }
+}
+window.discardBox=function(){
+  document.getElementById("addimage").style.display = "none"
+}
+

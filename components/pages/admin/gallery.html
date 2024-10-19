@@ -1,30 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
-</head>
-<body>
-    
-    <form action="">
-        <input type="file" name="" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg">
-        <label for="fileInp">+</label>
-        <span class="fileText"></span><br>
-        <input type="text" placeholder="Enter a category" id="category-input"><br>
-        <input type="text" placeholder="Enter description" id="description-input"><br>
+    <link rel="stylesheet" href="../../css/admin/gallery.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-div">
+      <div class="menu-sidebar">
+      </div>
+      <div class="folder-section">
+        <button class="add-image-button" id="add-button" onclick="previewBox()">
+          Insert
+        </button>
+        <div class="inner-section" onload="getAllFiles()">
 
-        <button onclick="uploadImage()">upload</button>
-    </form>
-    
-    <div class="bar">
-        <div class="progress"></div>
+        </div>
+      </div>
     </div>
-    <div class="uploadPercentage">0%</div>
+    <div class="input-section" id="addimage" style="display: none;">
+      <div
+        class="top-section"
+        style="
+          width: 100%;
+          background-color: #64a2f5;
+          height: 25px;
+          border-radius: 7px 7px 0px 0px;
+        "
+      ></div>
+      <div class="input-image">
+        
+        <input
+          type="file"
+          id="fileInp"
+          class="inputFile"
+          onchange="getFile(event)"
+          accept="image/png, image/jpeg"
+        />
+        <label for="fileInp"></label>
+        <span class="fileText"></span><br />
 
+        <!-- Form inputs for description and category -->
+        <div class="details-section">
+          <label for="description-input">Description:</label>
+          <input
+            type="text"
+            id="description-input"
+            placeholder="Short description"
+          />
+        </div>
+        <div class="details-section">
+          <label for="category-input" class="category-label">Category:</label>
+          <input
+            type="text"
+            id="category-input"
+            placeholder="Image category"
+          /><br />
+        </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js" ></script>
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+        <div class="uploadPercentage">0%</div>
+        <div class="button-section">
+          <button onclick="discardBox()">discard</button>
+          <button onclick="uploadImage()" id="save">save</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js"></script>
     <script type="module" src="../../js/admin/gallery.js"></script>
-</body>
+  </body>
 </html>
