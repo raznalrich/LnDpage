@@ -27,12 +27,12 @@ body{
 }
  .inner-section{
     width: 67vw;
-    height: auto;
-    max-height: 150%;
+    height: 80%;
     border: 1px solid black;
     position: relative;
     left: 10%;
     flex-wrap: wrap;
+    overflow: auto;
 }
 .add-image-button{
     width: 80px;
@@ -103,4 +103,19 @@ body{
 }
 .details-section .category-label{
     padding-right: 6%;
+}
+.top-section {
+    display: flex;
+    justify-content: end;
+    align-content: baseline;
+    position: absolute;
+}
+.top-section i{
+    position: relative;
+    bottom: -40%;
+    right: 2%;
+
+}
+.top-section i:hover{
+    cursor: pointer;
 }
