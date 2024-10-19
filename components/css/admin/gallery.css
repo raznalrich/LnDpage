@@ -63,9 +63,7 @@ body{
     top: 10%;
     height: 80%;
 }
-.inputFile{
-    
-}
+
 .button-section{
     display: flex;
     flex-wrap: wrap;
@@ -84,12 +82,7 @@ body{
 #save{
     background-color: #64A2F5;
 }
-#fileInp{
-    
-}
-.top-section{
-    
-}
+
 #description-input{
     border: 1px solid black;
     border-radius: 7px;
