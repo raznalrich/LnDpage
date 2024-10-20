@@ -1,0 +1,30 @@
+.main-container{
+    background-color: #DC143C;
+    height: 6rem;
+}
+.icon-item{
+    text-align: center;
+    color: white;
+}
+.icon-bar{
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.icon-item i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.icon-item p {
+    margin: 0;
+    font-size: 14px;
+    margin-bottom: 4rem;
+}
+.icon-item :hover{
+    transform: scale(1.2);
+    color: #FFFFFF;
+}
+a {
+    color: #FFFFFF;
+}
