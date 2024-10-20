@@ -15,41 +15,42 @@
     
         <div class="buttonadd">
 
-            <button class="addMenu">Add new</button>
+            <button class="addMenu" id="addMenu">Add new</button>
         </div>
        
  
     </div>
-    <div class="menuitemslist">
-        <div class="left">
-
-            <h3 class="menuHead">Active Menu</h3>
-            <ul>
-                <li><img src="../../assets/reading-book (1) 1.png" alt="" srcset=""/>Learning Platform</li>
-            </ul>
+    <div class="menuitemslist" >
+        <div class="left" id="left">
+            <!-- <h3 class="menuHead">Active Menu</h3> -->
+            <!-- <ul id="activeMenuList" style="min-height: 400px;">
+                
+            </ul> -->
         </div>
-        <div class="right">
-            <h3 class="menuHead">Disabled Menu</h3>
-            <ul>
-                <li><img src="../../assets/reading-book (1) 1.png" alt="" srcset=""/>Learning Platform</li>
-            </ul>
-
+        <div class="right" id="right">
+            <!-- <h3 class="menuHead">Disabled Menu</h3> -->
+            <!-- <ul id="disabledMenuList" style="min-height: 400px;"> -->
+                <!-- Dynamic content will be appended here -->
+            <!-- </ul> -->
         </div>
     </div>
-    <div class="addnewmenu">
+    
+    <div class="addnewmenu" id="addnewmenu" style="display: none;">
         <form id="uploadForm">
+            <div class="menuformtitle">
 
-            <label for="image">Select Image:</label><br>
+                <label for="image" style="font-weight: bold;">Add New Menu</label> <p id="closebutton" style="font-size: larger;">X</p>
+            </div>
             <input type="file" id="image" name="image" accept="image/*" required><br><br>
 
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" required><br><br>
     
-            <label for="url">URL:</label><br>
-            <input type="url" id="url" name="url" required><br><br>
+            <input type="text" id="title" name="title" placeholder="Item name" required><br><br>
+    
+            <input type="url" id="url" name="url" placeholder="URL" required><br><br>
        
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit">Submit</button>
         </form>
     </div>
+    <script type="module" src="../../js/admin/addmenu.js"></script>
 </body>
 </html>
