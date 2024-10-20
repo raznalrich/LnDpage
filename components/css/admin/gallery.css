@@ -33,6 +33,7 @@ body{
     left: 10%;
     flex-wrap: wrap;
     overflow: auto;
+    display: flex;
 }
 .add-image-button{
     width: 80px;

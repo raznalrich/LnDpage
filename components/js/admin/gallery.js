@@ -84,6 +84,8 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
 
 }
 
+let closeButton;
+let imageDiv;
 window.getAllFiles = function () {
   const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
 
@@ -91,15 +93,34 @@ window.getAllFiles = function () {
     if (snapshot.exists()) {
       const filesData = snapshot.val();
 
+      let i=0;
       // Iterate over all the files
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
           const fileData = filesData[fileIndex];
           const fileURL = fileData.fileURL;
           const fileName = fileData.fileName;
+          
 
           // Create an image element to display each file
+          imageDiv=document.createElement('div');
+          imageDiv.className="image-div";
+          imageDiv.id='imagediv'.concat(i);
+          imageDiv.style.width='30%';
+          imageDiv.style.flexWrap='wrap';
+          closeButton=document.createElement('button');
+          closeButton.id='closebutton'.concat(i);
+          closeButton.style.backgroundColor='#DC143C';
+          closeButton.style.width='25px';
+          closeButton.style.height='25px';
+          closeButton.style.borderRadius='50%';
+          closeButton.style.position='relative';
+          closeButton.style.left='85%';
+          closeButton.innerText='X';
+          closeButton.style.cursor='pointer';
+          imageDiv.appendChild(closeButton);
           const img = document.createElement('img');
+        
           img.src = fileURL;
           img.alt = fileName;
           img.style.width = '200px'; // Optionally, set the image width
@@ -107,9 +128,17 @@ window.getAllFiles = function () {
 
           // Append the image to the body or any container in your HTML
           // document.body.appendChild(img);
+          imageDiv.appendChild(img);
           let imageContainer=document.getElementById("image-container");
           img.id="image";
-          imageContainer.appendChild(img);
+          imageContainer.appendChild(imageDiv);
+
+          closeButton.addEventListener('click',function(){
+            removeImagefromFirebase(fileURL,fileIndex,imageDiv);
+          })
+         
+
+          i++;
         }
       }
     } else {
@@ -134,4 +163,5 @@ window.discardBox=function(){
   document.getElementById("addimage").style.display = "none"
 }
 window.addEventListener('DOMContentLoaded',getAllFiles())
+
 
