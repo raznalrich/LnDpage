@@ -1,22 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/admin/gallery.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-div">
+      <div class="menu-sidebar">
+      </div>
+      <div class="folder-section">
+        <button class="add-image-button" id="add-button" onclick="previewBox()">
+          Insert
+        </button>
+        <div class="inner-section" id="image-container" onload="getAllFiles()">
 
-</head>
-<body>
-    <input type="file" name="" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg">
-    <label for="fileInp">+</label>
-    <span class="fileText"></span>
-    <button onclick="uploadImage()">upload</button>
-    <div class="bar">
-        <div class="progress"></div>
+        </div>
+      </div>
     </div>
-    <div class="uploadPercentage">0%</div>
+    <div class="input-section" id="addimage" style="display: none;">
+      <div
+        class="top-section"
+        style="
+          width: 100%;
+          background-color: #64a2f5;
+          height: 25px;
+          border-radius: 7px 7px 0px 0px;
+        "
+      ><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;" onclick="discardBox()"></i></div>
+      <div class="input-image">
+        
+        <input
+          type="file"
+          id="fileInp"
+          class="inputFile"
+          onchange="getFile(event)"
+          accept="image/png, image/jpeg"
+        />
+        <label for="fileInp"></label>
+        <span class="fileText"></span><br />
 
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js" ></script>
+        <!-- Form inputs for description and category -->
+        <div class="details-section">
+          <label for="description-input">Description:</label>
+          <input
+            type="text"
+            id="description-input"
+            placeholder="Short description"
+          />
+        </div>
+        <div class="details-section">
+          <label for="category-input" class="category-label">Category:</label>
+          <input
+            type="text"
+            id="category-input"
+            placeholder="Image category"
+          /><br />
+        </div>
+
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+        <div class="uploadPercentage">0%</div>
+        <div class="button-section">
+          <button onclick="discardBox()">discard</button>
+          <button onclick="uploadImage()" id="save">save</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js"></script>
     <script type="module" src="../../js/admin/gallery.js"></script>
-</body>
+    <script src="https://kit.fontawesome.com/b6e6cee001.js" crossorigin="anonymous"></script>
+  </body>
 </html>
