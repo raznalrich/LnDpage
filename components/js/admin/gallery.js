@@ -164,4 +164,6 @@ window.discardBox=function(){
 }
 window.addEventListener('DOMContentLoaded',getAllFiles())
 
-
+// function removeImagefromFirebase(fileURL,fileIndex,imageDiv){
+//   const storageRef=
+// }
