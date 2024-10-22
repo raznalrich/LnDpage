@@ -4,7 +4,7 @@
    Admin-UploadAnnouncement
   </title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../../../css/SideBar-css/adminAnnounce.css">
+  <link rel="stylesheet" href="../../../css/SideBar-css/newsletter.css">
  </head>
  <body>
   <div class="sidebar">
@@ -14,15 +14,12 @@
    <button>
     <a href="Admin-Sidebar.html">Banner Image </a>
    </button>
-   <button class="announce-btn">
+   <button>
     Announcement
    </button>
-   <a href="./newsLetter.html">
-
-    <button >
-      Newsletter
-     </button>
-   </a>
+   <button class="announce-btn">
+    Newsletter
+   </button>
    <button>
     <a href="leaderInsight.html">Leader Insights</a>
    </button>
@@ -38,36 +35,34 @@
     <i class="fas fa-upload">
     </i>
     <span>
-     UPLOAD ANNOUCEMENT
+     Upload Newsletter
     </span>
    </div>
    <button class="add-button" id="addbutton">
     ADD +
    </button>
-   <div class="container" id="container">
-
-     
    
-  </div>
+   
+   <div class="card" id="newslettershow">
+       
+</div>
+</div>
   <div class="addnewsletter" id="addnewsletter" style="display: none;">
-    <form id="uploadFormannouncement">
+    <form id="uploadFormNewsletter">
         <div class="menuformtitle">
 
-            <label for="image" style="font-weight: bold;">Add Announcement</label> <p id="closebutton" style="font-size: larger;">X</p>
+            <label for="image" style="font-weight: bold;">Add Newsletter</label> <p id="closebutton" style="font-size: larger;">X</p>
         </div>
-       
+        <input type="file" id="htmlfile" name="image"  required><br><br>
 
-        <input type="text" id="title" name="title" placeholder="Title" required><br>
-        <input type="text" id="desc" name="desc" placeholder="Description" required><br>
-        <input type="date" id="date" name="title" placeholder="Date" required><br>
 
-        <input type="url" id="url" name="url" placeholder="URL" required><br>
+        <input type="text" id="title" name="title" placeholder="Title" required><br><br>
+
+        <input type="text" id="text" name="text" placeholder="Date of issue and edition" required><br><br>
    
         <button type="submit" id="submit">Submit</button>
     </form>
 </div>
-
-<script type="module" src="../../../js/admin/announcement.js"></script>
-
+<script type="module" src="../../../js/admin/newsletter.js"></script>
  </body>
 </html>
