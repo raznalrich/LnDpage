@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #ffff;
+}
+.sidebar {
+    width: 250px;
+    background-color: #4A90E2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.sidebar h2 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.sidebar button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 25px;
+    color: #4D4D4D;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: #e0e0e0;
+}
+.gallery-btn{
+   margin-left: 4rem;
+   border-radius: right 0%;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    position: relative;
+}
+.upload-banner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.upload-banner i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.upload-banner span {
+    font-size: 16px;
+}
+.add-button {
+    background-color: #6aa9ff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+
+.card .actions i {
+    cursor: pointer;
+}
+.sidebar a{
+    text-decoration: none;
+    color:#4D4D4D;
+}
+.image-category{
+    position: relative;
+    display: flex;
+    top: 6%;
+    width: 80vw;
+    height: 90%;
+    border-radius: 7px;
+}

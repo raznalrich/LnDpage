@@ -88,7 +88,10 @@ let closeButton;
 let imageDiv;
 window.getAllFiles = function () {
   const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const value = urlParams.get('key');
+  console.log(value); 
   get(filesRef).then((snapshot) => {
     if (snapshot.exists()) {
       const filesData = snapshot.val();
@@ -98,6 +101,8 @@ window.getAllFiles = function () {
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
           const fileData = filesData[fileIndex];
+          const fileCat=fileData.fileCat;
+          
           const fileURL = fileData.fileURL;
           const fileName = fileData.fileName;
           
@@ -121,16 +126,17 @@ window.getAllFiles = function () {
           imageDiv.appendChild(closeButton);
           const img = document.createElement('img');
         
+          if(fileCat==value){
           img.src = fileURL;
           img.alt = fileName;
           img.style.width = '200px'; // Optionally, set the image width
           img.style.margin = '10px'; // Optionally, add some margin between images
-
+          
           imageDiv.appendChild(img);
           let imageContainer=document.getElementById("image-container");
           img.id="image";
           imageContainer.appendChild(imageDiv);
-
+          }
           closeButton.addEventListener('click',function(){
             removeImagefromFirebase(fileURL,fileIndex,imageDiv);
           })
