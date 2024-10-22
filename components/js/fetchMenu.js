@@ -35,7 +35,7 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } f
     let iconBar = document.getElementsByClassName("icon-bar")[0];
     const dref = ref(db);
   
-    get(child(dref, '/menuicons')).then((icons) => {
+    get(child(dref, 'menuicons')).then((icons) => {
       icons.forEach(ico => {
         let isActive = ico.child('active').val();
         let imageUrl = ico.child('imageURL').val();
