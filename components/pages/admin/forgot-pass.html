@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+    <title>Reset Password</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="white"></div>
+        <div class="blue"></div>
+    </div>
+    <hr class="hr">
+    <img class="logo" src="../../images/experion-logo.png" alt="" width="15%">
+    <div class="reset-password-container">
+        <form id="resetForm" action="" class="forms">
+            <h2>Enter your email address :</h2>
+            <input type="email" id="adminEmail" placeholder="Admin email">
+            <input type="submit" class="submitButton" id="Send Reset Email">
+        </form>
+        <p id="error-message-reset" style="color: red;"></p>
+        <p id="success-message-reset" style="color: green;"></p>
+    </div>
+</body>
+<!-- type="module": Adding this attribute to the <script> tag tells the browser that the file is an ES module,
+    enabling the use of import and export statements inside that file. -->
+<script type="module" src="../../js/admin/forgot-pass.js"></script>
+
+</html>
