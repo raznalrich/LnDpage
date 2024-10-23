@@ -1,6 +1,6 @@
-import { storage, database } from "../Firebase.js";
+import { storage, database ,app} from "../Firebase.js";
 import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL,deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
@@ -88,16 +88,21 @@ let closeButton;
 let imageDiv;
 window.getAllFiles = function () {
   const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const value = urlParams.get('key');
+  console.log(value); 
   get(filesRef).then((snapshot) => {
     if (snapshot.exists()) {
       const filesData = snapshot.val();
 
-      let i=0;
+      // let i=0;
       // Iterate over all the files
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
           const fileData = filesData[fileIndex];
+          const fileCat=fileData.fileCat;
+          
           const fileURL = fileData.fileURL;
           const fileName = fileData.fileName;
           
@@ -105,11 +110,11 @@ window.getAllFiles = function () {
           // Create an image element to display each file
           imageDiv=document.createElement('div');
           imageDiv.className="image-div";
-          imageDiv.id='imagediv'.concat(i);
+          // imageDiv.id='imagediv'.concat(i);
           imageDiv.style.width='30%';
           imageDiv.style.flexWrap='wrap';
           closeButton=document.createElement('button');
-          closeButton.id='closebutton'.concat(i);
+          // closeButton.id='closebutton'.concat(i);
           closeButton.style.backgroundColor='#DC143C';
           closeButton.style.width='25px';
           closeButton.style.height='25px';
@@ -121,24 +126,23 @@ window.getAllFiles = function () {
           imageDiv.appendChild(closeButton);
           const img = document.createElement('img');
         
+          if(fileCat==value){
           img.src = fileURL;
           img.alt = fileName;
           img.style.width = '200px'; // Optionally, set the image width
           img.style.margin = '10px'; // Optionally, add some margin between images
-
-          // Append the image to the body or any container in your HTML
-          // document.body.appendChild(img);
+          
           imageDiv.appendChild(img);
           let imageContainer=document.getElementById("image-container");
           img.id="image";
           imageContainer.appendChild(imageDiv);
-
+          }
           closeButton.addEventListener('click',function(){
             removeImagefromFirebase(fileURL,fileIndex,imageDiv);
           })
          
 
-          i++;
+        
         }
       }
     } else {
@@ -164,6 +168,18 @@ window.discardBox=function(){
 }
 window.addEventListener('DOMContentLoaded',getAllFiles())
 
-// function removeImagefromFirebase(fileURL,fileIndex,imageDiv){
-//   const storageRef=
-// }
+window.removeImagefromFirebase=function(fileURL,fileIndex,imageDiv){
+
+const dbRefToDelete = dbRef(getDatabase(), 'files/' + fileIndex); 
+
+  set(dbRefToDelete, null) 
+    .then(() => {
+      console.log('Image metadata removed from Firebase Database');
+      if (imageDiv && imageDiv.parentNode) {
+        imageDiv.parentNode.removeChild(imageDiv); 
+      }
+    })
+.catch((error)=>{
+    console.error('error deleteing image from firebase',error)
+  })
+}

@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.icon-bar {
+    background-color: #d0021b;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.icon-item {
+    text-align: center;
+    color: white;   
+}
+.icon-item i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.icon-item p {
+    margin: 0;
+    font-size: 14px;
+}

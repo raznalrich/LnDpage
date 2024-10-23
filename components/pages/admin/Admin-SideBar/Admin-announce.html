@@ -1,0 +1,73 @@
+<html>
+ <head>
+  <title>
+   Admin-UploadAnnouncement
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../../css/SideBar-css/adminAnnounce.css">
+ </head>
+ <body>
+  <div class="sidebar">
+   <h2>
+    Learning &amp; Development
+   </h2>
+   <button>
+    <a href="Admin-Sidebar.html">Banner Image </a>
+   </button>
+   <button class="announce-btn">
+    Announcement
+   </button>
+   <a href="./newsLetter.html">
+
+    <button >
+      Newsletter
+     </button>
+   </a>
+   <button>
+    <a href="leaderInsight.html">Leader Insights</a>
+   </button>
+   <button>
+    <a href="Gallery.html">Gallery</a>
+   </button>
+   <button>
+    <a href="MenuItems.html">Menu Item</a>
+   </button>
+  </div>
+  <div class="main-content">
+   <div class="upload-banner">
+    <i class="fas fa-upload">
+    </i>
+    <span>
+     UPLOAD ANNOUCEMENT
+    </span>
+   </div>
+   <button class="add-button" id="addbutton">
+    ADD +
+   </button>
+   <div class="container" id="container">
+
+     
+   
+  </div>
+  <div class="addnewsletter" id="addnewsletter" style="display: none;">
+    <form id="uploadFormannouncement">
+        <div class="menuformtitle">
+
+            <label for="image" style="font-weight: bold;">Add Announcement</label> <p id="closebutton" style="font-size: larger;">X</p>
+        </div>
+       
+
+        <input type="text" id="title" name="title" placeholder="Title" required><br>
+        <input type="text" id="desc" name="desc" placeholder="Description" required><br>
+        <input type="date" id="date" name="title" placeholder="Date" required><br>
+
+        <input type="url" id="url" name="url" placeholder="URL" required><br>
+   
+        <button type="submit" id="submit">Submit</button>
+    </form>
+</div>
+
+<script type="module" src="../../../js/admin/announcement.js"></script>
+
+ </body>
+</html>

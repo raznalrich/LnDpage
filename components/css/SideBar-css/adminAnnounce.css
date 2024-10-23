@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #ffff;
+}
+.sidebar {
+    width: 250px;
+    background-color: #4A90E2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.sidebar h2 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.sidebar button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 25px;
+    color: #4D4D4D;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: #e0e0e0;
+}
+.announce-btn{
+   margin-left: 4rem;
+   border-radius: right 0%;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    position: relative;
+}
+.upload-banner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.upload-banner i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.upload-banner span {
+    font-size: 16px;
+}
+.add-button {
+    background-color: #6aa9ff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+   
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.card p {
+    font-size: 12px;
+    color: #666;
+}
+.card .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.card .actions i {
+    cursor: pointer;
+}
+.sidebar a{
+    text-decoration: none;
+    color:#4D4D4D;
+}
+.addnewsletter{
+    
+    background-color: rgba(0, 0, 0, 0.4);
+
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addnewsletter form{
+    border: #3F6889 1px solid;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+  
+  height: 300px;
+  background-color: white;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    input{
+        padding: 6px;
+        border-radius: 10px;
+        border: 1px solid grey;
+    }
+    button{
+        background-color: #3F6889;
+        color: white;
+        padding: 5px;
+    }
+    p{
+        cursor: pointer;
+    }
+
+}
+.menuformtitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
