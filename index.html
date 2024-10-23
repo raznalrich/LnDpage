@@ -3,10 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Learning & Development</title>
+    <link rel="stylesheet" href="./components/css/front-page/front.css"> 
 </head>
 <body>
-    <iframe src="./components/pages/front-page/front-page.html" style="width:100%; height:100vh; border:none;"></iframe>
-    <script type="module" src="./components/js/Firebase.js"></script>
+    <header>
+        <div class="header-buttons">
+            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
+            <button class="announcement">📢 ANNOUNCEMENT <span class="badge">8</span></button>
+        </div>
+        
+        <div class="header-container">
+            <div class="logo">Learning <span class="and"> & </span> <br>Development</div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="newsletter.html">Newsletter</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" placeholder=" Search">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="carousel">
+        <div class="carousel-slide">
+            <img src="../../images/temp/batch5.png" alt="Batch Training Image 1">
+            <div class="description-overlay">
+                <div class="rhombus"></div>
+                <h2>4th Batch Completed Offline Training</h2>
+                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                <button class="know-more-btn">Know More</button>
+ 
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <img src="../../images/temp/batch4.png" alt="Batch Training Image 2">
+            <div class="description-overlay">
+                <div class="rhombus"></div>
+                <h2>4th Batch Completed Offline Training</h2>
+                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                <button class="know-more-btn">Know More</button>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <img src="../../images/temp/newsletter-publish.png" alt="Batch Training Image 3">
+            <div class="description-overlay">
+                <div class="rhombus"></div>
+                <h2>4th Batch Completed Offline Training</h2>
+                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                <button class="know-more-btn">Know More</button>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <img src="../../images/temp/l&d-logo.png" alt="Batch Training Image 4">
+            <div class="description-overlay">
+                <div class="rhombus"></div>
+                <h2>4th Batch Completed Offline Training</h2>
+                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                <button class="know-more-btn">Know More</button>
+            </div>
+        </div> 
+        
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <div class="carousel-dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <script src="../../js/front-page/front.js"></script> 
 </body>
 </html>
