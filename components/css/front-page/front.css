@@ -1,15 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 .carousel {
     position: relative;
     max-width: 100%;
     height: 80vh;
     overflow: hidden;
-}
-
+  }
+  
 .carousel-slide {
     position: relative;
     width: 100vw;
-    height: 80vh;
+    height: 500px; 
 }
+.carousel-slide::after {
+    content: '';
+    position: absolute;
+    top: 0; /* Start gradient from halfway */
+    left: 50%;
+    width: 100%;
+    height: 100%; /* Covers the lower half of the carousel */
+    background: linear-gradient(to bottom, transparent, rgba(254, 0.6, 10, 0.6)); /* Red gradient */
+    pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
+    z-index: 1; /* Ensures it stays above the image */
+}
+
 
 .carousel-slide img {
     width: 100%;
@@ -19,24 +36,40 @@
 
 .description-overlay {
     position: absolute;
-    bottom: 45px;
-    top:50px;
-    left: 75%;
-    transform: translateX(-50%);
+    top: 40%;
+    left: 74%;
+    transform: translate(-50%, -50%);
     width: 30%;
-    background: rgba(0, 0, 0, 0.5);
+    height: 40%; /* Adjust height as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
     color: white;
-    /* clip-path: polygon(0 0, 0 0, 60% 10%, 100% 100%, 0% 100%); */
     padding: 20px;
     text-align: center;
+    z-index: 1; /* Ensure overlay is above image */
+  }
+  
+  .rhombus {
+    /* ... (your rhombus styles) ... */
+  }
+
+.rhombus {
+    position: absolute;
+    /* transform: translateX(-50%); */
+    /* z-index: ; */
+    width: 100%; /* Full width of the overlay */
+    height: auto; /* Adjust height automatically */
+    display: block; /* Make sure it behaves like a block element */
+    background-color: #000000;
+    opacity: .8;
+
 }
 
-.description-overlay h2 {
+.rhombus h2 {
     font-size: 24px;
     margin: 0 0 10px;
 }
 
-.description-overlay p {
+.rhombus p {
     font-size: 14px;
 }
 
@@ -96,6 +129,7 @@
     background-color: #717171;
 }
 
+/* Additional styles for header and other components */
 .header-container {
     display: flex;
     flex-direction: row; 
@@ -226,3 +260,55 @@ nav ul li a:hover {
 .search-bar input::placeholder {
     color: #A9A9A9;
 }
+
+
+/* swiper-calendar */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .calendarEventContainer{
+    padding-left: 20px;
+    .date{
+        background-color: #4D4D4D;
+        color: white;
+        line-height: 4px;
+        position: relative;
+        top: 60px;
+        left: 10px;
+        width: 50px;
+        height: 80px;
+        p{
+            padding-top: 10px;
+        }
+        h2{
+            padding-top: 20px;
+        }
+        
+    }
+    .coursename{
+        background-color: #D42027;
+        height: 30px;
+        /* margin-top: -20px; */
+        color: white;
+    }
+  }
+
+
