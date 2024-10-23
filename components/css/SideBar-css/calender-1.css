@@ -1,0 +1,42 @@
+* {
+    border: 0px;
+    margin: 0px;
+    font-family: "Montserrat", sans-serif;
+}
+
+#calendar {
+    width: 300px;
+    height: auto;
+    font-size: xx-small;
+    border: solid black 1px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+:root {
+    --fc-border-color: transparent;
+    --fc-today-bg-color: rgba(0, 122, 255, 0.5);
+}
+
+.fc-daygrid-day {
+    border: none;
+    border-radius: 50%;
+}
+
+.fc-daygrid-day-number {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.fc-daygrid-event {
+    border: none;
+    border-radius: 50%;
+}
+
+.fc-col-header-cell {
+    border: none;
+    height: 30px;
+    color: rgba(60, 60, 67, 0.3);
+}
