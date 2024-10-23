@@ -11,6 +11,7 @@ body {
     background-color: #4A90E2;
     padding: 20px;
     box-sizing: border-box;
+    position: static;
 }
 .sidebar h2 {
     color: white;
