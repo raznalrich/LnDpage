@@ -68,4 +68,12 @@
         flex-direction: column;
         gap: 50px;
     }
+    .ilp-insight{
+        font-size: 50px;
+        font-weight: 800;
+    }
+    .inner-div p{
+        font-size: large;
+    }
+
 }
