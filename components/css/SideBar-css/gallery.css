@@ -87,3 +87,120 @@ body {
     height: 90%;
     border-radius: 7px;
 }
+.main-div{
+    display: flex;
+    flex-direction: row;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    
+}
+*{
+    border: 0px;
+    margin: 0px;
+    font-family: "Montserrat", sans-serif;
+}
+.folder-section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+ .inner-section{
+    width: 67vw;
+    height: 80%;
+    border: 1px solid black;
+    position: relative;
+    left: 10%;
+    flex-wrap: wrap;
+    overflow: auto;
+    display: flex;
+}
+.add-image-button{
+    width: 80px;
+    padding: 1px 3px;
+    border-radius: 7px;
+    background-color: #3F6889;
+    margin: 5px;
+    position: relative;
+    left: 95%;
+}
+.input-section{
+    width: 40%;
+    height: 60%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: absolute;
+    top : 20%;
+    left: 30%;
+    flex-wrap: wrap;
+    background-color: white;
+}
+.input-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 10%;
+    height: 80%;
+}
+
+.button-section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+    top: 25%;
+    left: 80%;
+    
+}
+.button-section button{
+    margin-left: 5%;
+    padding: 3px 10px;
+    border-radius: 15px;
+    border: 0.3px solid black;
+}
+#save{
+    background-color: #64A2F5;
+}
+
+#description-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+}
+#category-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+}
+.details-section{
+    margin-bottom: 5px;
+}
+.details-section .category-label{
+    padding-right: 6%;
+}
+.top-section {
+    display: flex;
+    justify-content: end;
+    align-content: baseline;
+    position: absolute;
+}
+.top-section i{
+    position: relative;
+    bottom: -40%;
+    right: 2%;
+
+}
+.top-section i:hover{
+    cursor: pointer;
+}
