@@ -10,6 +10,17 @@
     width: 100vw;
     height: 500px; 
 }
+.carousel-slide::after {
+    content: '';
+    position: absolute;
+    top: 0; /* Start gradient from halfway */
+    left: 50%;
+    width: 100%;
+    height: 100%; /* Covers the lower half of the carousel */
+    background: linear-gradient(to bottom, transparent, rgba(254, 0.6, 10, 0.6)); /* Red gradient */
+    pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
+    z-index: 1; /* Ensures it stays above the image */
+}
 
 .carousel-slide img {
     width: 100%;
@@ -19,12 +30,12 @@
 
 .description-overlay {
     position: absolute;
-    top: 4%;
-    left: 68%;
+    top: 40%;
+    left: 74%;
     transform: translate(-50%, -50%);
     width: 30%;
     height: 40%; /* Adjust height as needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Adjust opacity as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
     color: white;
     padding: 20px;
     text-align: center;
