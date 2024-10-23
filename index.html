@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning & Development</title>
     <link rel="stylesheet" href="./components/css/front-page/front.css"> 
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 </head>
 <body>
     <header>
@@ -79,7 +83,45 @@
             <span class="dot" onclick="currentSlide(4)"></span>
         </div>
     </section>
+    <section class="menutiles">
 
-    <script src="../../js/front-page/front.js"></script> 
+    </section>
+    <section class="calendarEvents">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="swiperCalendar">
+              <div class="swiper-slide">
+                <div class="calendarEventContainer">
+                    <div class="date">
+                        <p>Oct</p>
+                        <h2>26</h2>
+                        <p style="margin-top: 10px;font-size: 15px;">2024</p>
+                    </div>
+                    <img src="./components/assets/imga.png" alt="" srcset="">
+                    <div class="coursename">
+                        <p><strong>Java program</strong></p>
+                    </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+   
+        
+    </section>
+    
+
+    <script type="module" src="./components/js/front-page/front.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      </script>
 </body>
 </html>
