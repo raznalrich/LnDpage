@@ -173,6 +173,10 @@
     right: -15px;
 }
 
+.menutiles{
+    width: 100%;
+}
+
 .header-buttons {
     display: flex;
     align-items: flex-start;
