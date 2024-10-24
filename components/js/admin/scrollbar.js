@@ -3,10 +3,16 @@ import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL,deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 
-let addButton=document.getElementById('add-button');
-window.addFile=function(){
-    let fileBox=document.getElementById('addimage');
-    fileBox.style.display='flex';
-}
+let previewIndex=0
 
-addButton.onclick=addFile();
+window.previewBox = function () {
+  if (document.getElementById("addimage").style.display != "none" && previewIndex!=1) {
+    document.getElementById("addimage").style.display = "none"
+  } else {
+    document.getElementById("addimage").style.display = "flex"
+    previewIndex=1;
+  }
+}
+window.discardBox=function(){
+  document.getElementById("addimage").style.display = "none"
+}
