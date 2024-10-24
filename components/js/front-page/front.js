@@ -1,7 +1,7 @@
 let slideIndex = 0;
 let cycleCount = 0; 
 const maxCycles = 3; 
-import { storage,database} from "../calenderAPI";
+import { storage,database} from "../calenderAPI.js";
 import { child, get, getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
