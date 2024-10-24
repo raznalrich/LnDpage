@@ -1,29 +1,26 @@
-// import { storage,database} from "../Firebase.js";
 import {database,child, get,ref} from "../Firebase.js";
-
-//   let studid = 1;
-  // const dref = dbRef(db);
-  
   function getAnnouncement() {
-    let iconBar = document.getElementsByClassName("container")[0];
+    let announcementContainer = document.getElementsByClassName("container")[0];
     const dref = ref(database);
   
-    get(child(dref, 'announcement')).then((icons) => {
-      icons.forEach(ico => {
-        let Date = ico.child('date').val();
-        let Desc = ico.child('desc').val();
-        let Index = ico.child('index').val();
-        let Title = ico.child('title').val();
-        // let link = ico.child('url').val();
-        console.log(Title);
+    get(child(dref, 'announcement')).then((announce) => {
+      announce.forEach(announcement => {
+        let announcementDate = announcement.child('date').val();
+        let announcementDesc = announcement.child('desc').val();
+        let announcementIndex = announcement.child('index').val();
+        let announcementTitle = announcement.child('title').val();
+        console.log(announcementTitle);
         
         
             var item = `<div class="announcement-item">
-                <div class="number">${Index}</div>
-                <div class="text">${Title}</div>
-                <div class="date">${Date}</div>
+                <div class="number">${announcementIndex}</div>
+                <div class="text">${announcementTitle}</div>
+                <div class="date">${announcementDate}</div>
+                <div class="description">
+                ${announcementDesc}
+                </div>
             </div>`;
-            iconBar.innerHTML += item;
+            announcementContainer.innerHTML += item;
         
       
 

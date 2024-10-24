@@ -21,10 +21,6 @@ body {
     border-top: 1px solid #ccc;
     padding-top: 20px;
 }
-.logo{
-    margin-top: -1.2rem;
-    margin-bottom: 2rem;
-}
 .announcement-item {
     display: flex;
     align-items: center;
@@ -65,3 +61,22 @@ body {
     color: #c62828;
     font-size: 24px;
 }
+.description {
+    display: none; /* Hide description by default */
+    padding: 5px;
+    color: #666;
+  }
+  
+  .announcement-item:hover {
+
+    background-color: #f9f9f9; 
+  transform: scale(1); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    
+  }
+  
+  /* .announcement-item:hover .description {
+    display: block; /* Show description on hover} */
+ .logo{
+    margin-top: -1.2rem;
+ }  
