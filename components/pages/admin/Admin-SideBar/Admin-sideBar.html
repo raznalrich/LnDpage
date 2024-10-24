@@ -40,7 +40,7 @@
     ADD +
    </button>
 
-   <div class="slidebar-content">
+   <div class="slidebar-content" id="image-container" onload="getAllFiles()">
 
    </div>
   </div>
@@ -54,13 +54,14 @@
       height: 25px;
       border-radius: 7px 7px 0px 0px;
     "
-  ><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;" onclick="discardBox()"></i></div>
+  ><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;" onclick="discardBox()"></i>
+</div>
   <div class="input-image">
     <input
       type="file"
       id="fileInp"
       class="inputFile"
-      onchange=""
+      onchange="getFile(event)"
       accept="image/png, image/jpeg"
     />
     <label for="fileInp"></label>
