@@ -73,7 +73,6 @@
                 <button class="know-more-btn">Know More</button>
             </div>
         </div> 
-        
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
         <div class="carousel-dots">
@@ -104,6 +103,8 @@
               </div>
               
             </div>
+            <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
           </div>
    
@@ -121,6 +122,10 @@
             el: ".swiper-pagination",
             clickable: true,
           },
+          navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
         });
       </script>
 </body>
