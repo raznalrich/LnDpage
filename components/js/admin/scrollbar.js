@@ -93,13 +93,12 @@ let imageDiv;
 console.log('#1')
 window.getAllFiles = function () {
     console.log('hii')
-  const filesRef = dbRef(getDatabase(), 'bannerfiles');  // Reference to the 'files' node
+  const filesRef = dbRef(getDatabase(), 'bannerfiles');  
   get(filesRef).then((snapshot) => {
+    
     if (snapshot.exists()) {
       const filesData = snapshot.val();
-
-      // let i=0;
-      // Iterate over all the files
+      console.log(filesData);
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
           const fileData = filesData[fileIndex];
@@ -109,12 +108,45 @@ window.getAllFiles = function () {
           const fileName = fileData.fileName;
           const fileDesc=fileData.fileDesc;
           
+          let contentDiv=document.createElement('div');
+          contentDiv.style.display='flex';
+          contentDiv.style.flexDirection='row';
           
+          let textSectionDiv=document.createElement('div');
+        
+
+          let heading=document.createElement('h3');
+          heading.style.margin='3px 0px 0px 0px'
+          let desc=document.createElement('p');
+          let switchdiv=document.createElement('label');
+          switchdiv.className='ios-switch'
+          let toggle=document.createElement('input');
+          toggle.className='checkbox';
+          toggle.id='mytoggle';
+          let togglespan=document.createElement('span');
+          togglespan.className='slider';
+          switchdiv.appendChild(toggle);
+          switchdiv.appendChild(togglespan);
+          toggle.type='checkbox';
+          desc.style.margin='5px'
+          heading.innerText=fileCat;
+          
+          desc.innerText=fileDesc;
+          textSectionDiv.appendChild(heading);
+          textSectionDiv.appendChild(desc);
+          textSectionDiv.style.position='relative';
+          textSectionDiv.style.left='10%';
+            textSectionDiv.style.flexWrap='wrap'
+          contentDiv.style.width='97%'
+          contentDiv.style.backgroundColor='white';
+          contentDiv.style.border='1px solid black'
+          contentDiv.style.margin='5px'
           // Create an image element to display each file
           imageDiv=document.createElement('div');
           imageDiv.className="image-div";
           // imageDiv.id='imagediv'.concat(i);
-          imageDiv.style.width='30%';
+          imageDiv.style.width='50px';
+          imageDiv.style.height='auto'
           imageDiv.style.flexWrap='wrap';
           closeButton=document.createElement('button');
           // closeButton.id='closebutton'.concat(i);
@@ -123,29 +155,31 @@ window.getAllFiles = function () {
           closeButton.style.height='25px';
           closeButton.style.borderRadius='50%';
           closeButton.style.position='relative';
-          closeButton.style.left='85%';
+          closeButton.style.left='95%';
+          
           closeButton.innerText='X';
           closeButton.style.cursor='pointer';
-          imageDiv.appendChild(closeButton);
+          contentDiv.appendChild(closeButton);
           const img = document.createElement('img');
-        
-          if(fileCat==value){
+         
           img.src = fileURL;
           img.alt = fileName;
-          img.style.width = '200px'; // Optionally, set the image width
-          img.style.margin = '10px'; // Optionally, add some margin between images
+          img.style.width = '100px'; // Optionally, set the image width
+          img.style.margin = '10px'; 
+          img.style.marginLeft = '0px'; 
+          // Optionally, add some margin between images
           
           imageDiv.appendChild(img);
           let imageContainer=document.getElementById("image-container");
           img.id="image";
-          imageContainer.appendChild(imageDiv);
-          }
+          contentDiv.appendChild(imageDiv);
+          contentDiv.appendChild(textSectionDiv);
+          contentDiv.append(switchdiv);
+          imageContainer.appendChild(contentDiv);
+         
           closeButton.addEventListener('click',function(){
             removeImagefromFirebase(fileURL,fileIndex,imageDiv);
           })
-         
-
-        
         }
       }
     } else {
@@ -170,3 +204,22 @@ window.previewBox = function () {
 window.discardBox=function(){
   document.getElementById("addimage").style.display = "none"
 }
+window.addEventListener('DOMContentLoaded',getAllFiles())
+
+window.removeImagefromFirebase=function(fileURL,fileIndex,imageDiv){
+
+    const dbRefToDelete = dbRef(getDatabase(), 'bannerfiles/' + fileIndex); 
+
+      set(dbRefToDelete, null) 
+        .then(() => {
+          console.log('Image metadata removed from Firebase Database');
+          if (imageDiv && imageDiv.parentNode) {
+            imageDiv.parentNode.removeChild(imageDiv); 
+          }
+        })
+    .catch((error)=>{
+        console.error('error deleteing image from firebase',error)
+      })
+    }
+
+
