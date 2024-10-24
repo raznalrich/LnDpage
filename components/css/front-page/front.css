@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
 }
 .carousel {
     position: relative;
@@ -18,11 +19,12 @@
 .carousel-slide::after {
     content: '';
     position: absolute;
-    top: 0; /* Start gradient from halfway */
-    left: 50%;
+    top: 0; 
+    left: 40%;
     width: 100%;
     height: 100%; /* Covers the lower half of the carousel */
-    background: linear-gradient(to bottom, transparent, rgba(254, 0.6, 10, 0.6)); /* Red gradient */
+    background: linear-gradient(to left, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 100%);
+        
     pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
     z-index: 1; /* Ensures it stays above the image */
 }
@@ -36,44 +38,48 @@
 
 .description-overlay {
     position: absolute;
-    top: 40%;
-    left: 74%;
+    top: 20%;
+    left: 76%;
     transform: translate(-50%, -50%);
-    width: 30%;
-    height: 40%; /* Adjust height as needed */
-    background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
+    width: 27%;
+    height: 30%; 
+    background-color: rgba(0, 0, 0, 0);
     color: white;
     padding: 20px;
     text-align: center;
-    z-index: 1; /* Ensure overlay is above image */
-  }
-  
-  .rhombus {
-    /* ... (your rhombus styles) ... */
-  }
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content */
+}
+.description-overlay img {
+    max-width: 100%; /* Ensure the image doesn't overflow */
+    height: auto;
+    z-index: 2;
+    margin-top: 10px; /* Adds space between text and image */
+    opacity: .5;
+}
 
-.rhombus {
+.description-overlay h2
+ {
     position: absolute;
-    /* transform: translateX(-50%); */
-    /* z-index: ; */
-    width: 100%; /* Full width of the overlay */
-    height: auto; /* Adjust height automatically */
-    display: block; /* Make sure it behaves like a block element */
-    background-color: #000000;
-    opacity: .8;
+    transform: translate(0%, 40%);
+
+
+    z-index: 3;
 
 }
+.description-overlay p{
+     position: absolute;
+     transform: translate(0%, 70%);
+     padding: 30px;
+     z-index: 3;
 
-.rhombus h2 {
-    font-size: 24px;
-    margin: 0 0 10px;
-}
-
-.rhombus p {
-    font-size: 14px;
 }
 
 .know-more-btn {
+    position: absolute;
+    transform: translate(-70%, 500%);
     background-color: #D42027;
     color: white;
     border: none;
@@ -81,6 +87,12 @@
     border-radius: 25px;
     font-size: 14px;
     cursor: pointer;
+    margin-top: 10px; /* Adds space between the image and button */
+    z-index: 2; /* Ensure it stays on top */
+}
+
+.know-more-btn:hover {
+    background-color: #ff5a5f;
 }
 
 .know-more-btn:hover {
@@ -97,7 +109,7 @@
     cursor: pointer;
     border: none;
     border-radius: 50%;
-    z-index: 10;
+    z-index: 1;
 }
 
 .prev {
@@ -129,7 +141,6 @@
     background-color: #717171;
 }
 
-/* Additional styles for header and other components */
 .header-container {
     display: flex;
     flex-direction: row; 
@@ -171,6 +182,10 @@
     position: absolute;
     top: -7px;
     right: -15px;
+}
+
+.menutiles{
+    width: 100%;
 }
 
 .header-buttons {
@@ -302,6 +317,12 @@ nav ul li a:hover {
         h2{
             padding-top: 20px;
         }
+        .swiper{
+            .swiper-pagination{
+                padding-top: 50px;
+            }
+        }
+        
         
     }
     .coursename{
