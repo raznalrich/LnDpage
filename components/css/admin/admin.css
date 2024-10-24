@@ -94,3 +94,12 @@
 a {
     font-size: xx-small;
 }
+
+.error-pass {
+    color: red;
+    position: absolute;
+    font-size: x-small;
+    bottom: 70px;
+    left: 145px;
+    display: none;
+}
