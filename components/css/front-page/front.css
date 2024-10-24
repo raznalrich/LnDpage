@@ -295,7 +295,8 @@ nav ul li a:hover {
     object-fit: cover;
   }
   .calendarEventContainer{
-    padding-left: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
     .date{
         background-color: #4D4D4D;
         color: white;
