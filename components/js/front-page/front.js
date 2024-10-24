@@ -113,7 +113,7 @@ function showCalendarEvents(){
         <div class="calendarEventContainer">
                     <div class="date">
                         <p>Oct</p>
-                        <h2>26</h2>
+                        <h2>${startDate.getDate()}</h2>
                         <p style="margin-top: 10px;font-size: 15px;">2024</p>
                     </div>
                     <img src="./components/assets/imga.png" alt="" srcset="">
