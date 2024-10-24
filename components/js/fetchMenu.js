@@ -1,5 +1,5 @@
 // import { storage,database} from "../Firebase.js";
-import {storage,database,child, get,ref,app} from "./admin/Firebase.js";
+import {storage,database,child, get,ref,app} from "./Firebase.js";
 
   let studid = 1;
   // const dref = dbRef(db);
