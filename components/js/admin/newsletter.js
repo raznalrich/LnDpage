@@ -124,5 +124,3 @@ function closeaddnewmenu(){
 
 document.getElementById("addbutton").addEventListener("click", displayaddnewmenu);
 document.getElementById("closebutton").addEventListener("click", closeaddnewmenu);
-
-

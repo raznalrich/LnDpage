@@ -5,7 +5,7 @@
 }
 
 #calendar {
-    width: 300px;
+    width: 400px;
     height: auto;
     font-size: xx-small;
     border: solid black 1px;
@@ -21,18 +21,20 @@
 
 .fc-daygrid-day {
     border: none;
-    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    /* border-radius: 50%; */
 }
 
 .fc-daygrid-day-number {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 150px;
 }
 
 .fc-daygrid-event {
     border: none;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 
 .fc-col-header-cell {
