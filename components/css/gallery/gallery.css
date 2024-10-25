@@ -38,7 +38,7 @@ nav ul li{
     font-size: 20px;
     transition: background-color 0.3s ease;
 }
-nav ul li : :hover{
+nav ul li :hover{
 
 }
 .search{
@@ -79,7 +79,9 @@ nav ul li : :hover{
 }
 
 .h-line{
+    position: absolute;
     width: 92%;
     border-bottom: 2px solid #000;
     margin: 0 20px 0 20px;
+    top: 150px;
 }
