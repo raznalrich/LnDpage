@@ -5,7 +5,7 @@ const dref = ref(getDatabase(), 'newsletter');
 get(dref).then((snapshot) => {
     if (snapshot.exists()) {
         const data = snapshot.val();
-        console.log(data[1]);
+        // console.log(data[1]);
         document.getElementById('newsletter-iframe').src = data[1].htmlurl
         document.getElementById('newsletter-button').onclick = () => {
             window.location.href = data[1].htmlurl
