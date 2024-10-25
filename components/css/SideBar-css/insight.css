@@ -1,10 +1,14 @@
-body {
+body{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     height: 100vh;
     background-color: #ffff;
+}
+*{
+    font-family: Arial, sans-serif;
 }
 .sidebar {
     width: 250px;
@@ -97,4 +101,87 @@ body {
 .sidebar a{
     text-decoration: none;
     color:#4D4D4D;
+}
+.input-section{
+    width: 40%;
+    height: 60%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: absolute;
+    
+    flex-wrap: wrap;
+    background-color: white;
+}
+.input-section{
+    /* width: 300px;
+    height: 500px; */
+    width: 40%;
+    height: 60%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: absolute;
+    top : 20%;
+    left: 30%;
+    flex-wrap: wrap;
+    background-color: white;
+}
+
+.input-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 10%;
+    height: 80%;
+    
+}
+
+.button-section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+    top: 25%;
+    left: 80%;
+    
+}
+.button-section button{
+    margin-left: 5%;
+    padding: 3px 10px;
+    border-radius: 15px;
+    border: 0.3px solid black;
+}
+#save{
+    background-color: #64A2F5;
+}
+
+#description-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+}
+#category-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+    width: 100%;
+}
+.details-section{
+    margin-bottom: 5px;
+}
+.details-section .category-label{
+    padding-right: 6%;
+}
+.leader-image{
+    border-radius: 50%;
 }

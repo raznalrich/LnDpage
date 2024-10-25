@@ -30,7 +30,7 @@ window.uploadImage = function () {
   }
 
   // Reference to the storage path
-  const storageReference = storageRef(storage, "image/" + fileName);
+  const storageReference = storageRef(storage, "leaderimages/" + fileName);
   const uploadTask = uploadBytesResumable(storageReference, fileItem);
 
   uploadTask.on("state_changed",
@@ -58,7 +58,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   get(indexRef).then((snapshot) => {
     let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1; 
     set(indexRef, newIndex).then(() => {
-      const filesRef = dbRef(db, 'files/' + newIndex); 
+      const filesRef = dbRef(db, 'leaderfiles/' + newIndex); 
       set(filesRef, {
         fileName: fileName,
         fileURL: fileURL,
@@ -77,75 +77,8 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
 
 }
 
-let closeButton;
-let imageDiv;
-window.getAllFiles = function () {
-  const filesRef = dbRef(getDatabase(), 'files');  // Reference to the 'files' node
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const value = urlParams.get('key');
-  console.log(value); 
-  get(filesRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const filesData = snapshot.val();
 
-      // let i=0;
-      // Iterate over all the files
-      for (const fileIndex in filesData) {
-        if (filesData.hasOwnProperty(fileIndex)) {
-          const fileData = filesData[fileIndex];
-          const fileCat=fileData.fileCat;
-          
-          const fileURL = fileData.fileURL;
-          const fileName = fileData.fileName;
-          
 
-          // Create an image element to display each file
-          imageDiv=document.createElement('div');
-          imageDiv.className="image-div";
-          // imageDiv.id='imagediv'.concat(i);
-          imageDiv.style.width='30%';
-          imageDiv.style.flexWrap='wrap';
-          closeButton=document.createElement('button');
-          // closeButton.id='closebutton'.concat(i);
-          closeButton.style.backgroundColor='#DC143C';
-          closeButton.style.width='25px';
-          closeButton.style.height='25px';
-          closeButton.style.borderRadius='50%';
-          closeButton.style.position='relative';
-          closeButton.style.left='85%';
-          closeButton.innerText='X';
-          closeButton.style.cursor='pointer';
-          imageDiv.appendChild(closeButton);
-          const img = document.createElement('img');
-        
-          if(fileCat==value){
-          img.src = fileURL;
-          img.alt = fileName;
-          img.style.width = '200px'; // Optionally, set the image width
-          img.style.margin = '10px'; // Optionally, add some margin between images
-          
-          imageDiv.appendChild(img);
-          let imageContainer=document.getElementById("image-container");
-          img.id="image";
-          imageContainer.appendChild(imageDiv);
-          }
-          closeButton.addEventListener('click',function(){
-            removeImagefromFirebase(fileURL,fileIndex,imageDiv);
-          })
-         
-
-        
-        }
-      }
-    } else {
-      console.log("No files found.");
-    }
-  }).catch((error) => {
-    console.error("Error retrieving files:", error);
-  });
-
-}
 let previewIndex=0
 
 window.previewBox = function () {
@@ -159,7 +92,7 @@ window.previewBox = function () {
 window.discardBox=function(){
   document.getElementById("addimage").style.display = "none"
 }
-window.addEventListener('DOMContentLoaded',getAllFiles())
+// window.addEventListener('DOMContentLoaded',getAllFiles())
 
 window.removeImagefromFirebase=function(fileURL,fileIndex,imageDiv){
 
