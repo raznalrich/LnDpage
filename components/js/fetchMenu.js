@@ -17,7 +17,7 @@ import {storage,database,child, get,ref,app} from "./Firebase.js";
         console.log(imageUrl);
         
   
-        if (isActive) { // Check if icon is active
+        if (isActive) { 
           var item = `<div class="icon-item">
             <a href="${link}">
               <img src='${imageUrl}'/>

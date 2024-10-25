@@ -1,15 +1,16 @@
-body {
+* {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 .container {
-    width: 60%;
-    margin: 50px auto;
+    
+
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
 }
 .header {
     font-size: 24px;
@@ -28,6 +29,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
+    position: relative;
 }
 .announcement-item .number {
     background-color: #c62828;
@@ -44,14 +46,20 @@ body {
 .announcement-item .text {
     flex-grow: 1;
     font-size: 16px;
-    color: #333;
+    color: #767474;
+    background-color: transparent;
+    width: 300px;
+
 }
 .announcement-item .date {
-    background-color: #f5f5f5;
+    background-color: #efe4e4;
     color: #c62828;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border-radius: 5px;
     font-size: 14px;
+    width: 6rem;
+    display: flex;
+    
 }
 .arrow {
     text-align: center;
@@ -61,22 +69,41 @@ body {
     color: #c62828;
     font-size: 24px;
 }
-.description {
-    display: none; /* Hide description by default */
-    padding: 5px;
-    color: #666;
-  }
-  
   .announcement-item:hover {
 
     background-color: #f9f9f9; 
   transform: scale(1); 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(202, 26, 26, 0.3);
     
   }
   
-  /* .announcement-item:hover .description {
-    display: block; /* Show description on hover} */
  .logo{
     margin-top: -1.2rem;
  }  
+ 
+
+ .announcement-item:hover .description {
+    max-height: 100px; /* Set a max height for the slide down effect */
+    padding: 10px; /* Add vertical padding when shown */
+
+}
+.description {
+    position: relative;
+    overflow: hidden; 
+}
+
+.description {
+    height: 70%;
+    font-size: medium;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease,opacity 0.5s ease;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.description:hover {
+    transform: translateY(0); 
+    opacity: 1;
+}

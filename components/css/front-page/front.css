@@ -220,7 +220,7 @@ button:hover {
 .header-right {
     display: flex;
     position: relative;
-    left: 30px;
+    /* left: 30px; */
     top: 20px;
 }
 
@@ -332,5 +332,38 @@ nav ul li a:hover {
         color: white;
     }
   }
+  /* newsletter */
 
+.newsLetter{
+    iframe{
+        padding-top: 20px;
+    }
+}
+.announceAndCalendar{
+    display: flex;
+    .announcement{
+        width: 60%;
+    }
+    .calendar{
+        width: 40%;
+    }
+}
+
+.header {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    position: relative;
+}
+.announcement {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+.headingcontainer{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.logo{
+    margin-top: -1.2rem;
+ }  
 
