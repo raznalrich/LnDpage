@@ -1,43 +1,40 @@
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { app } from "../../js/admin/Firebase.js";
 
-const auth = getAuth(app);  // Initialize Firebase Authentication
-const db = getFirestore(app);  // Initialize Firestore
-
+const auth = getAuth(app);
+const db = getFirestore(app);
 const loginForm = document.getElementById('loginForm');
-const errorMessage = document.getElementById('error-message');
 
 loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();  // Prevents default form submission - to reload the page
-
+    e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-
     try {
-        // Sign in the user using Firebase Authentication
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-
-        // Check if the user has an admin role in Firestore
-        const userDocRef = doc(db, "users", user.uid);  // Reference to the user's Firestore document
+        const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
-
         if (userDoc.exists()) {
             const userData = userDoc.data();
-
             if (userData.role === "admin") {
-                alert("Welcome, Admin!");
-                window.location.href = "../../pages/admin/adminMenuItems.html";
+                // alert("Welcome, Admin!");
+                window.location.href = "../../pages/admin/Admin-SideBar/adminSideBarMain.html"
             } else {
                 alert("Access denied! You are not an admin.");
-                auth.signOut();
-                window.location.href = "/access-denied.html";
+                await auth.signOut();
             }
         } else {
             throw new Error("No user data found");
         }
     } catch (error) {
-        errorMessage.textContent = `Error: ${error.message}`;
+        const password = document.getElementById('password');
+        const email = document.getElementById('email');
+        password.style.borderColor = 'red';
+        email.style.borderColor = 'red';
+        const error_password = document.getElementById('error');
+        const error_email = document.getElementById('error');
+        error_password.style.display = 'block';
+        error_email.style.display = 'block';
     }
 });

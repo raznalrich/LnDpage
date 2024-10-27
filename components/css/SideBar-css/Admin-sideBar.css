@@ -3,11 +3,13 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     height: 100vh;
     background-color: #ffff;
 }
 .sidebar {
-    width: 250px;
+    width: 20vw;
+    height: 100vh;
     background-color: #4A90E2;
     padding: 20px;
     box-sizing: border-box;
@@ -39,7 +41,9 @@ body {
 
 
 .main-content {
-    flex-grow: 1;
+    display: flex;
+    width: 80vw;
+    flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
     background-color: white;
@@ -73,3 +77,136 @@ body {
     text-decoration: none;
     color:#4D4D4D;
 }
+.first-view{
+    display: flex;
+    flex-direction: row;
+}
+.slidebar-content{
+    border: 1px solid black;
+    height: 80vh;
+    width: 70vw;
+    position: relative;
+    top: 10%;
+    border-radius: 7px;
+}
+.input-section{
+    /* width: 300px;
+    height: 500px; */
+    width: 40%;
+    height: 60%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: absolute;
+    top : 20%;
+    left: 30%;
+    flex-wrap: wrap;
+    background-color: white;
+}
+
+.input-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 10%;
+    height: 80%;
+    
+}
+
+.button-section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+    top: 25%;
+    left: 80%;
+    
+}
+.button-section button{
+    margin-left: 5%;
+    padding: 3px 10px;
+    border-radius: 15px;
+    border: 0.3px solid black;
+}
+#save{
+    background-color: #64A2F5;
+}
+
+#description-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+}
+#category-input{
+    border: 1px solid black;
+    border-radius: 7px;
+    position: relative;
+    top: 5%;
+    width: 100%;
+}
+.details-section{
+    margin-bottom: 5px;
+}
+.details-section .category-label{
+    padding-right: 6%;
+}
+        .ios-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;  /* Reduced width */
+            height: 20px;  
+            left: 50%;
+        }
+
+        /* Hide default HTML checkbox */
+        .ios-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider (the round part) */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;  /* Round switch */
+        }
+
+        /* The circle inside the slider */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;  /* Smaller circle */
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;  /* Round circle */
+        }
+
+        /* When the checkbox is checked */
+        input:checked + .slider {
+            background-color: #2196F3;  /* Switch color when ON */
+        }
+
+        /* Move the circle when the checkbox is checked */
+        input:checked + .slider:before {
+            transform: translateX(20px);  /* Shift the circle to the right */
+        }
+
+        /* Optional: Add a shadow effect */
+        .slider:before {
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+        }

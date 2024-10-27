@@ -34,7 +34,6 @@ function showSlides() {
     dots.forEach(dot => dot.classList.remove("active"));
     dots[slideIndex - 1].classList.add("active"); 
 
-    // Continue cycling if max cycles not reached
     if (cycleCount < maxCycles) {
         setTimeout(showSlides, 3000); 
     }
@@ -81,16 +80,21 @@ function showCalendarEvents(){
                 const targetAudience = value.targetAudience;
                 const trainerName = value.trainerName;
                 const mode = value.mode;
-  
+                console.log(startDate);
+                
+                const dateObj = new Date(startDate);
+                const day = dateObj.getDate(); // Extract day (1-31)
+                const month = dateObj.toLocaleString('default', { month: 'short' });
                 const card = document.createElement('div');
+                const year = dateObj.getFullYear();
                 card.classList.add('swiper-slide');
                 card.innerHTML = `
         
         <div class="calendarEventContainer">
                     <div class="date">
-                        <p>Oct</p>
-                        <h2>26</h2>
-                        <p style="margin-top: 10px;font-size: 15px;">2024</p>
+                        <p>${month}</p>
+                        <h2>${day}</h2>
+                        <p style="margin-top: 10px;font-size: 15px;">${year}</p>
                     </div>
                     <img src="./components/assets/imga.png" alt="" srcset="">
                     <div class="coursename">
