@@ -185,3 +185,7 @@ body{
 .leader-image{
     border-radius: 50%;
 }
+#card-container{
+    width: 100vw;
+    height: 100vh;
+}

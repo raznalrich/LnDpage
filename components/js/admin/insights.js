@@ -78,8 +78,11 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
 }
 let closeButton;
 let imageDiv;
+console.log('front of getAllFiles')
 window.getAllFiles = function () {
-    const filesRef = dbRef(getDatabase(), 'leaderfiles');  // Reference to the 'files' node
+    console.log('this is sample')
+
+    const filesRef = dbRef(getDatabase(), 'leaderfiles'); // Reference to the 'files' node
     get(filesRef).then((snapshot) => {
         if (snapshot.exists()) {
             const filesData = snapshot.val();
@@ -88,32 +91,36 @@ window.getAllFiles = function () {
                 if (filesData.hasOwnProperty(fileIndex)) {
                     const fileData = filesData[fileIndex];
                     const fileCat = fileData.fileCat;
-                    const fileDes=fileData.fileDesc;
+                    const fileDes = fileData.fileDesc;
                     const fileURL = fileData.fileURL;
                     const fileName = fileData.fileName;
 
-                    imageDiv = document.getElementById('leader-image');
-                    closeButton=document.getElementById('deleteButton');
-                    imageDiv.appendChild(closeButton);
-                    const img = document.createElement('img');
-                    cardContainer=document.getElementById('card');
-                    
-                        img.src = fileURL;
-                        img.alt = fileName;
-                        img.style.width = '200px'; // Optionally, set the image width
-                        img.style.margin = '10px'; // Optionally, add some margin between images
+                    // Create the card element
+                    let cardContainer = document.getElementById('card-container');
+                    let card = document.createElement('div');
+                    card.classList.add('card');
 
-                        imageDiv.appendChild(img);
-                        let imageContainer = document.getElementById("image-container");
-                        img.id = "image";
-                        cardContainer.appendChild(imageDiv);
-                    
+                    // Set up the card's inner HTML structure
+                    card.innerHTML = `
+                        <div class="leader-image-container">
+                            <img src="${fileURL}" alt="${fileName}" class="leader-image" style="width: 200px; margin: 10px;" />
+                        </div>
+                        <h3 class="leader-heading">${fileCat}</h3>
+                        <p class="leader-quote">${fileDes}</p>
+                        <div class="actions">
+                            <i class="fas fa-trash deleteButton"></i>
+                            <i class="fas fa-edit editButton"></i>
+                        </div>
+                    `;
+
+                    // Append the card to the main container
+                    cardContainer.appendChild(card);
+
+                    // Set up delete functionality
+                    const closeButton = card.querySelector('.deleteButton');
                     closeButton.addEventListener('click', function () {
-                        removeImagefromFirebase(fileURL, fileIndex, imageDiv);
-                    })
-                    
-
-
+                        removeImagefromFirebase(fileURL, fileIndex, card);
+                    });
                 }
             }
         } else {
@@ -122,9 +129,7 @@ window.getAllFiles = function () {
     }).catch((error) => {
         console.error("Error retrieving files:", error);
     });
-
 }
-
 
 
 let previewIndex = 0
@@ -144,7 +149,7 @@ window.discardBox = function () {
 
 window.removeImagefromFirebase = function (fileURL, fileIndex, imageDiv) {
 
-    const dbRefToDelete = dbRef(getDatabase(), 'files/' + fileIndex);
+    const dbRefToDelete = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
 
     set(dbRefToDelete, null)
         .then(() => {
