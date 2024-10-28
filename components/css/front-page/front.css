@@ -57,13 +57,13 @@
     height: auto;
     z-index: 2;
     margin-top: 10px; /* Adds space between text and image */
-    opacity: .5;
+    opacity: .4;
 }
 
 .description-overlay h2
  {
     position: absolute;
-    transform: translate(0%, 40%);
+    transform: translate(0%, 70%);
 
 
     z-index: 3;
@@ -169,16 +169,16 @@
     align-items: center;
 }
 
-.announcement {
+.announcements {
     position: relative;
 }
 
-.announcement .badge {
+.announcements .badge {
     color: white;
     background-color: #000000;
     border-radius: 50%;
-    padding: 5px 9px;
-    font-size: 20px;
+    padding: 5px 7px;
+    font-size: 15px;
     position: absolute;
     top: -7px;
     right: -15px;
