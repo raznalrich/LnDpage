@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./style.css"> <!-- Your custom styles for the carousel -->
+</head>
+<body>
+    <section class="carousel-swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="swiper-wrapper">
+              <!-- Images and descriptions will be dynamically added here -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Load Swiper as a global script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="./javascript.js"></script> <!-- Main JS file to fetch data from Firebase and initialize Swiper -->
+</body>
+</html>
