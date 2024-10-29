@@ -80,8 +80,8 @@ body {
  
 
  .announcement-item:hover .description {
-    max-height: 100px; /* Set a max height for the slide down effect */
-    padding: 10px; /* Add vertical padding when shown */
+    max-height: 100px;
+    padding: 10px;
 
 }
 .description {

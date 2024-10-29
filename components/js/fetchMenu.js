@@ -1,9 +1,5 @@
-// import { storage,database} from "../Firebase.js";
-import {storage,database,child, get,ref,app} from "./Firebase.js";
 
-  let studid = 1;
-  // const dref = dbRef(db);
-  
+import {database,child, get,ref} from "./Firebase.js";  
   function getTiles() {
     let iconBar = document.getElementsByClassName("icon-bar")[0];
     const dref = ref(database);
