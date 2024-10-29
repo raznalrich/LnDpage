@@ -127,7 +127,7 @@ window.getAllFiles = function () {
 
                     editButton.addEventListener('click',function(){
                         toggle=1;
-                        previewBox();
+                        previewBox(fileIndex);
                         editImageInFirebase(fileData);
                         toggle=0;
                     });
@@ -149,16 +149,31 @@ window.editImageInFirebase=function(fileData,fileIndex){
         catContent.value=`${fileData.fileCat}`;
         imageContent.innerHTML=`${fileData.fileName}`;
 
-        
 
+}
+window.updateContent=function(fileIndex){
+    
+    let newDescription=document.getElementById('description-input').value;
+    let newCategory=document.getElementById('category-input').value;
+    console.log(newCategory);
+    console.log(newDescription);
 
+    const dbRefToUpdate = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
+    update(dbRefToUpdate,{
+        fileCat:newCategory,
+        fileDesc:newDescription
+    }).then(()=>{
+        console.log('image data updated successfully');
+    }).catch((error)=>{
+        console.error('error updating data',error);
+    })
 }
 
 let previewIndex = 0
 let toggle=0;
 let buttonSection=document.getElementById('button-section');
     let button=document.createElement('button');    
-window.previewBox = function () {
+window.previewBox = function (fileIndex) {
     
     button.id='save';
     if (document.getElementById("addimage").style.display != "none" && previewIndex != 1) {
@@ -175,7 +190,7 @@ window.previewBox = function () {
     }else{
         buttonSection.innerHTML=`
             <button onclick="discardBox()">discard</button>
-          <button onclick="updateContent()" id="save">update</button>
+          <button onclick="updateContent(${fileIndex})" id="update">update</button>
         `;
     }
 }
