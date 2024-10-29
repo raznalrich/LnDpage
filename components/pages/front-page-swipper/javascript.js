@@ -1,5 +1,6 @@
-import { database } from "../../js/admin/Firebase.js";
+import { database } from "../../js/admin/Firebase.js"; // Adjust the path to Firebase config as needed
 import { ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs"; // Import Swiper
 
 // Fetch images and descriptions from Firebase and add to Swiper
 function fetchCarouselImages() {
@@ -24,10 +25,18 @@ function fetchCarouselImages() {
                         const slide = document.createElement('div');
                         slide.classList.add('swiper-slide');
                         slide.innerHTML = `
-                            <img src="${fileURL}" alt="${fileCat}">
+                            <!-- Default image overlay -->
+                            <div class="default-image">
+                                <img src="../../images/temp/Image (1).png" alt="Default Image">
+                            </div>
+                            <!-- Dynamic image from Firebase -->
+                            <img src="${fileURL}" alt="${fileCat}" class="slide-image">
+                            <!-- Description Overlay -->
                             <div class="description-overlay">
                                 <h2>${fileCat}</h2>
                                 <p>${fileDesc}</p>
+                                <button class="know-more-btn">Know More</button>
+
                             </div>
                         `;
                         activeSlides.push(slide);
