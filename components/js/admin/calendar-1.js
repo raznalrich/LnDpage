@@ -18,17 +18,9 @@ async function calenderView() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        // headerToolbar :{
-        //     left:'prev,next today',
-        //     centre:'title',
-        //     right:'dayGridMonth,timeGridweek,timeGridDay'
-        // },
         events: events
-
     });
-
     calendar.render();
-
 }
 
 calenderView()

@@ -1,0 +1,132 @@
+html,
+    body {
+      position: relative;
+      height: 500px;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-slide {
+        position: relative;
+        width: 100vw;
+        height: 500px; 
+    }
+    .swiper-slide::after {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: 40%;
+        width: 100%;
+        height: 100%; /* Covers the lower half of the carousel */
+        background: linear-gradient(to left, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 100%);
+            
+        pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
+        z-index: 1; /* Ensures it stays above the image */
+    }
+    
+    
+    .swiper-slide img {
+        width: 100%;
+        /* height: 100%; */
+        object-fit: cover;
+    }
+    
+    .description-overlay {
+        position: absolute;
+        top: 20%;
+        left: 76%;
+        /* transform: translate(-50%, -50%); */
+        width: 27%;
+        height: 30%; 
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers content */
+    }
+    .description-overlay img {
+        max-width: 100%; /* Ensure the image doesn't overflow */
+        height: auto;
+        z-index: 2;
+        margin-top: 10px; /* Adds space between text and image */
+        opacity: .5;
+    }
+    
+    .description-overlay h2
+     {
+        position: absolute;
+        transform: translate(0%, 40%);
+        text-align: left;
+    
+    
+        z-index: 3;
+    
+    }
+    .description-overlay p{
+         position: absolute;
+         transform: translate(0%, 60%);
+         padding: 30px;
+         z-index: 3;
+         text-align: left;
+    
+    }
+    
+    .know-more-btn {
+        position: relative;
+        
+        transform: translate(-70%, 600%);
+        background-color: #D42027;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+    
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 10px; /* Adds space between the image and button */
+        z-index: 2; /* Ensure it stays on top */
+    }
+    
+    .know-more-btn:hover {
+        background-color: #ff5a5f;
+    }
+    
+    .know-more-btn:hover {
+        background-color: #ff5a5f;
+    }
+    
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper {
+      margin-left: auto;
+      margin-right: auto;
+    }
