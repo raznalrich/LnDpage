@@ -90,4 +90,15 @@ li:hover{
 .image-content{
     height: auto;
     width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+.imageCard{
+    width: 30%;
+    height: 30%;
+    flex-wrap: wrap
+}
+.imageCard img{
+    width:200px ;
+    height: 200px;
 }
