@@ -42,7 +42,7 @@ body {
 
 .main-content {
     display: flex;
-    width: 80vw;
+    width: 100%;
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
@@ -84,7 +84,7 @@ body {
 .slidebar-content{
     border: 1px solid black;
     height: 80vh;
-    width: 70vw;
+    width: 100%;
     position: relative;
     top: 10%;
     border-radius: 7px;
