@@ -23,8 +23,9 @@ window.getCategories=function(){
                     }}
        
                     categories.forEach((category)=>{
+                        console.log(category);
                         const ul=document.getElementById('nav-ul');
-                        ul.innerHTML=`
+                        ul.innerHTML+=`
                         <li>${category}</li>
                         `
                     })
