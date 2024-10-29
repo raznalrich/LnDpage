@@ -43,6 +43,7 @@ function showBannerImage() {
                 iframe.src = "./Admin-sideBar.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("bannerImage").classList.add('announce-btn')
 }
@@ -60,6 +61,7 @@ function showAnnouncement() {
                 iframe.src = "./Admin-announce.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("announcement").classList.add('announce-btn')
 }
@@ -77,6 +79,7 @@ function showNewsLetter() {
                 iframe.src = "./newsLetter.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("newsLetter").classList.add('announce-btn')
 }
@@ -94,6 +97,7 @@ function showCalendarEvents() {
                 iframe.src = "./calender.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("calendar").classList.add('announce-btn')
 }
@@ -111,6 +115,7 @@ function showLeaderInsights() {
                 iframe.src = "./leaderInsight.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("leaderInsight").classList.add('announce-btn')
 }
@@ -128,6 +133,7 @@ function showGallery() {
                 iframe.src = "./Gallery.html";
                 iframe.width = '100%';
                 iframe.height = '550px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("galleryImport").classList.add('announce-btn')
 }
@@ -145,6 +151,7 @@ function showMenuItems() {
                 iframe.src = "./MenuItems.html";
                 iframe.width = '100%';
                 iframe.height = '600px';
+                iframe.style.border = 'none';
                 maincontent.appendChild(iframe);
                 document.getElementById("menuItems").classList.add('announce-btn')
 }

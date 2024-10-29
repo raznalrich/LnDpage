@@ -1,5 +1,5 @@
 import { storage, database, app } from "../Firebase.js";
-import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase, set,update, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
@@ -103,13 +103,15 @@ window.getAllFiles = function () {
                     // Set up the card's inner HTML structure
                     card.innerHTML = `
                         <div class="leader-image-container">
-                            <img src="${fileURL}" alt="${fileName}" class="leader-image" style="width: 200px; margin: 10px;" />
+                            <img src="${fileURL}" alt="${fileName}" class="leader-image" style="width: 30px; height:30px; border-radius:50% margin: 10px;" />
                         </div>
-                        <h3 class="leader-heading">${fileCat}</h3>
+                        <div class="description-container">
+                         <h3 class="leader-heading">${fileCat}</h3>
                         <p class="leader-quote">${fileDes}</p>
                         <div class="actions">
                             <i class="fas fa-trash deleteButton"></i>
-                            <i class="fas fa-edit editButton"></i>
+                            <i class="fas fa-edit editButton" value=${fileIndex}></i>
+                        </div>
                         </div>
                     `;
 
@@ -118,8 +120,15 @@ window.getAllFiles = function () {
 
                     // Set up delete functionality
                     const closeButton = card.querySelector('.deleteButton');
+                    const editButton=card.querySelector('.editButton');
                     closeButton.addEventListener('click', function () {
                         removeImagefromFirebase(fileURL, fileIndex, card);
+                    });
+
+                    editButton.addEventListener('click',function(){
+                        toggle=1;
+                        previewBox();
+                        toggle=0;
                     });
                 }
             }
@@ -130,20 +139,38 @@ window.getAllFiles = function () {
         console.error("Error retrieving files:", error);
     });
 }
+window.editImageInFirebase=function(fileData,fileIndex){
 
+}
 
 let previewIndex = 0
-
+let toggle=0;
+let buttonSection=document.getElementById('button-section');
+    let button=document.createElement('button');    
 window.previewBox = function () {
+    
+    button.id='save';
     if (document.getElementById("addimage").style.display != "none" && previewIndex != 1) {
-        document.getElementById("addimage").style.display = "none"
+        document.getElementById("addimage").style.display = "none";
     } else {
         document.getElementById("addimage").style.display = "flex"
         previewIndex = 1;
     }
+    if(toggle==0){
+        buttonSection.innerHTML=`
+        <button onclick="discardBox()">discard</button>
+          <button onclick="uploadImage()" id="save">save</button>
+        `;
+    }else{
+        buttonSection.innerHTML=`
+            <button onclick="discardBox()">discard</button>
+          <button onclick="uploadImage()" id="save">update</button>
+        `;
+    }
 }
 window.discardBox = function () {
     document.getElementById("addimage").style.display = "none"
+    buttonSection.removeChild(button);
 }
 // window.addEventListener('DOMContentLoaded',getAllFiles())
 
