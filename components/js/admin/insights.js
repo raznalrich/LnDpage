@@ -128,6 +128,7 @@ window.getAllFiles = function () {
                     editButton.addEventListener('click',function(){
                         toggle=1;
                         previewBox();
+                        editImageInFirebase(fileData);
                         toggle=0;
                     });
                 }
@@ -140,6 +141,16 @@ window.getAllFiles = function () {
     });
 }
 window.editImageInFirebase=function(fileData,fileIndex){
+        let imageContent=document.getElementById('file-input');
+        let descContent=document.getElementById('description-input');
+        let catContent=document.getElementById('category-input');
+        console.log(fileData)
+        descContent.value=`${fileData.fileDesc}`;
+        catContent.value=`${fileData.fileCat}`;
+        imageContent.innerHTML=`${fileData.fileName}`;
+
+        
+
 
 }
 
@@ -164,13 +175,13 @@ window.previewBox = function () {
     }else{
         buttonSection.innerHTML=`
             <button onclick="discardBox()">discard</button>
-          <button onclick="uploadImage()" id="save">update</button>
+          <button onclick="updateContent()" id="save">update</button>
         `;
     }
 }
 window.discardBox = function () {
     document.getElementById("addimage").style.display = "none"
-    buttonSection.removeChild(button);
+    // buttonSection.removeChild(button);
 }
 // window.addEventListener('DOMContentLoaded',getAllFiles())
 
