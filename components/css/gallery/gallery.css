@@ -32,14 +32,16 @@ nav ul{
     gap: 20px;
     padding: 10px;
 }
-nav ul li{
+li{
     cursor: pointer;
     padding: 10px 20px;
     font-size: 20px;
     transition: background-color 0.3s ease;
+    /* transition: opacity 0.3s ease, visibility 0s linear 0.3s; */
 }
-nav ul li :hover{
-
+li:hover{
+    color: red;
+    transition-delay: 0.3s;
 }
 .search{
     display: flex;
@@ -84,4 +86,8 @@ nav ul li :hover{
     border-bottom: 2px solid #000;
     margin: 0 20px 0 20px;
     top: 150px;
+}
+.image-content{
+    height: auto;
+    width: 100vw;
 }
