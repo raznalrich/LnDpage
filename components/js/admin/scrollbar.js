@@ -131,17 +131,21 @@ window.getAllFiles = function () {
           });
 
           let togglespan = document.createElement('span');
+          let toggleDiv=document.createElement('div');
+          toggleDiv.className='main-toggle-div'
           togglespan.className = 'slider';
+       
           switchdiv.appendChild(toggle);
           switchdiv.appendChild(togglespan);
-
+          toggleDiv.appendChild(switchdiv);
           desc.style.margin = '5px';
           heading.innerText = fileCat;
           desc.innerText = fileDesc;
           textSectionDiv.appendChild(heading);
           textSectionDiv.appendChild(desc);
           textSectionDiv.style.position = 'relative';
-          textSectionDiv.style.left = '10%';
+          textSectionDiv.style.left = '';
+          textSectionDiv.style.width='50%'
           textSectionDiv.style.flexWrap = 'wrap';
           contentDiv.style.width = '97%';
           contentDiv.style.backgroundColor = 'white';
@@ -151,19 +155,10 @@ window.getAllFiles = function () {
           // Create an image element to display each file
           imageDiv = document.createElement('div');
           imageDiv.className = "image-div";
-          imageDiv.style.width = '50px';
-          imageDiv.style.height = 'auto';
-          imageDiv.style.flexWrap = 'wrap';
           closeButton = document.createElement('button');
-          closeButton.style.backgroundColor = '#DC143C';
-          closeButton.style.width = '25px';
-          closeButton.style.height = '25px';
-          closeButton.style.borderRadius = '50%';
-          closeButton.style.position = 'relative';
-          closeButton.style.left = '95%';
+          closeButton.className='close-button';
           closeButton.innerText = 'X';
-          closeButton.style.cursor = 'pointer';
-          contentDiv.appendChild(closeButton);
+          toggleDiv.appendChild(closeButton);
           
           const img = document.createElement('img');
           img.src = fileURL;
@@ -177,7 +172,7 @@ window.getAllFiles = function () {
           img.id = "image";
           contentDiv.appendChild(imageDiv);
           contentDiv.appendChild(textSectionDiv);
-          contentDiv.append(switchdiv);
+          contentDiv.appendChild(toggleDiv);
           imageContainer.appendChild(contentDiv);
 
           closeButton.addEventListener('click', function(){
