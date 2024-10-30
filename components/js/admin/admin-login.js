@@ -4,9 +4,9 @@ import { app } from "../../js/admin/Firebase.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-const loginForm = document.getElementById('loginForm');
 
-loginForm.addEventListener('submit', async (e) => {
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -18,7 +18,6 @@ loginForm.addEventListener('submit', async (e) => {
         if (userDoc.exists()) {
             const userData = userDoc.data();
             if (userData.role === "admin") {
-                // alert("Welcome, Admin!");
                 window.location.href = "../../pages/admin/Admin-SideBar/adminSideBarMain.html"
             } else {
                 alert("Access denied! You are not an admin.");
