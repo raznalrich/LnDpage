@@ -10,11 +10,11 @@
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
 </head>
-<body>
+<body onload="updateAnouncement()">
     <header>
         <div class="header-buttons">
             <button class="upcoming-events">📅 UPCOMING EVENTS</button>
-            <button class="announcements">📢 ANNOUNCEMENT <span class="badge">8</span></button>
+            <button class="announcements">📢 ANNOUNCEMENT <span class="badge" id="badge">0</span></button>
         </div>
         
         <div class="header-container">
