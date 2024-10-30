@@ -46,6 +46,27 @@
     padding: 10px;
     border-radius: 50%;
 } */ */
+*{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.carousel {
+    position: relative;
+    max-width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    iframe{
+        height: 100vh;
+    }
+  }
+
+
+
+
+
+
 
 
 
@@ -186,10 +207,17 @@ nav ul li a:hover {
 
 
 /* swiper-calendar */
-
+.calendarEvents{
+    padding-bottom: 40px;
+}
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 100px;
+    
+  }
+  #swiperCalendar{
+    padding-right: 50px;
+    padding-left: 50px;
   }
 
   .swiper-slide {
@@ -199,6 +227,9 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* position: absolute;
+    top: 0; */
+    width: 100%;
   }
 
   .swiper-slide img {
@@ -207,20 +238,25 @@ nav ul li a:hover {
     height: 100%;
     object-fit: cover;
   }
+  
   .calendarEventContainer{
-    padding-left: 50px;
+    /* padding-left: 50px;
     padding-right: 50px;
+    width: 100%; */
+    
     .date{
         background-color: #4D4D4D;
         color: white;
         line-height: 4px;
         position: relative;
-        top: 60px;
+        top: 0px;
         left: 10px;
         width: 50px;
         height: 80px;
+        z-index: 999;
         p{
             padding-top: 10px;
+            
         }
         h2{
             padding-top: 20px;
@@ -233,11 +269,65 @@ nav ul li a:hover {
         
         
     }
+    .descCal{
+        display: flex;
+        justify-content: space-between;
+        .trainer{
+            display: flex;
+            padding-top: 10px;
+            padding-left: 70px;
+            p{
+                padding-left: 5px;
+                font-size: 13px;
+            }
+        }
+    }
+    img{
+        height: 20px;
+    }
+    .mode{
+        display: flex;
+        padding-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+        .circle{
+            width: 16px;
+            height: 16px;
+            border-radius: 50px;
+            background-color: green;
+            border: #00000041 2px solid;
+        }
+        .black{
+            background-color: #4c4c4c89;
+            border: #000000 2px solid;
+        }
+        p{
+            padding-left: 5px;
+            font-size: 13px;
+         
+            padding-right: 30px;
+        }
+    }
+    .calbottom{
+        height: 20px;
+        border-bottom: #000000 1px solid;
+       
+    }
+    .courseDetails{
+        position: absolute;
+        top: 15px;
+       width: 300px;
+    }
     .coursename{
         background-color: #D42027;
         height: 30px;
+       
         /* margin-top: -20px; */
         color: white;
+        p{
+            text-align: end;
+            padding-right: 30px;
+        }
     }
   }
   /* newsletter */
