@@ -23,6 +23,7 @@ window.getCategories=function(){
                     }}
        
                     categories.forEach((category)=>{
+                        console.log(category);
                         const ul=document.getElementById('nav-ul');
                         ul.innerHTML+=`
                         <li onclick="getFiles(event)" class='list-image'>${category}</li>

@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.icon-bar {
+.icon-bar-main {
     background-color: #d0021b;
     padding: 20px 0;
     display: flex;
