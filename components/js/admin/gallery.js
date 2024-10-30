@@ -1,18 +1,6 @@
 import { storage, database, app } from "../Firebase.js";
-import {
-  child,
-  get,
-  getDatabase,
-  set,
-  ref as dbRef,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-import {
-  getStorage,
-  ref as storageRef,
-  uploadBytesResumable,
-  getDownloadURL,
-  deleteObject,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
@@ -64,14 +52,11 @@ window.uploadImage = function () {
 };
 function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   const db = database;
-  const indexRef = dbRef(db, "fileIndex");
-
+  const indexRef = dbRef(db, 'fileIndex');
   get(indexRef).then((snapshot) => {
     let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1;
-
     set(indexRef, newIndex).then(() => {
-      const filesRef = dbRef(db, "files/" + newIndex);
-
+      const filesRef = dbRef(db, 'files/' + newIndex);
       set(filesRef, {
         fileName: fileName,
         fileURL: fileURL,
@@ -116,7 +101,11 @@ window.getAllFiles = function () {
             imageDiv.className = "image-div";
             // imageDiv.id='imagediv'.concat(i);
             imageDiv.style.width = "30%";
+            imageDiv.style.height = "40%";
+            imageDiv.style.borderRadius='7px';
             imageDiv.style.flexWrap = "wrap";
+            imageDiv.style.overflow='hidden';
+      
             closeButton = document.createElement("button");
             // closeButton.id='closebutton'.concat(i);
             closeButton.style.backgroundColor = "#DC143C";
@@ -129,11 +118,13 @@ window.getAllFiles = function () {
             closeButton.style.cursor = "pointer";
             imageDiv.appendChild(closeButton);
             const img = document.createElement("img");
-
+            img.style.objectFit='cover';
+            img.style.borderRadius='7px';
             if (fileCat == value) {
               img.src = fileURL;
               img.alt = fileName;
-              img.style.width = "200px";
+              img.style.width = "100%";
+              img.style.height="100%"
               img.style.margin = "10px";
 
               imageDiv.appendChild(img);
