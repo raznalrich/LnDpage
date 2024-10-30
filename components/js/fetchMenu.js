@@ -1,7 +1,7 @@
 
 import {database,child, get,ref} from "./Firebase.js";  
   function getTiles() {
-    let iconBar = document.getElementsByClassName("icon-bar")[0];
+    let iconBar = document.getElementsByClassName("icon-bar-main")[0];
     const dref = ref(database);
   
     get(child(dref, 'menuicons')).then((icons) => {
