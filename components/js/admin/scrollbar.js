@@ -16,7 +16,10 @@ window.getFile = function (e) {
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
 }
-window.getDetails = function (e) {}
+window.getDetails = function (e) {
+
+}
+
 
 window.uploadImage = function () {
   category = document.getElementById("category-input").value;
@@ -53,10 +56,9 @@ window.uploadImage = function () {
     }
   );
 }
-
 function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   const db = database;
-  let isActive = 1;
+  let isActive=1;
   const indexRef = dbRef(db, 'fileIndex'); // Reference to a counter for file index
 
   // Read the current index value and increment it
@@ -74,7 +76,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
         index: newIndex,
         fileCat: fileCategory,
         fileDesc: fileDescription,
-        isActive: isActive
+        isActive:isActive
       })
         .then(() => {
           console.log('File metadata with index saved successfully!');
@@ -84,13 +86,13 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
         });
     });
   });
-}
 
+}
 let closeButton;
 let imageDiv;
 console.log('#1')
 window.getAllFiles = function () {
-  console.log('hii')
+    console.log('hii')
   const filesRef = dbRef(getDatabase(), 'bannerfiles');  
   get(filesRef).then((snapshot) => {
     
@@ -100,88 +102,83 @@ window.getAllFiles = function () {
       for (const fileIndex in filesData) {
         if (filesData.hasOwnProperty(fileIndex)) {
           const fileData = filesData[fileIndex];
-          const fileCat = fileData.fileCat;
-          const isActive = fileData.isActive;
+          const fileCat=fileData.fileCat;
+          const isActive=fileData.isActive;
           const fileURL = fileData.fileURL;
           const fileName = fileData.fileName;
-          const fileDesc = fileData.fileDesc;
-
-          let contentDiv = document.createElement('div');
-          contentDiv.style.display = 'flex';
-          contentDiv.style.flexDirection = 'row';
-
-          let textSectionDiv = document.createElement('div');
-          let heading = document.createElement('h3');
-          heading.style.margin = '3px 0px 0px 0px';
-          let desc = document.createElement('p');
+          const fileDesc=fileData.fileDesc;
           
-          // Toggle switch
-          let switchdiv = document.createElement('label');
-          switchdiv.className = 'ios-switch';
-          let toggle = document.createElement('input');
-          toggle.className = 'checkbox';
-          toggle.id = 'mytoggle';
-          toggle.type = 'checkbox';
-          toggle.checked = isActive === 1; // Set initial state based on the stored value in Firebase
+          let contentDiv=document.createElement('div');
+          contentDiv.style.display='flex';
+          contentDiv.style.flexDirection='row';
           
-          // Toggle event listener
-          toggle.addEventListener('change', () => {
-            const newStatus = toggle.checked ? 1 : 0;
-            updateFileStatus(fileIndex, newStatus); // Update Firebase when toggled
-          });
+          let textSectionDiv=document.createElement('div');
+        
 
-          let togglespan = document.createElement('span');
-          togglespan.className = 'slider';
+          let heading=document.createElement('h3');
+          heading.style.margin='3px 0px 0px 0px'
+          let desc=document.createElement('p');
+          let switchdiv=document.createElement('label');
+          switchdiv.className='ios-switch'
+          let toggle=document.createElement('input');
+          toggle.className='checkbox';
+          toggle.id='mytoggle';
+          let togglespan=document.createElement('span');
+          togglespan.className='slider';
           switchdiv.appendChild(toggle);
           switchdiv.appendChild(togglespan);
-
-          desc.style.margin = '5px';
-          heading.innerText = fileCat;
-          desc.innerText = fileDesc;
+          toggle.type='checkbox';
+          desc.style.margin='5px'
+          heading.innerText=fileCat;
+          
+          desc.innerText=fileDesc;
           textSectionDiv.appendChild(heading);
           textSectionDiv.appendChild(desc);
-          textSectionDiv.style.position = 'relative';
-          textSectionDiv.style.left = '10%';
-          textSectionDiv.style.flexWrap = 'wrap';
-          contentDiv.style.width = '97%';
-          contentDiv.style.backgroundColor = 'white';
-          contentDiv.style.border = '1px solid black';
-          contentDiv.style.margin = '5px';
-
+          textSectionDiv.style.position='relative';
+          textSectionDiv.style.left='10%';
+            textSectionDiv.style.flexWrap='wrap'
+          contentDiv.style.width='97%'
+          contentDiv.style.backgroundColor='white';
+          contentDiv.style.border='1px solid black'
+          contentDiv.style.margin='5px'
           // Create an image element to display each file
-          imageDiv = document.createElement('div');
-          imageDiv.className = "image-div";
-          imageDiv.style.width = '50px';
-          imageDiv.style.height = 'auto';
-          imageDiv.style.flexWrap = 'wrap';
-          closeButton = document.createElement('button');
-          closeButton.style.backgroundColor = '#DC143C';
-          closeButton.style.width = '25px';
-          closeButton.style.height = '25px';
-          closeButton.style.borderRadius = '50%';
-          closeButton.style.position = 'relative';
-          closeButton.style.left = '95%';
-          closeButton.innerText = 'X';
-          closeButton.style.cursor = 'pointer';
-          contentDiv.appendChild(closeButton);
+          imageDiv=document.createElement('div');
+          imageDiv.className="image-div";
+          // imageDiv.id='imagediv'.concat(i);
+          imageDiv.style.width='50px';
+          imageDiv.style.height='auto'
+          imageDiv.style.flexWrap='wrap';
+          closeButton=document.createElement('button');
+          // closeButton.id='closebutton'.concat(i);
+          closeButton.style.backgroundColor='#DC143C';
+          closeButton.style.width='25px';
+          closeButton.style.height='25px';
+          closeButton.style.borderRadius='50%';
+          closeButton.style.position='relative';
+          closeButton.style.left='95%';
           
+          closeButton.innerText='X';
+          closeButton.style.cursor='pointer';
+          contentDiv.appendChild(closeButton);
           const img = document.createElement('img');
+         
           img.src = fileURL;
           img.alt = fileName;
           img.style.width = '100px'; // Optionally, set the image width
-          img.style.margin = '10px';
-          img.style.marginLeft = '0px';
+          img.style.margin = '10px'; 
+          img.style.marginLeft = '0px'; 
+          // Optionally, add some margin between images
           
           imageDiv.appendChild(img);
-          let imageContainer = document.getElementById("image-container");
-          img.id = "image";
+          let imageContainer=document.getElementById("image-container");
+          img.id="image";
           contentDiv.appendChild(imageDiv);
           contentDiv.appendChild(textSectionDiv);
           contentDiv.append(switchdiv);
           imageContainer.appendChild(contentDiv);
-
-          closeButton.addEventListener('click', function(){
-            removeImagefromFirebase(fileURL, fileIndex, imageDiv);
+         
+          closeButton.addEventListener('click',function(){
+            removeImagefromFirebase(fileURL,fileIndex,imageDiv);
           })
         }
       }
@@ -191,48 +188,38 @@ window.getAllFiles = function () {
   }).catch((error) => {
     console.error("Error retrieving files:", error);
   });
+
 }
 
-// Update file status function
-function updateFileStatus(fileIndex, isActiveStatus) {
-  const db = getDatabase();
-  const fileRef = dbRef(db, 'bannerfiles/' + fileIndex + '/isActive');
-
-  set(fileRef, isActiveStatus)
-    .then(() => {
-      console.log(`File ${fileIndex} isActive updated to ${isActiveStatus}`);
-    })
-    .catch((error) => {
-      console.error('Error updating isActive status:', error);
-    });
-}
-
-let previewIndex = 0;
+let previewIndex=0
 
 window.previewBox = function () {
-  if (document.getElementById("addimage").style.display != "none" && previewIndex != 1) {
-    document.getElementById("addimage").style.display = "none";
+  if (document.getElementById("addimage").style.display != "none" && previewIndex!=1) {
+    document.getElementById("addimage").style.display = "none"
   } else {
-    document.getElementById("addimage").style.display = "flex";
-    previewIndex = 1;
+    document.getElementById("addimage").style.display = "flex"
+    previewIndex=1;
   }
 }
-window.discardBox = function() {
-  document.getElementById("addimage").style.display = "none";
+window.discardBox=function(){
+  document.getElementById("addimage").style.display = "none"
 }
-window.addEventListener('DOMContentLoaded', getAllFiles())
+window.addEventListener('DOMContentLoaded',getAllFiles())
 
-window.removeImagefromFirebase = function(fileURL, fileIndex, imageDiv){
-  const dbRefToDelete = dbRef(getDatabase(), 'bannerfiles/' + fileIndex); 
+window.removeImagefromFirebase=function(fileURL,fileIndex,imageDiv){
 
-  set(dbRefToDelete, null) 
-    .then(() => {
-      console.log('Image metadata removed from Firebase Database');
-      if (imageDiv && imageDiv.parentNode) {
-        imageDiv.parentNode.removeChild(imageDiv); 
-      }
-    })
-    .catch((error) => {
-      console.error('Error deleting image from Firebase:', error);
-    });
-}
+    const dbRefToDelete = dbRef(getDatabase(), 'bannerfiles/' + fileIndex); 
+
+      set(dbRefToDelete, null) 
+        .then(() => {
+          console.log('Image metadata removed from Firebase Database');
+          if (imageDiv && imageDiv.parentNode) {
+            imageDiv.parentNode.removeChild(imageDiv); 
+          }
+        })
+    .catch((error)=>{
+        console.error('error deleteing image from firebase',error)
+      })
+    }
+
+
