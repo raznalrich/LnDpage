@@ -1,7 +1,7 @@
 import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { app } from "../../js/admin/Firebase.js";
 
-const auth = getAuth(app);  // Initialize Firebase Authentication
+const auth = getAuth(app);  
 
 // reset password/ forgot password
 const resetPasswordForm = document.getElementById('resetForm');

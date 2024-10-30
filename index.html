@@ -14,11 +14,14 @@
     <header>
         <div class="header-buttons">
             <button class="upcoming-events">📅 UPCOMING EVENTS</button>
-            <button class="announcement">📢 ANNOUNCEMENT <span class="badge">8</span></button>
+            <button class="announcements">📢 ANNOUNCEMENT <span class="badge">8</span></button>
         </div>
         
         <div class="header-container">
-            <div class="logo">Learning <span class="and"> & </span> <br>Development</div>
+            <div class="logo">
+                <!-- Learning <span class="and"> & </span> <br>Development -->
+                 <img src="./components/assets/homepage-logo.png" alt="" srcset="" width="200px">
+            </div>
             <div class="header-right">
                 <nav>
                     <ul>
@@ -37,38 +40,42 @@
 
     <section class="carousel">
         <div class="carousel-slide">
-            <img src="../../images/temp/batch5.png" alt="Batch Training Image 1">
+            <img src="./components/assets/ILP Batch 51.jpg" alt="Batch Training Image 1">
             <div class="description-overlay">
-                <div class="rhombus"></div>
-                <h2>4th Batch Completed Offline Training</h2>
+                
+                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
+                <h2>Welcome Batch 5</h2>
                 <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
                 <button class="know-more-btn">Know More</button>
  
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="../../images/temp/batch4.png" alt="Batch Training Image 2">
+            <img src="./components/assets/Batch 4 Final.png" alt="Batch Training Image 2">
             <div class="description-overlay">
-                <div class="rhombus"></div>
+                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
+
                 <h2>4th Batch Completed Offline Training</h2>
                 <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
                 <button class="know-more-btn">Know More</button>
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="../../images/temp/newsletter-publish.png" alt="Batch Training Image 3">
+            <img src="./components/images/temp/newsletter-publish.png" alt="Batch Training Image 3">
             <div class="description-overlay">
-                <div class="rhombus"></div>
-                <h2>4th Batch Completed Offline Training</h2>
+                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
+
+                <h2>ILP Newsletter</h2>
                 <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
                 <button class="know-more-btn">Know More</button>
             </div>
         </div>
         <div class="carousel-slide">
-            <img src="../../images/temp/l&d-logo.png" alt="Batch Training Image 4">
+            <img src="./components/images/temp/l&d-logo.png" alt="Batch Training Image 4">
             <div class="description-overlay">
-                <div class="rhombus"></div>
-                <h2>4th Batch Completed Offline Training</h2>
+                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
+
+                <h2>Learning & Development</h2>
                 <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
                 <button class="know-more-btn">Know More</button>
             </div>
@@ -83,41 +90,87 @@
         </div>
     </section>
     <section class="menutiles">
-
+        <div class="icon-bar">
+            <iframe src="./components/pages/user/menuTiles.html" frameborder="0" width="100%"></iframe>
+        </div>
     </section>
     <section class="calendarEvents">
+        <div class="headingcontainer">
+            <div class="header">Training Calendar</div>
+            <div class="announcement">
+                <div class="logo"><img src="./components/assets/experionRhombus-Logo.png" alt="logo"></div>
+                
+                </div>
+            </div>
+        </div>
+       
         <div class="swiper mySwiper">
             <div class="swiper-wrapper" id="swiperCalendar">
               <div class="swiper-slide">
-                <div class="calendarEventContainer">
-                    <div class="date">
-                        <p>Oct</p>
+                  
+                  <div class="calendarEventContainer">
+                      
+                        <div class="date">
+                            <p>Oct</p>
                         <h2>26</h2>
                         <p style="margin-top: 10px;font-size: 15px;">2024</p>
                     </div>
-                    <img src="./components/assets/imga.png" alt="" srcset="">
+                    <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
+                    <div class="courseDetails">
+
+                    
                     <div class="coursename">
                         <p><strong>Java program</strong></p>
                     </div>
+                    <div class="descCal">
+                        <div class="trainer">
+                            <img src="./components/assets/user-solid.svg" alt="" srcset="">
+                            <p>Aswanth</p>
+                        </div>
+                        <div class="mode">
+                            <div class="circle"></div>
+                            <p>online</p>
+                        </div>
+                       
+                    </div>
+                    <div class="calbottom">
+                            
+                    </div>
+               
+                </div>
                 </div>
               </div>
               
             </div>
             <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+            <!-- <div class="swiper-pagination"></div> -->
           </div>
    
         
     </section>
+    <section class="newsLetter">
+        <iframe src="./components/pages/user/newsLetter.html" frameborder="0" width="100%" height="500px"></iframe>
+    </section>
+    <section class="announceAndCalendar">
+        <div class="announcement">
+            <iframe src="./components/pages/user/Announcement.html" frameborder="0" width="100%" height="500px"></iframe>
+
+        </div>
+        <div class="calendar">
+            <iframe src="./components/pages/user/calender-1.html" frameborder="0" width="100%" height="500px"></iframe>
+
+        </div>
+    </section>
     
 
     <script type="module" src="./components/js/front-page/front.js"></script> 
+    <script type="module" src="./components/js/fetchMenu.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
           slidesPerView: 3,
-          spaceBetween: 30,
+          spaceBetween: 20,
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
