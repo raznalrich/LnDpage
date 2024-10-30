@@ -6,19 +6,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/gallery/gallery.css">
   </head>
-  <body onload="getAllFiles()">
+  <body onload="getCategories()" >
     <header>
       <div class="g-logo">
         <h1>Gallery</h1>
       </div>
       <div class="gallery-header">
         
-        <nav>
-          <ul>
-            <li>All</li>
-            <li>Training</li>
-            <li>Events</li>
-            <li>Awards</li>
+        <nav id="nav-bar">
+          <ul id="nav-ul">
+           
           </ul>
         </nav>
         <div class="search">
@@ -27,6 +24,9 @@
       </div>
       <div class="h-line"></div>
     </header>
-    <script type="module" src="../js/admin/gallery.js"></script>
+    <div class="image-content" id="image-content">
+
+    </div>
+    <script type="module" src="../js/front-page/gallery.js"></script>
   </body>
 </html>
