@@ -88,20 +88,74 @@ function showCalendarEvents(){
                 const card = document.createElement('div');
                 const year = dateObj.getFullYear();
                 card.classList.add('swiper-slide');
-                card.innerHTML = `
+                if (mode != 'offline') {
+                    card.innerHTML = `
         
-        <div class="calendarEventContainer">
-                    <div class="date">
-                        <p>${month}</p>
+      <div class="calendarEventContainer">
+                        <div class="calendercontainer">
+                        <div class="date">
+                            <p>${month}</p>
                         <h2>${day}</h2>
                         <p style="margin-top: 10px;font-size: 15px;">${year}</p>
                     </div>
-                    <img src="./components/assets/imga.png" alt="" srcset="">
+                    <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
+                    <div class="courseDetails">
+
+                    
                     <div class="coursename">
                         <p><strong>${courseName}</strong></p>
                     </div>
+                    <div class="descCal">
+                        <div class="trainer">
+                            <img src="./components/assets/user-solid.svg" alt="" srcset="">
+                            <p>${trainerName}</p>
+                        </div>
+                        <div class="mode">
+                            <div class="circle"></div>
+                            <p>${mode}</p>
+                        </div>
+                       
+                    </div>
+                    <div class="calbottom">
+                            
+                    </div>
                 </div>
       `;
+                } else {
+                    card.innerHTML = `
+        
+                    <div class="calendarEventContainer">
+                                      <div class="calendercontainer">
+                                      <div class="date">
+                                          <p>${month}</p>
+                                      <h2>${day}</h2>
+                                      <p style="margin-top: 10px;font-size: 15px;">${year}</p>
+                                  </div>
+                                  <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
+                                  <div class="courseDetails">
+              
+                                  
+                                  <div class="coursename">
+                                      <p><strong>${courseName}</strong></p>
+                                  </div>
+                                  <div class="descCal">
+                                      <div class="trainer">
+                                          <img src="./components/assets/user-solid.svg" alt="" srcset="">
+                                          <p>${trainerName}</p>
+                                      </div>
+                                      <div class="mode">
+                                          <div class="circle black"></div>
+                                          <p>${mode}</p>
+                                      </div>
+                                     
+                                  </div>
+                                  <div class="calbottom">
+                                          
+                                  </div>
+                              </div>
+                    `;
+                }
+                
   
   
       div.appendChild(card);

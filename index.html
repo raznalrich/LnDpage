@@ -107,16 +107,37 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper" id="swiperCalendar">
               <div class="swiper-slide">
-                <div class="calendarEventContainer">
-                    <div class="date">
-                        <p>Oct</p>
+                  
+                  <div class="calendarEventContainer">
+                      
+                        <div class="date">
+                            <p>Oct</p>
                         <h2>26</h2>
                         <p style="margin-top: 10px;font-size: 15px;">2024</p>
                     </div>
-                    <img src="./components/assets/imga.png" alt="" srcset="">
+                    <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
+                    <div class="courseDetails">
+
+                    
                     <div class="coursename">
                         <p><strong>Java program</strong></p>
                     </div>
+                    <div class="descCal">
+                        <div class="trainer">
+                            <img src="./components/assets/user-solid.svg" alt="" srcset="">
+                            <p>Aswanth</p>
+                        </div>
+                        <div class="mode">
+                            <div class="circle"></div>
+                            <p>online</p>
+                        </div>
+                       
+                    </div>
+                    <div class="calbottom">
+                            
+                    </div>
+               
+                </div>
                 </div>
               </div>
               
@@ -149,7 +170,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
           slidesPerView: 3,
-          spaceBetween: 30,
+          spaceBetween: 20,
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
