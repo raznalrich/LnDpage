@@ -25,7 +25,7 @@ window.getCategories=function(){
                     categories.forEach((category)=>{
                         const ul=document.getElementById('nav-ul');
                         ul.innerHTML+=`
-                        <li onclick="getFiles(event)">${category}</li>
+                        <li onclick="getFiles(event)" class='list-image'>${category}</li>
                         `
                     })
                 }
@@ -45,7 +45,7 @@ window.getFiles=function(e){
     let imageContainer=document.getElementById('image-content');
     imageContainer.innerHTML=``;
     const filesRef = dbRef(getDatabase(), "files");
-
+    console.log(value);
     get(filesRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -56,8 +56,15 @@ window.getFiles=function(e){
                 const fileCat = fileData.fileCat;
                 const fileURL = fileData.fileURL;
                 const fileName = fileData.fileName;
-    
-                if(fileCat==value){
+                if(value=='All'){
+                    // console.log('entered all if else')
+                    imageContainer.innerHTML+=`
+                       <div class="imageCard">
+                       <img src="${fileURL}" />
+                       </div>
+                    `
+                }
+                else if(fileCat==value){
                 imageContainer.innerHTML+=`
                 <div class="imageCard">
                 <img src="${fileURL}" />

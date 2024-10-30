@@ -92,6 +92,10 @@ li:hover{
     width: 100vw;
     display: flex;
     flex-direction: row;
+    margin: 10px;
+}
+.list-image{
+    
 }
 .imageCard{
     width: 30%;
