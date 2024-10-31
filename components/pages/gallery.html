@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="../css/gallery/gallery.css">
   </head>
   <body onload="getCategories()">
-    <header>
+    <header onload="previewAllFiles()">
       <div class="g-logo">
+
         <h1>Gallery</h1>
+        <a href="../../index.html">Go home</a>
+
+        
       </div>
       <div class="gallery-header">
         
         <nav id="nav-bar">
           <ul id="nav-ul">
-           <li onclick="getFiles(event)">All</li>
+           <li onclick="getFiles(event)" id="list-elemnts">All</li>
           </ul>
         </nav>
         <!-- <div class="search">
