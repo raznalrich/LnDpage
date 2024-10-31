@@ -1,20 +1,21 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
+
 .header-container {
     display: flex;
     flex-direction: row; 
     align-items: center;
     justify-content: space-between; 
     background-color: white;
-    margin-top: 10px;
     padding: 10px 20px;
     height: 100px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -39,7 +40,7 @@ body {
 
 .announcements {
     position: relative;
-    background-color: rgb(163, 158, 160);
+    background-color: rgb(197, 144, 143);
     opacity: .5;
 }
 
@@ -52,10 +53,6 @@ body {
     position: absolute;
     top: -7px;
     right: -15px;
-}
-
-.menutiles{
-    width: 100%;
 }
 
 .header-buttons {
@@ -90,7 +87,6 @@ button:hover {
 .header-right {
     display: flex;
     position: relative;
-    /* left: 30px; */
     top: 20px;
 }
 
@@ -147,7 +143,6 @@ nav ul li a:hover {
 }
 
 .main-content {
-    
     max-width: 800px;
     margin: auto;
     margin-top: 40px;
@@ -156,6 +151,7 @@ nav ul li a:hover {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .header-wrapper {
     display: flex;
     align-items: center; 
@@ -168,13 +164,41 @@ nav ul li a:hover {
     margin-right: 10px; 
 }
 
-
 h1 {
     text-align: center;
 }
 
 .announcement-container {
     margin-top: 20px;
+}
+/* Icon styles */
+.icon-wrapper {
+    display: inline-block; /* Aligns icon and text */
+    margin-right: 10px; /* Space between the icon and the title */
+}
+
+.red-circle {
+    width: 20px; /* Size of the red circle */
+    height: 20px; /* Size of the red circle */
+    background-color: red; /* Red color */
+    border-radius: 50%; /* Makes it circular */
+    position: relative; /* For positioning the white circle */
+}
+
+.white-circle {
+    width: 14px; /* Size of the white circle */
+    height: 14px; /* Size of the white circle */
+    background-color: white; /* White color */
+    border-radius: 50%; /* Makes it circular */
+    position: absolute; /* Position it inside the red circle */
+    top: 3px; /* Centers it vertically */
+    left: 3px; /* Centers it horizontally */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the card */
+.card:hover .white-circle {
+    background-color: red; /* Change white circle to red on card hover */
 }
 
 .card {
@@ -184,18 +208,41 @@ h1 {
     margin-bottom: 10px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex; /* Make card a flex container */
+    flex-direction: column; /* Stack vertically */
+}
+
+.icon-wrapper {
+    display: flex; /* Make icon and title in a row */
+    align-items: center; /* Center align items vertically */
+    margin-bottom: 5px; /* Space below the icon and heading */
+
 }
 
 .card h3 {
-    margin: 0;
+    margin: 0; /* Remove default margin */
+    margin-left: 10px; /* Space between icon and heading */
+    font-weight: bold; /* Make the heading bold */
 }
 
 .card p {
-    margin: 5px 0;
+    margin: 0; /* Remove default margin */
+    margin-left: 30px;
 }
+
+/* Specific styling for the description */
+.card .description {
+    margin-top: 10px; /* Space above the description */
+    margin-bottom: 10px; /* Space below the description */
+    line-height: 1.5; /* Increase line height for better readability */
+    margin-left: 30px;
+}
+
 
 .card:hover {
     transform: translateY(-5px); 
     background-color: #ecb8bc; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
 }
+
+
