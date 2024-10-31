@@ -7,6 +7,24 @@ const searchInput = document.getElementById("searchInput");
 // Array to hold announcements for search functionality
 let announcements = [];
 
+// Function to display an announcement
+function displayAnnouncement(announcement) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+        <div class="icon-wrapper">
+            <div class="red-circle">
+                <div class="white-circle"></div>
+            </div>
+            <h3>${announcement.title}</h3>
+        </div>
+        <p>${announcement.date.toLocaleDateString()} - ${announcement.date.toLocaleTimeString()}</p>
+        <p class="description">${announcement.desc}</p>
+    `;
+    announcementContainer.appendChild(card);
+}
+
+
 // Function to fetch announcements from Firebase
 function fetchAnnouncements() {
     const announcementsRef = ref(database, "announcement");
@@ -25,8 +43,8 @@ function fetchAnnouncements() {
                 };
                 announcements.push(announcement); // Add to the array
 
-                // Display the announcement
-                displayAnnouncement(announcement);
+                // Call the display function for each announcement
+                displayAnnouncement(announcement); // This should work now
             });
         } else {
             const message = document.createElement("p");
@@ -34,23 +52,6 @@ function fetchAnnouncements() {
             announcementContainer.appendChild(message);
         }
     });
-}
-
-// Function to display an announcement
-function displayAnnouncement(announcement) {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.innerHTML = `
-        <div class="icon-wrapper">
-            <div class="red-circle">
-                <div class="white-circle"></div>
-            </div>
-        </div>
-        <h3>${announcement.title}</h3>
-        <p>${announcement.date.toLocaleDateString()} - ${announcement.date.toLocaleTimeString()}</p>
-        <p>${announcement.desc}</p>
-    `;
-    announcementContainer.appendChild(card);
 }
 
 // Function to filter announcements based on search input

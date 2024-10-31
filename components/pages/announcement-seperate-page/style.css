@@ -171,32 +171,6 @@ h1 {
 .announcement-container {
     margin-top: 20px;
 }
-
-.card {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    display: flex; /* Make card a flex container */
-    align-items: center; /* Center items vertically */
-}
-
-.card h3 {
-    margin: 0;
-}
-
-.card p {
-    margin: 5px 0;
-}
-
-.card:hover {
-    transform: translateY(-5px); 
-    background-color: #ecb8bc; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
-}
-
 /* Icon styles */
 .icon-wrapper {
     display: inline-block; /* Aligns icon and text */
@@ -226,3 +200,49 @@ h1 {
 .card:hover .white-circle {
     background-color: red; /* Change white circle to red on card hover */
 }
+
+.card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex; /* Make card a flex container */
+    flex-direction: column; /* Stack vertically */
+}
+
+.icon-wrapper {
+    display: flex; /* Make icon and title in a row */
+    align-items: center; /* Center align items vertically */
+    margin-bottom: 5px; /* Space below the icon and heading */
+
+}
+
+.card h3 {
+    margin: 0; /* Remove default margin */
+    margin-left: 10px; /* Space between icon and heading */
+    font-weight: bold; /* Make the heading bold */
+}
+
+.card p {
+    margin: 0; /* Remove default margin */
+    margin-left: 30px;
+}
+
+/* Specific styling for the description */
+.card .description {
+    margin-top: 10px; /* Space above the description */
+    margin-bottom: 10px; /* Space below the description */
+    line-height: 1.5; /* Increase line height for better readability */
+    margin-left: 30px;
+}
+
+
+.card:hover {
+    transform: translateY(-5px); 
+    background-color: #ecb8bc; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+}
+
+
