@@ -1,3 +1,11 @@
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { app } from "../../js/admin/Firebase.js";
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 let bannerImage = document.getElementById("bannerImage");
 let announcement = document.getElementById("bannerImage");
 let newsLetter = document.getElementById("bannerImage");
@@ -31,129 +39,171 @@ function removeAllClasses() {
 
 function showBannerImage() {
     removeAllClasses();
-    
+
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./Admin-sideBar.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("bannerImage").classList.add('announce-btn')
+    iframe.src = "./Admin-sideBar.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("bannerImage").classList.add('announce-btn')
 }
 function showAnnouncement() {
-    
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./Admin-announce.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("announcement").classList.add('announce-btn')
+    iframe.src = "./Admin-announce.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("announcement").classList.add('announce-btn')
 }
 function showNewsLetter() {
-        
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./newsLetter.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("newsLetter").classList.add('announce-btn')
+    iframe.src = "./newsLetter.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("newsLetter").classList.add('announce-btn')
 }
 function showCalendarEvents() {
-        
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./calender.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("calendar").classList.add('announce-btn')
+    iframe.src = "./calender.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("calendar").classList.add('announce-btn')
 }
 function showLeaderInsights() {
-        
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./leaderInsight.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("leaderInsight").classList.add('announce-btn')
+    iframe.src = "./leaderInsight.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("leaderInsight").classList.add('announce-btn')
 }
 function showGallery() {
-        
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./Gallery.html";
-                iframe.width = '100%';
-                iframe.height = '550px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("galleryImport").classList.add('announce-btn')
+    iframe.src = "./Gallery.html";
+    iframe.width = '100%';
+    iframe.height = '550px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("galleryImport").classList.add('announce-btn')
 }
 function showMenuItems() {
-        
-    removeAllClasses(); 
+
+    removeAllClasses();
     let existingIframe = document.querySelector('iframe');
-    
- 
+
+
     if (existingIframe) {
         existingIframe.remove();
     }
-    
+
     let iframe = document.createElement('iframe');
-                iframe.src = "./MenuItems.html";
-                iframe.width = '100%';
-                iframe.height = '600px';
-                iframe.style.border = 'none';
-                maincontent.appendChild(iframe);
-                document.getElementById("menuItems").classList.add('announce-btn')
+    iframe.src = "./MenuItems.html";
+    iframe.width = '100%';
+    iframe.height = '600px';
+    iframe.style.border = 'none';
+    maincontent.appendChild(iframe);
+    document.getElementById("menuItems").classList.add('announce-btn')
 }
 
 showBannerImage();
+
+// Check authentication state changes
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        // User is signed in
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            console.log("User data:", userData);
+            // Perform post-login actions, like loading user-specific data or redirecting
+        } else {
+            console.error("User data not found.");
+        }
+    } else {
+        // User is logged out, handle accordingly
+        console.log("No user logged in.");
+        window.location.href = "../../pages/admin/login.html";
+    }
+});
+
+//Logout function
+document.getElementById("logout-button").addEventListener("click", () => {
+    signOut(auth)
+        .then(() => {
+            console.log("User signed out successfully.");
+            window.location.href = "../../../pages/admin/login.html";
+        })
+        .catch((error) => {
+            console.error("Error signing out:", error);
+        });
+});
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("User is signed in:", user.email);
+    } else {
+      window.location.href = "../../../pages/admin/login.html";
+    }
+  });
+   
