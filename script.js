@@ -1,5 +1,5 @@
 import { storage, database, app } from "../LnDpage/components/js/Firebase.js";
-import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase,query, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 
@@ -61,19 +61,73 @@ window.updateAnouncement=function(){
         
     });
 }
-
 document.addEventListener("DOMContentLoaded",updateAnouncement())
-let announcementContainer=document.getElementById('announcement-hover');
-window.displayNotification=function(){
-    console.log('reached mouseover')
-    announcementContainer.style.display='block';
+
+// //announcement notification hover effect
+let hideTimeout;
+let announcementContainer = document.getElementById('announcement-hover');
+
+window.displayNotification = function() {
+    console.log('reached mouseover');
+    clearTimeout(hideTimeout);
+    announcementContainer.style.display = 'block'; 
+};
+
+window.removeNotification = function() {
+    hideTimeout = setTimeout(() => {
+        announcementContainer.style.display = 'none'; 
+    }, 300); 
+};
+
+window.stayNotificationOn = function() {
+    clearTimeout(hideTimeout); 
+    announcementContainer.style.display = 'block';
+};
+
+window.removeStayedNotification = function() {
+    hideTimeout = setTimeout(() => {
+        announcementContainer.style.display = 'none'; 
+    }, 300); 
+};
+
+let announcementButton = document.getElementById('announcement');
+announcementButton.addEventListener('mouseenter', displayNotification);
+announcementButton.addEventListener('mouseleave', removeNotification);
+
+announcementContainer.addEventListener('mouseenter', stayNotificationOn);
+announcementContainer.addEventListener('mouseleave', removeStayedNotification);
+
+ window.addNotifications=function(){
+    const db = database;
+    const indexRef = dbRef(db, 'announcement');
+    let counter=0;
+    get(indexRef).then((snapshot)=>{
+        if(snapshot.exists()){
+            let size=snapshot.size;
+            console.log(size);
+            const startAt=size>5?size-5:0;
+            console.log(startAt);
+            let fileData=snapshot.val();
+            fileData.forEach((a)=>{
+                counter++;
+                if(counter>=startAt){
+                    console.log('success');
+                    announcementContainer.innerHTML+=`
+                    <div class='anouncement-section'>
+                        <div class='notification-icon'>
+                        <img src="components/assets/bell-solid (1) 2.svg" alt="NOT FOUND">
+                        </div>
+                        <div class='notification-description'>
+                        <h4>${a.title}</h4>
+                        </div>
+                    </div>
+                    `
+                }
+            })
+
+        }
+    }).catch((err)=>{
+        console.log(err);
+    })
 }
-window.removeNotification=function(){
-    announcementContainer.style.display='none';
-}
-window.stayNotificationOn=function(){
-    announcementContainer.style.display='block';
-}
-let announcementButton=document.getElementById('announcement');
-announcementButton.addEventListener('mouseenter',displayNotification);
-announcementButton.addEventListener('mouseleave',removeNotification);
+document.addEventListener("DOMContentLoaded",addNotifications())
