@@ -4,39 +4,39 @@
 
 // const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
 
-let courses = []
+// let courses = []
 
-function readCourses() {
-    const dataRef = ref(myDb, "courses");
-    set(dataRef, courses)
-        .then(() => {
-            console.log("Data saved successfully!");
-        })
-        .catch((error) => {
-            console.error("Error saving data:", error);
-        });
-}
+// function readCourses() {
+//     const dataRef = ref(myDb, "courses");
+//     set(dataRef, courses)
+//         .then(() => {
+//             console.log("Data saved successfully!");
+//         })
+//         .catch((error) => {
+//             console.error("Error saving data:", error);
+//         });
+// }
 
-function showaddannouncement() {
-    const dref = ref(databaseURL);
-    get(child(dref, 'courses')).then((snapshot) => {
-        if (snapshot.exists()) {
-            snapshot.forEach((menu) => {
-                let value = menu.val();
-                console.log(value);
+// function showaddannouncement() {
+//     const dref = ref(databaseURL);
+//     get(child(dref, 'courses')).then((snapshot) => {
+//         if (snapshot.exists()) {
+//             snapshot.forEach((menu) => {
+//                 let value = menu.val();
+//                 console.log(value);
 
-                courses.push(value)
-            });
-            readCourses()
-        } else {
-            console.log("No courses found");
-        }
-    }).catch((error) => {
-        console.error('Error fetching courses:', error);
-    });
-}
+//                 courses.push(value)
+//             });
+//             readCourses()
+//         } else {
+//             console.log("No courses found");
+//         }
+//     }).catch((error) => {
+//         console.error('Error fetching courses:', error);
+//     });
+// }
 
-showaddannouncement();
+// showaddannouncement();
 
 
 
