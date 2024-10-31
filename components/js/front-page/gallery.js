@@ -40,13 +40,17 @@ window.getCategories=function(){
 }
 
 window.getFiles=function(e){
-
     let list=document.getElementsByTagName('li');
+    let elements=document.querySelectorAll('#list-elements');
+    document.querySelectorAll("#list-elements").forEach(item => {
+        item.classList.remove("active");
+    });
+    e.target.classList.color='red';
     let value=e.target.textContent;
     let imageContainer=document.getElementById('image-content');
     imageContainer.innerHTML=``;
     const filesRef = dbRef(getDatabase(), "files");
-    console.log(value);
+    console.log(typeof(value));
     get(filesRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -77,3 +81,28 @@ window.getFiles=function(e){
             }}
     }})
 }
+window.previewAllFiles=function(){
+    const filesRef = dbRef(getDatabase(), "files");
+    let imageContainer=document.getElementById('image-content');
+
+    get(filesRef)
+    
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const filesData = snapshot.val();
+        for (const fileIndex in filesData) {
+            if (filesData.hasOwnProperty(fileIndex)) {
+                const fileData = filesData[fileIndex];
+                const fileCat = fileData.fileCat;
+                const fileURL = fileData.fileURL;
+                const fileName = fileData.fileName;
+                    imageContainer.innerHTML+=`
+                       <div class="imageCard">
+                       <img src="${fileURL}" />
+                       </div>
+                    `
+            }}
+    }})
+}
+
+document.addEventListener('DOMContentLoaded',previewAllFiles);
