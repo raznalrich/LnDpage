@@ -1,7 +1,12 @@
 import { storage, database, app } from "../LnDpage/components/js/Firebase.js";
 import { child, get, getDatabase,query, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
 
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
 
 // document.addEventListener("DOMContentLoaded", function () {
 //     const section = document.getElementById("carousel");
@@ -142,3 +147,53 @@ eventContainer.addEventListener('mouseleave', removeEvent);
 let eventButton = document.getElementById('event');
 eventButton.addEventListener('mouseenter', displayEvent);
 eventButton.addEventListener('mouseleave', removeEvent);
+
+let events = [];
+window.addEvents= async function(){
+    await fetch(databaseURL)
+    .then(response => response.json())
+    .then(data => {
+        Object.keys(data).forEach(key => {
+            events.push({ title: data[key].courseName, start: data[key].startDate})
+        });
+        events.sort((a, b) => new Date(a.start) - new Date(b.start));
+        const today = new Date();
+        const upcomingEvents = events.filter(event => new Date(event.start) > today);
+        const recentFiveEvents = upcomingEvents.slice(0, 5);
+        console.log('this is event',recentFiveEvents);
+        recentFiveEvents.forEach(topevent=>{
+
+            eventContainer.innerHTML+=`
+            <div class='event-section'>
+                <div class='event-icon'>
+                <img src="components/assets/calendar-regular (1) 2.svg" alt="NOT FOUND">
+                </div>
+                <div class='notification-description'>
+                <h4>${topevent.title}</h4>
+                </div>
+            </div>
+            `
+        })
+       
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+
+        }
+    
+
+document.addEventListener("DOMContentLoaded",addEvents())
+
+await fetch(databaseURL)
+.then(response => response.json())
+.then(data => {
+    Object.keys(data).forEach(key => {
+        events.push({ title: data[key].courseName, start: data[key].startDate})
+    });
+
+    console.log(events)
+})
+.catch(error => {
+    console.error("Error fetching data:", error);
+});
