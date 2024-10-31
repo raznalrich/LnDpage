@@ -63,3 +63,17 @@ window.updateAnouncement=function(){
 }
 
 document.addEventListener("DOMContentLoaded",updateAnouncement())
+let announcementContainer=document.getElementById('announcement-hover');
+window.displayNotification=function(){
+    console.log('reached mouseover')
+    announcementContainer.style.display='block';
+}
+window.removeNotification=function(){
+    announcementContainer.style.display='none';
+}
+window.stayNotificationOn=function(){
+    announcementContainer.style.display='block';
+}
+let announcementButton=document.getElementById('announcement');
+announcementButton.addEventListener('mouseenter',displayNotification);
+announcementButton.addEventListener('mouseleave',removeNotification);
