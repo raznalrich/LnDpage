@@ -26,7 +26,7 @@ window.getCategories=function(){
                         console.log(category);
                         const ul=document.getElementById('nav-ul');
                         ul.innerHTML+=`
-                        <li>${category}</li>
+                        <li onclick="getFiles(event)" class='list-image'>${category}</li>
                         `
                     })
                 }
@@ -37,4 +37,43 @@ window.getCategories=function(){
     });
 
     
+}
+
+window.getFiles=function(e){
+
+    let list=document.getElementsByTagName('li');
+    let value=e.target.textContent;
+    let imageContainer=document.getElementById('image-content');
+    imageContainer.innerHTML=``;
+    const filesRef = dbRef(getDatabase(), "files");
+    console.log(value);
+    get(filesRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const filesData = snapshot.val();
+        for (const fileIndex in filesData) {
+            if (filesData.hasOwnProperty(fileIndex)) {
+                const fileData = filesData[fileIndex];
+                const fileCat = fileData.fileCat;
+                const fileURL = fileData.fileURL;
+                const fileName = fileData.fileName;
+                if(value=='All'){
+                    // console.log('entered all if else')
+                    imageContainer.innerHTML+=`
+                       <div class="imageCard">
+                       <img src="${fileURL}" />
+                       </div>
+                    `
+                }
+                else if(fileCat==value){
+                imageContainer.innerHTML+=`
+                <div class="imageCard">
+                <img src="${fileURL}" />
+                </div>
+                `}else{
+                    imageContainer.remove;
+                }
+
+            }}
+    }})
 }
