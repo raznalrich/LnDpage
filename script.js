@@ -63,7 +63,7 @@ window.updateAnouncement=function(){
 }
 document.addEventListener("DOMContentLoaded",updateAnouncement())
 
-// //announcement notification hover effect
+ //announcement notification hover effect
 let hideTimeout;
 let announcementContainer = document.getElementById('announcement-hover');
 
@@ -79,23 +79,12 @@ window.removeNotification = function() {
     }, 300); 
 };
 
-window.stayNotificationOn = function() {
-    clearTimeout(hideTimeout); 
-    announcementContainer.style.display = 'block';
-};
-
-window.removeStayedNotification = function() {
-    hideTimeout = setTimeout(() => {
-        announcementContainer.style.display = 'none'; 
-    }, 300); 
-};
-
 let announcementButton = document.getElementById('announcement');
 announcementButton.addEventListener('mouseenter', displayNotification);
 announcementButton.addEventListener('mouseleave', removeNotification);
 
-announcementContainer.addEventListener('mouseenter', stayNotificationOn);
-announcementContainer.addEventListener('mouseleave', removeStayedNotification);
+announcementContainer.addEventListener('mouseenter', displayNotification);
+announcementContainer.addEventListener('mouseleave', removeNotification);
 
  window.addNotifications=function(){
     const db = database;
@@ -131,3 +120,25 @@ announcementContainer.addEventListener('mouseleave', removeStayedNotification);
     })
 }
 document.addEventListener("DOMContentLoaded",addNotifications())
+
+
+//event notification
+let eventTimeout;
+let eventContainer = document.getElementById('event-hover');
+
+window.displayEvent = function() {
+    console.log('reached mouseover');
+    clearTimeout(eventTimeout);
+    eventContainer.style.display = 'block';
+};
+
+window.removeEvent = function() {
+    eventTimeout = setTimeout(() => {
+        eventContainer.style.display = 'none';
+    }, 300);
+};
+eventContainer.addEventListener('mouseenter', displayEvent);
+eventContainer.addEventListener('mouseleave', removeEvent);
+let eventButton = document.getElementById('event');
+eventButton.addEventListener('mouseenter', displayEvent);
+eventButton.addEventListener('mouseleave', removeEvent);

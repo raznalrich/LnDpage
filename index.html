@@ -13,7 +13,7 @@
 <body onload="updateAnouncement()">
     <header onload="displayNotifications()">
         <div class="header-buttons">
-            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
+            <button class="upcoming-events" id="event">📅 UPCOMING EVENTS</button>
             <button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button>
         </div>
         
@@ -116,6 +116,9 @@
         </div>
     </section>
     <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
+        
+    </div>
+    <div class="event-hover" id="event-hover" style="display: none;" onload="">
         
     </div>
     
