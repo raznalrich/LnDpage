@@ -67,24 +67,6 @@
     align-items: center;
 }
 
-/* @media (max-width : 768px) {
-    .inner-div {
-        flex-direction: column;
-        gap: 50px;
-    }
-
-    .ilp-insight {
-        font-size: 50px;
-        font-weight: 800;
-    }
-
-    .inner-div p {
-        font-size: large;
-    }
-
-} */
-
-/* Responsive Adjustments */
 @media (max-width: 1024px) {
     .inner-div {
         gap: 20px;
