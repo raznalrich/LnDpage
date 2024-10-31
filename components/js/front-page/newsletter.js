@@ -10,12 +10,10 @@ get(dref).then((snapshot) => {
         document.getElementById('newsletter-button').onclick = () => {
             window.location.href = data[1].htmlurl
         }
+        document.getElementById('newsletter-button').innerHTML = data[1].date
     } else {
         console.log("No data available");
     }
 }).catch((error) => {
     console.error("Error fetching data: ", error);
 });
-
-
-
