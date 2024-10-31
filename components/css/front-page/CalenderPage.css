@@ -1,0 +1,293 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.header{
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.exit-logo{
+    width: 20px;
+    height: 20px;
+}
+.logo-text {
+    display: flex;
+    align-items: center;
+}
+.logo-text img {
+    margin-right: 10px; 
+    height: 70px;
+    width:fit-content
+}
+.header .logo-text span {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+.header .logo-text span:first-child {
+    font-weight: bold;
+}
+.header .logo-text span:last-child {
+    color: #888;
+}
+.main {
+    background-color: #e20c0c;
+    padding: 20px;
+    color: white;
+}
+.main h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+}
+.search-bar button {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.icons i {
+    margin-left: 20px;
+    cursor: pointer;
+}
+.content {
+    padding: 20px;
+}
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card .card-content {
+    max-width: 80%;
+}
+.card .card-content h2 {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.card .card-content h2 span {
+    margin-right: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    font-size: 12px;
+}
+.card .card-content h2 span.red {
+    background-color: #d32f2f;
+}
+.card .card-content h2 span.yellow {
+    background-color: #fbc02d;
+}
+.card .card-content h2 span.green {
+    background-color: #388e3c;
+}
+.card .card-content p {
+    margin: 5px 0;
+    color: #666;
+}
+.card .card-content .details {
+    font-size: 14px;
+    color: #333;
+}
+.card .card-content .details span {
+    font-weight: bold;
+}
+.card .card-content .details .date {
+    color: #888;
+}
+.card .card-content .details .trainer {
+    color: #888;
+}
+.card .card-icon {
+    font-size: 24px;
+    color: #888;
+}
+.header {
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header img {
+    height: 40px;
+}
+.header .logo-text {
+    display: flex;
+    align-items: center;
+}
+.header .logo-text span {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+}
+.header .logo-text span:first-child {
+    font-weight: bold;
+}
+.header .logo-text span:last-child {
+    color: #888;
+}
+.header i {
+    font-size: 24px;
+    cursor: pointer;
+}
+.main {
+    background-color: #3b5998;
+    padding: 20px;
+    color: white;
+}
+.main h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.search-bar:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a soft shadow on hover */
+    transform: scale(1.02); /* Slightly enlarges the search bar */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+    border-radius: 5px; /* Optional: rounds corners on hover */
+}
+
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+.search-bar button {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.search-bar button i {
+    color: #3b5998;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.icons i {
+    margin-left: 20px;
+    cursor: pointer;
+}
+.content {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    transform: scale(1.01);
+    background-color: #f9f9f9;
+}
+
+.card .card-content {
+    max-width: 80%;
+}
+.card .card-content h2 {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.card .card-content h2 span {
+    margin-right: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    font-size: 12px;
+}
+.card .card-content h2 span.red {
+    background-color: #d32f2f;
+}
+.card .card-content h2 span.yellow {
+    background-color: #fbc02d;
+}
+.card .card-content h2 span.green {
+    background-color: #388e3c;
+}
+.card .card-content p {
+    margin: 5px 0;
+    color: #666;
+}
+.card .card-content .details {
+    font-size: 14px;
+    color: #333;
+}
+.card .card-content .details span {
+    font-weight: bold;
+}
+.card .card-content .details .date {
+    color: #888;
+}
+.card .card-content .details .trainer {
+    color: #888;
+}
+.card .card-icon {
+    font-size: 24px;
+    color: #888;
+}
+.monthSelect {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

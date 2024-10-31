@@ -29,7 +29,7 @@ window.getAllCategory = function () {
                 
             }
 
-            // Render categories to the DOM
+    
             categories.forEach((category) => {
                 let categoryDiv = document.createElement('div');
                 categoryDiv.className = 'category-div';
@@ -41,7 +41,7 @@ window.getAllCategory = function () {
                 categoryDiv.style.display='flex';
                 categoryDiv.style.justifyContent='center';
                 categoryDiv.style.alignItems='center';
-                // Append the categoryDiv to the imageCategory container
+       
                 let link=document.createElement('a');
                 link.href=`../../admin/gallery.html?key=${category}`;
                 link.innerText=category;
@@ -58,5 +58,4 @@ window.getAllCategory = function () {
     });
 }
 
-// Correctly attach the event listener, passing the function reference
 window.addEventListener('DOMContentLoaded', getAllCategory);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-buttons">
+            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
+            <button class="announcements">📢 ANNOUNCEMENT <span class="badge">8</span></button>
+        </div>
+        
+        <div class="header-container">
+            <div class="logo">Learning <span class="and"> & </span> <br>Development</div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="newsletter.html">Newsletter</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by title or date">
+                </div>                
+            </div>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="header-wrapper">
+            <img src="announcement-images/campaign_24dp_BB271A_FILL0_wght400_GRAD0_opsz24.png" class="announcement-icon" alt="Campaign Icon" /> <!-- Directly include the image -->
+            <h1>Announcements</h1>
+        </div>
+        
+        <div class="announcement-container" id="announcementContainer">
+        </div>
+    </div>
+    <script type="module" src="javascript.js"></script>
+</body>
+</html>

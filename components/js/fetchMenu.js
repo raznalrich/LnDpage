@@ -1,11 +1,7 @@
-// import { storage,database} from "../Firebase.js";
-import {storage,database,child, get,ref,app} from "./admin/Firebase.js";
 
-  let studid = 1;
-  // const dref = dbRef(db);
-  
+import {database,child, get,ref} from "./Firebase.js";  
   function getTiles() {
-    let iconBar = document.getElementsByClassName("icon-bar")[0];
+    let iconBar = document.getElementsByClassName("icon-bar-main")[0];
     const dref = ref(database);
   
     get(child(dref, 'menuicons')).then((icons) => {
@@ -17,7 +13,7 @@ import {storage,database,child, get,ref,app} from "./admin/Firebase.js";
         console.log(imageUrl);
         
   
-        if (isActive) { // Check if icon is active
+        if (isActive) { 
           var item = `<div class="icon-item">
             <a href="${link}">
               <img src='${imageUrl}'/>

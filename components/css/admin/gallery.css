@@ -28,7 +28,7 @@ body{
  .inner-section{
     width: 67vw;
     height: 80%;
-    border: 1px solid black;
+
     position: relative;
     left: 10%;
     flex-wrap: wrap;

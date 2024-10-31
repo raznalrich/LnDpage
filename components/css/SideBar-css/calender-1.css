@@ -5,7 +5,7 @@
 }
 
 #calendar {
-    width: 300px;
+    width: 400px;
     height: auto;
     font-size: xx-small;
     border: solid black 1px;
@@ -16,23 +16,24 @@
 
 :root {
     --fc-border-color: transparent;
-    --fc-today-bg-color: rgba(0, 122, 255, 0.5);
+    --fc-today-bg-color: rgba(220, 20, 60, 0.5);
+    --fc-event-bg-color: rgba(220, 20, 60, 1)
 }
 
 .fc-daygrid-day {
     border: none;
-    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
 
 .fc-daygrid-day-number {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 150px;
 }
 
 .fc-daygrid-event {
     border: none;
-    border-radius: 50%;
 }
 
 .fc-col-header-cell {

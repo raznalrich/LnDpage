@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Swiper Container */
+.carousel-swiper .swiper-container {
+    width: 100%;
+    height: 80vh; /* Adjust height as needed */
+}
+
+/* Swiper Slide Styling */
+.carousel-swiper .swiper-slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Slide Image Styling */
+.carousel-swiper .swiper-slide .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative; /* Default image overlay will sit above */
+    z-index: 1;
+}
+
+/* Gradient Overlay */
+.carousel-swiper .swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 100%);
+    pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
+    z-index: 2; /* Sits above the main image but below other elements */
+}
+
+/* Default Image Styling */
+.carousel-swiper .swiper-slide .default-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust as needed */
+    z-index: 3; /* Sits above gradient overlay and main image */
+}
+
+.carousel-swiper .default-image img {
+    width: 35%;
+    height: auto;
+    opacity: 0.5; /* Optional transparency */
+    transform: translatex(180%);
+}
+
+/* Description Overlay */
+.carousel-swiper .description-overlay {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(90%, -250%);
+    background: rgba(37, 31, 31, 0); /* Semi-transparent background */
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 4; /* Sits above default image */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Heading and Description Styling */
+.carousel-swiper .description-overlay h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.carousel-swiper .description-overlay p {
+    font-size: 16px;
+    margin: 0;
+}
+.know-more-btn {
+    position: absolute;
+    background-color: #D42027;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    z-index: 4;
+    transform: translate(-10%, 480%);
+
+}
+
+/* Hover Effect for Know More Button */
+.know-more-btn:hover {
+    background-color: #ff5a5f; /* Changes color on hover */
+}
+
+/* Swiper Navigation and Pagination */
+.carousel-swiper .swiper-button-next,
+.carousel-swiper .swiper-button-prev {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.carousel-swiper .swiper-pagination {
+    bottom: 15px;
+}
+
+.carousel-swiper .swiper-pagination-bullet {
+    background: white;
+}
+
+.carousel-swiper .swiper-pagination-bullet-active {
+    background: #717171;
+}
