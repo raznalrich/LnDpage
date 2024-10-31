@@ -13,9 +13,6 @@ function getInsight() {
 
       
       var item = `<div class="content">
-    <div class="arrow">
-     &lt;
-    </div>
      <div class="profile">
      <div class="leaderImg"><img src=${leaderImage}/></div>
      <div class="info">
@@ -33,9 +30,6 @@ function getInsight() {
      <p>
        ${insightDescription}
      </p>
-    </div>
-    <div class="arrow">
-     &gt;
     </div>
    </div>
   </div>`;
