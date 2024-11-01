@@ -64,14 +64,14 @@ window.getFiles=function(e){
                 if(value=='All'){
                     // console.log('entered all if else')
                     imageContainer.innerHTML+=`
-                       <div class="imageCard">
+                       <div class="imageCard" onmouseover="descriptionPreview(e)">
                        <img src="${fileURL}" />
                        </div>
                     `
                 }
                 else if(fileCat==value){
                 imageContainer.innerHTML+=`
-                <div class="imageCard">
+                <div class="imageCard" onmouseover="descriptionPreview(e)">
                 <img src="${fileURL}" />
                 </div>
                 `}else{
@@ -81,10 +81,10 @@ window.getFiles=function(e){
             }}
     }})
 }
-window.previewAllFiles=function(){
+window.previewAllFiles=function(e){
     const filesRef = dbRef(getDatabase(), "files");
     let imageContainer=document.getElementById('image-content');
-
+    
     get(filesRef)
     
     .then((snapshot) => {
@@ -106,3 +106,29 @@ window.previewAllFiles=function(){
 }
 
 document.addEventListener('DOMContentLoaded',previewAllFiles);
+
+window.descriptionPreview=function(e){
+    let imageContainer=document.getElementById('image-content');
+    console.log('this is a preview test');
+    const filesRef = dbRef(getDatabase(), "files");
+    console.log(typeof(value));
+    get(filesRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const filesData = snapshot.val();
+        for (const fileIndex in filesData) {
+            if (filesData.hasOwnProperty(fileIndex)) {
+                const fileData = filesData[fileIndex];
+                const fileCat = fileData.fileCat;
+                const fileURL = fileData.fileURL;
+                const fileName = fileData.fileName;
+                const fileDes=fileData.fileDesc;
+                    e.target.innerHTML+=`
+                       <div class="descriptionCard">
+                       <h3>${fileDes}</h3>
+                       </div>
+                    `
+
+            }}
+    }})
+}
