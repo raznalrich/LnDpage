@@ -121,9 +121,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    position: relative;
-    top: 25%;
-    left: 80%;
+    /* position: relative; */
+    /* top: 5%; */
+    /* left: 80%; */
     
 }
 .button-section button{
