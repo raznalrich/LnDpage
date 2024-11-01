@@ -127,23 +127,6 @@ announcementContainer.addEventListener('mouseleave', removeNotification);
 document.addEventListener("DOMContentLoaded",addNotifications())
 
 
-<<<<<<< HEAD
-const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
-
-fetch(databaseURL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data); // Logs the data from the Firebase database
-  })
-  .catch(error => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
-=======
 //event notification
 let eventTimeout;
 let eventContainer = document.getElementById('event-hover');
@@ -214,4 +197,19 @@ await fetch(databaseURL)
 .catch(error => {
     console.error("Error fetching data:", error);
 });
->>>>>>> 532a59f931220f1b7e33f078d365fc1cd6a8d3cb
+
+
+
+// fetch(databaseURL)
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok " + response.statusText);
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     console.log(data); // Logs the data from the Firebase database
+//   })
+//   .catch(error => {
+//     console.error("There was a problem with the fetch operation:", error);
+//   });
