@@ -9,10 +9,10 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10
 const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
 
 // document.addEventListener("DOMContentLoaded", function () {
-//     const section = document.getElementById("carousel");
+//     const section = document.getElementById("leaderInsight");
 
 //     // Fetch the HTML content
-//     fetch("./components/pages/user/topBanner.html")
+//     fetch("./components/pages/user/leader-insight.html")
 //         .then(response => {
 //             if (!response.ok) {
 //                 throw new Error("Network response was not ok");
