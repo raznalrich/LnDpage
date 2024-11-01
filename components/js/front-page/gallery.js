@@ -61,19 +61,31 @@ window.getFiles=function(e){
                 const fileCat = fileData.fileCat;
                 const fileURL = fileData.fileURL;
                 const fileName = fileData.fileName;
+                const fileDesc=fileData.fileDesc;
                 if(value=='All'){
                     // console.log('entered all if else')
                     imageContainer.innerHTML+=`
-                       <div class="imageCard" onmouseover="descriptionPreview(e)">
+                    <div class="imageAndDesc">
+                        <div class="imageCard">
                        <img src="${fileURL}" />
                        </div>
+                       <p class="description" >
+                       ${fileDesc}
+                       </p>
+                    </div>
+                       
                     `
                 }
                 else if(fileCat==value){
                 imageContainer.innerHTML+=`
-                <div class="imageCard" onmouseover="descriptionPreview(e)">
-                <img src="${fileURL}" />
-                </div>
+                <div class="imageAndDesc">
+                        <div class="imageCard">
+                       <img src="${fileURL}" />
+                       </div>
+                       <p class="description">
+                       ${fileDesc}
+                       </p>
+                    </div>
                 `}else{
                     imageContainer.remove;
                 }
@@ -86,33 +98,6 @@ window.previewAllFiles=function(e){
     let imageContainer=document.getElementById('image-content');
     
     get(filesRef)
-    
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const filesData = snapshot.val();
-        for (const fileIndex in filesData) {
-            if (filesData.hasOwnProperty(fileIndex)) {
-                const fileData = filesData[fileIndex];
-                const fileCat = fileData.fileCat;
-                const fileURL = fileData.fileURL;
-                const fileName = fileData.fileName;
-                    imageContainer.innerHTML+=`
-                       <div class="imageCard">
-                       <img src="${fileURL}" />
-                       </div>
-                    `
-            }}
-    }})
-}
-
-document.addEventListener('DOMContentLoaded',previewAllFiles);
-
-window.descriptionPreview=function(e){
-    let imageContainer=document.getElementById('image-content');
-    console.log('this is a preview test');
-    const filesRef = dbRef(getDatabase(), "files");
-    console.log(typeof(value));
-    get(filesRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
         const filesData = snapshot.val();
@@ -123,12 +108,133 @@ window.descriptionPreview=function(e){
                 const fileURL = fileData.fileURL;
                 const fileName = fileData.fileName;
                 const fileDes=fileData.fileDesc;
-                    e.target.innerHTML+=`
-                       <div class="descriptionCard">
-                       <h3>${fileDes}</h3>
+                    imageContainer.innerHTML+=`
+    
+                        <div class="imageAndDesc">
+                        <div class="imageCard">
+                       <img src="${fileURL}" />
                        </div>
+                       <p class="description">
+                       ${fileDes}
+                       </p>
+                        </div>
+                       
                     `
-
             }}
     }})
 }
+
+document.addEventListener('DOMContentLoaded',previewAllFiles);
+// let images=document.querySelectorAll('.image-content');
+// window.descriptionPreview=function(e){
+//     let imageContainer=document.getElementById('image-content');
+//     console.log('this is a preview test again');
+//     const filesRef = dbRef(getDatabase(), "files");
+//     console.log(typeof(value));
+//     get(filesRef)
+//     .then((snapshot) => {
+//       if (snapshot.exists()) {
+//         const filesData = snapshot.val();
+//         for (const fileIndex in filesData) {
+//             if (filesData.hasOwnProperty(fileIndex)) {
+//                 const fileData = filesData[fileIndex];
+//                 const fileCat = fileData.fileCat;
+//                 const fileURL = fileData.fileURL;
+//                 const fileName = fileData.fileName;
+//                 const fileDes=fileData.fileDesc;
+//                     e.target.innerHTML+=`
+//                        <div class="imageCard">
+//                        <h3>${fileDes}</h3>
+//                        </div>
+//                     `
+
+//             }}
+//     }})
+// }
+// document.addEventListener('DOMContentLoaded',descriptionPreview);
+
+// let images = document.querySelectorAll('.image-content');
+
+// window.descriptionPreview = function(e) {
+//     const filesRef = dbRef(getDatabase(), "files");
+//     console.log('Preview triggered');
+
+//     get(filesRef)
+//         .then((snapshot) => {
+//             if (snapshot.exists()) {
+//                 const filesData = snapshot.val();
+//                 e.target.innerHTML = ''; // Clear previous content
+//                 for (const fileIndex in filesData) {
+//                     if (filesData.hasOwnProperty(fileIndex)) {
+//                         const fileData = filesData[fileIndex];
+//                         const fileDes = fileData.fileDesc;
+//                         const fileURL = fileData.fileURL;
+//                         e.target.innerHTML += `
+//                             <div class='imageAndDesc'>
+//                             <div class="imageCard" style="width: 100%; height: 100%; " onmouseenter="addDescription(event)">
+//                                 <img src="${fileURL}" />
+//                             </div>
+//                             <div class="description" style="display:none"><h4>${fileDes}</h4></div>
+//                             </div>
+                            
+//                         `;
+//                     }
+//                 }
+//             } else {
+//                 console.log("No data available");
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error fetching data:", error);
+//         });
+// };
+
+// // Add event listeners on each image container after DOMContentLoaded
+// document.addEventListener('DOMContentLoaded', () => {
+//     images.forEach((images) => {
+//         images.addEventListener('mouseenter', descriptionPreview);
+//     });
+// });
+// // let allImageContainers=document.querySelectorAll('.imageCard');
+// document.addEventListener('DOMContentLoaded',()=>{
+//     images.addEventListener('mouseenter',addDescription)
+// });
+// window.addDescription=function(e){
+//     const filesRef = dbRef(getDatabase(), "files");
+//     console.log('Preview triggered');
+
+//     get(filesRef)
+//         .then((snapshot) => {
+//             if (snapshot.exists()) {
+//                 const filesData = snapshot.val();
+//                 e.target.innerHTML = ''; // Clear previous content
+//                 for (const fileIndex in filesData) {
+//                     if (filesData.hasOwnProperty(fileIndex)) {
+//                         const fileData = filesData[fileIndex];
+//                         const fileDes = fileData.fileDesc;
+//                         const fileURL = fileData.fileURL;
+//                         e.target.innerHTML=`
+//                         <div class='imageAndDesc'>
+//                         <div class="imageCard" style="width: 100%; height: 100%; ">
+//                             <img src="${fileURL}" />
+//                         </div>
+//                         <div class="description" style="display:flex"><h4>${fileDes}</h4></div>
+//                         </div>
+//     `;
+//                     }
+//                 }
+//             } else {
+//                 console.log("No data available");
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error fetching data:", error);
+//         });
+        
+// }
+
+
+window.descriptionPreview=function(e){
+        
+}
+
