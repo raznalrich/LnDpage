@@ -4,68 +4,90 @@ body {
     padding: 0;
     background-color: #fff;
 }
+
 .container {
     width: 80%;
     margin: 0 auto;
     padding: 20px 0;
 }
+
 .header {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
 }
+
 .header h2 {
     font-size: 18px;
     color: #666;
     margin: 0;
 }
+
 .content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 20px 0;
 }
+
 .arrow {
     color: #d50032;
     font-size: 24px;
     cursor: pointer;
 }
+
 .profile {
     display: flex;
     align-items: center;
 }
+
 .profile img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     margin-right: 10px;
 }
+
 .profile .info {
     display: flex;
     flex-direction: column;
 }
+
 .profile .info .name {
     font-weight: bold;
     font-size: 16px;
     margin: 0;
 }
+
 .profile .info .title {
     font-size: 14px;
     color: #666;
     margin: 0;
 }
+
 .quote {
     text-align: center;
     max-width: 400px;
 }
+
 .quote p {
     font-size: 16px;
     color: #333;
     margin: 0;
 }
+
 .divider {
     height: 100px;
     width: 1px;
     background-color: #d50032;
+}
+
+.mySwiper {
+    position: relative;
+    top: 0; 
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: #d50032;
 }
