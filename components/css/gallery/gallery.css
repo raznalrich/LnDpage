@@ -116,18 +116,53 @@ li:active{
     
 }
 .imageCard{
-    width: 20%;
-    height: 20%;
+    width: 100%;
+    height: 100%;
     flex-wrap: wrap;
     margin: 10px;
     object-fit: cover;
+    z-index: -1;
 }
 .imageCard img{
     width:100% ;
     height: 200px;
     object-fit: cover;
 }
-.descriptionCard{
+.imageCard{
     background-color: #999;
+    z-index: -1;
+    
+}
+.imageAndDesc{
+    display: flex;
     z-index: 1;
+    flex-wrap: wrap;
+    width: 21.5%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.description{
+    background-color: rgba(238, 233, 233, 0.5);
+    
+    width: 93%;
+    height: 100%;
+    position: relative;
+    bottom: 105%;
+    flex-wrap: wrap;
+} 
+.imageAndDesc .description {
+    display: none; 
+    opacity: 0;                   
+    visibility: hidden;
+    transition: opacity 1.3s ease-in-out;
+}
+
+.imageAndDesc:hover .description {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+    
 }
