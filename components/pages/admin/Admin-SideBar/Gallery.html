@@ -9,12 +9,68 @@
  <body>
   <div class="main-content">
    <div class="upload-banner">
-    
+    <button class="add-image-button" id="add-button" onclick="previewBox()">
+        Insert
+      </button>
    </div>
    <div class="image-category" id="image-category" onload="getAllCategory()">
 
    </div>
   </div>
+  <div class="input-section" id="addimage" style="display: none;">
+      <div
+        class="top-section"
+        style="
+          width: 100%;
+          background-color: #64a2f5;
+          height: 25px;
+          border-radius: 7px 7px 0px 0px;
+        "
+      ><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;" onclick="discardBox()"></i></div>
+      <div class="input-image">
+        
+        <input
+          type="file"
+          id="fileInp"
+          class="inputFile"
+          onchange="getFile(event)"
+          accept="image/png, image/jpeg"
+        />
+        <label for="fileInp"></label>
+        <span class="fileText"></span><br />
+
+        <!-- Form inputs for description and category -->
+        <div class="details-section">
+          <label for="description-input">Description:</label>
+          <input
+            type="text"
+            id="description-input"
+            placeholder="Short description"
+          />
+        </div>
+        <div class="details-section">
+          <label for="category-input" class="category-label">Category:</label>
+          <input
+            type="text"
+            id="category-input"
+            placeholder="Image category"
+          /><br />
+        </div>
+
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+        <div class="uploadPercentage">0%</div>
+        
+      </div>
+      <div class="button-section">
+        <button onclick="discardBox()">discard</button>
+        <button onclick="uploadImage()" id="save">save</button>
+      </div>
+    </div>
   <script type="module" src="../../../js/admin/galeryCategory.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js"></script>
+    <script type="module" src="../../../js/admin/gallery.js"></script>
+    <script src="https://kit.fontawesome.com/b6e6cee001.js" crossorigin="anonymous"></script>
  </body>
 </html>
