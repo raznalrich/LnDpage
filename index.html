@@ -14,7 +14,7 @@
     <header onload="displayNotifications()">
         <div class="header-buttons">
             <button class="upcoming-events">📅 UPCOMING EVENTS</button>
-            <button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button>
+            <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;"><button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button></a>
         </div>
         
         <div class="header-container">
@@ -28,7 +28,7 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="calendar.html">Calendar</a></li>
                         <li><a href="newsletter.html">Newsletter</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="./components/pages/gallery.html">Gallery</a></li>
                     </ul>
                 </nav>
                 <div class="search-bar">
@@ -118,15 +118,28 @@
     <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
         
     </div>
+
+    <section class="leaderInsight">
+
+    </section>
+    <div class="event-hover" id="event-hover" style="display: none;" onload="">
+        
+    </div>
     
     <script type="module" src="./components/js/front-page/fetchSlider.js"></script> 
     <script type="module" src="./script.js"></script> 
     <script type="module" src="./components/js/fetchMenu.js"></script> 
+    <script type="module" src="./components/js/front-page/front.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
           slidesPerView: 3,
           spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
           pagination: {
             el: ".swiper-pagination",
             clickable: true,

@@ -12,26 +12,20 @@
 </head>
 <body>
     <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper" id="swiperslide">
           <div class="swiper-slide">
             <img src="../../../components/images/temp/batch5.png" alt="Batch Training Image 1">
             <div class="description-overlay">
-              <img src="../../../components/assets/Vector 4.png" class="whiteRhombus" alt="" srcset="">
+              
               <img src="../../../components/images/temp/Image (1).png" alt="" srcset="">
                 <h2>4th Batch Completed Offline Training</h2>
                 <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing </p>
                 <button class="know-more-btn">Know More</button>
+                
  
             </div>
           </div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
-          <div class="swiper-slide">Slide 6</div>
-          <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
-          <div class="swiper-slide">Slide 9</div>
+          
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -41,6 +35,7 @@
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="module" src="../../js/front-page/fetchSlider.js"></script>
 
   <!-- Initialize Swiper -->
   <script>
@@ -48,6 +43,10 @@
       slidesPerView: 1,
       spaceBetween: 30,
       loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
