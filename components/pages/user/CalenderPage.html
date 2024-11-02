@@ -14,8 +14,10 @@
             
             
         </div>
-        
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <button onclick="closeCurrentTab();" id="closetab" style="border: none;">
+
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
     </div>
     <div class="main" style="background-color: #DC143C;">
         <h1>
@@ -29,7 +31,7 @@
         
         
         <div class="search-bar">
-            <input placeholder="Search here" type="text"/>
+            <input id="searchInput" placeholder="Search here" type="text"/>
             <button>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -106,7 +108,13 @@
                </div>
                <i class="fa-solid fa-laptop"></i>
         </div>
-    </div>  
+    </div> 
+    <script >
+        function closeCurrentTab() {
+
+window.close(); // Close the current tab
+}
+    </script> 
     
     <script type="module" src="../../js/front-page/calendarSapperate.js"></script>
 </body>
