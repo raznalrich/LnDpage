@@ -104,3 +104,92 @@ a {
     left: 145px;
     display: none;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .logo{
+        width: 150px;
+        position: absolute;
+        /* left: 50px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .white,
+    .blue {
+        width: 100vw;
+        height: 50vh;
+    }
+
+    .hr {
+        width: 90%;
+        left: 5%;
+        top: 5%;
+    }
+
+    .login-section,
+    .reset-password-container {
+        width: 80%;
+        height: 50%;
+    }
+
+    #email,
+    #password,
+    #adminEmail {
+        width: 180px;
+    }
+
+    .button,
+    .submitButton {
+        width: 60px;
+        font-size: 12px;
+    }
+
+    .error {
+        font-size: smaller;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .white,
+    .blue {
+        height: 50vh;
+    }
+
+    .login-section,
+    .reset-password-container {
+        width: 90%;
+        height: 60%;
+        top: 60%;
+        transform: translate(-50%, -60%);
+    }
+
+    #email,
+    #password,
+    #adminEmail {
+        width: 150px;
+    }
+
+    .button,
+    .submitButton {
+        width: 50px;
+        font-size: 10px;
+    }
+
+    .error {
+        font-size: xx-small;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

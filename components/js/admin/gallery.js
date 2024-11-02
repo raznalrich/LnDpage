@@ -19,7 +19,7 @@ window.getFile = function (e) {
 window.getDetails = function (e) {};
 
 window.uploadImage = function () {
-  category = document.getElementById("category-input").value;
+  category = document.getElementById("category-input").value.trim();
   description = document.getElementById("description-input").value;
   if (!fileItem || !description || !category) {
     alert("Please fill all fields");
