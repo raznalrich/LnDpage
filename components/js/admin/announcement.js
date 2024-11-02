@@ -63,7 +63,8 @@ function saveFileMetadata(title, date, desc, url) {
     });
   });
 }
-
+let closeButton;
+let editButton;
 function showaddannouncement() {
   const dref = ref(database);
   let div = document.getElementById("container");
@@ -75,7 +76,8 @@ function showaddannouncement() {
         const title = value.title;
         const desc = value.desc;
         const date = value.date;
-
+        const fileIndex=value.index;
+        console.log(fileIndex)
         const card = document.createElement("div");
         card.classList.add("card");
         card.innerHTML = `
@@ -84,12 +86,28 @@ function showaddannouncement() {
         <p>${date}</p>
         <p>${desc}</p>
         <div class="actions">
-          <i class="fas fa-trash"></i>
-          <i class="fas fa-edit"></i>
+          <i class="fas fa-trash deleteButton"></i>
+          <i class="fas fa-edit editButton value=${fileIndex}"></i>
         </div>
       `;
 
         container.appendChild(card);
+
+
+        const deleteButton=card.querySelector('.deleteButton');
+        const editButton=card.querySelector('.editButton');
+        console.log(closeButton);
+        deleteButton.addEventListener('click',function(){
+          console.log('REACHED LISTENER')
+          removeAnnouncementFromFirebase(fileIndex,card);
+        });
+
+        editButton.addEventListener('click',function(){
+            toggle=1;
+            displayaddnewmenu(toggle);
+            editAnnouncementInFirebase(fileData);
+            toggle=0;
+        });
       });
     } else {
       let p = document.createElement("p");
@@ -98,12 +116,27 @@ function showaddannouncement() {
     }
   });
 }
+function removeAnnouncementFromFirebase(fileIndex,card){
+  const dbRefToDelete = ref(getDatabase(), 'announcement/' + fileIndex);
 
+  set(dbRefToDelete, null)
+      .then(() => {
+          console.log('Image metadata removed from Firebase Database');
+          if (card && card.parentNode) {
+              card.parentNode.removeChild(card);
+          }
+      })
+      .catch((error) => {
+          console.error('error deleteing image from firebase', error)
+      });
+}
 showaddannouncement();
 
-function displayaddnewmenu() {
+function displayaddnewmenu(fileIndex) {
   let addnewmenu = document.getElementById("addnewsletter");
   addnewmenu.style.display = "flex";
+
+
 }
 function closeaddnewmenu() {
   let addnewmenu = document.getElementById("addnewsletter");
