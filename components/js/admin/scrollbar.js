@@ -1,6 +1,6 @@
-import { storage, database ,app} from "../Firebase.js";
+import { storage, database, app } from "../Firebase.js";
 import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL,deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
@@ -15,8 +15,17 @@ window.getFile = function (e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
+  if (fileItem) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById("file-preview");
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(fileItem);
+  }
 }
-window.getDetails = function (e) {}
+window.getDetails = function (e) { }
 
 window.uploadImage = function () {
   category = document.getElementById("category-input").value;
@@ -91,9 +100,9 @@ let imageDiv;
 console.log('#1')
 window.getAllFiles = function () {
   console.log('hii')
-  const filesRef = dbRef(getDatabase(), 'bannerfiles');  
+  const filesRef = dbRef(getDatabase(), 'bannerfiles');
   get(filesRef).then((snapshot) => {
-    
+
     if (snapshot.exists()) {
       const filesData = snapshot.val();
       console.log(filesData);
@@ -114,7 +123,7 @@ window.getAllFiles = function () {
           let heading = document.createElement('h3');
           heading.style.margin = '3px 0px 0px 0px';
           let desc = document.createElement('p');
-          
+
           // Toggle switch
           let switchdiv = document.createElement('label');
           switchdiv.className = 'ios-switch';
@@ -123,7 +132,7 @@ window.getAllFiles = function () {
           toggle.id = 'mytoggle';
           toggle.type = 'checkbox';
           toggle.checked = isActive === 1; // Set initial state based on the stored value in Firebase
-          
+
           // Toggle event listener
           toggle.addEventListener('change', () => {
             const newStatus = toggle.checked ? 1 : 0;
@@ -131,10 +140,10 @@ window.getAllFiles = function () {
           });
 
           let togglespan = document.createElement('span');
-          let toggleDiv=document.createElement('div');
-          toggleDiv.className='main-toggle-div'
+          let toggleDiv = document.createElement('div');
+          toggleDiv.className = 'main-toggle-div'
           togglespan.className = 'slider';
-       
+
           switchdiv.appendChild(toggle);
           switchdiv.appendChild(togglespan);
           toggleDiv.appendChild(switchdiv);
@@ -145,7 +154,7 @@ window.getAllFiles = function () {
           textSectionDiv.appendChild(desc);
           textSectionDiv.style.position = 'relative';
           textSectionDiv.style.left = '';
-          textSectionDiv.style.width='50%'
+          textSectionDiv.style.width = '50%'
           textSectionDiv.style.flexWrap = 'wrap';
           contentDiv.style.width = '97%';
           contentDiv.style.backgroundColor = 'white';
@@ -156,17 +165,17 @@ window.getAllFiles = function () {
           imageDiv = document.createElement('div');
           imageDiv.className = "image-div";
           closeButton = document.createElement('button');
-          closeButton.className='close-button';
+          closeButton.className = 'close-button';
           closeButton.innerText = 'X';
           toggleDiv.appendChild(closeButton);
-          
+
           const img = document.createElement('img');
           img.src = fileURL;
           img.alt = fileName;
           img.style.width = '100px'; // Optionally, set the image width
           img.style.margin = '10px';
           img.style.marginLeft = '0px';
-          
+
           imageDiv.appendChild(img);
           let imageContainer = document.getElementById("image-container");
           img.id = "image";
@@ -175,7 +184,7 @@ window.getAllFiles = function () {
           contentDiv.appendChild(toggleDiv);
           imageContainer.appendChild(contentDiv);
 
-          closeButton.addEventListener('click', function(){
+          closeButton.addEventListener('click', function () {
             removeImagefromFirebase(fileURL, fileIndex, imageDiv);
           })
         }
@@ -212,19 +221,19 @@ window.previewBox = function () {
     previewIndex = 1;
   }
 }
-window.discardBox = function() {
+window.discardBox = function () {
   document.getElementById("addimage").style.display = "none";
 }
 window.addEventListener('DOMContentLoaded', getAllFiles())
 
-window.removeImagefromFirebase = function(fileURL, fileIndex, imageDiv){
-  const dbRefToDelete = dbRef(getDatabase(), 'bannerfiles/' + fileIndex); 
+window.removeImagefromFirebase = function (fileURL, fileIndex, imageDiv) {
+  const dbRefToDelete = dbRef(getDatabase(), 'bannerfiles/' + fileIndex);
 
-  set(dbRefToDelete, null) 
+  set(dbRefToDelete, null)
     .then(() => {
       console.log('Image metadata removed from Firebase Database');
       if (imageDiv && imageDiv.parentNode) {
-        imageDiv.parentNode.removeChild(imageDiv); 
+        imageDiv.parentNode.removeChild(imageDiv);
       }
     })
     .catch((error) => {

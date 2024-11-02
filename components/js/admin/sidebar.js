@@ -201,9 +201,8 @@ document.getElementById("logout-button").addEventListener("click", () => {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("User is signed in:", user.email);
+        console.log("User is signed in:", user.email);
     } else {
-      window.location.href = "../../../pages/admin/login.html";
+        window.location.href = "../../../pages/admin/login.html";
     }
-  });
-   
+});
