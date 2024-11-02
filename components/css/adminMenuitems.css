@@ -46,13 +46,15 @@
     margin-right: 20px;
 }
 
-.left h3, .right h3 {
+.leftbox h3, .rightbox h3 {
     background-color: #3F6889;
     padding: 6px 40px;
     color: white;
+    margin-right: 20px;
+   
 }
 
-.right h3 {
+.rightbox h3 {
     background-color: #89403f;
 }
 

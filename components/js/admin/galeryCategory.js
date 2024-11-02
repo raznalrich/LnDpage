@@ -45,6 +45,12 @@ window.getAllCategory = function () {
                 categoryDiv.appendChild(link);
 
                 imageCategory.appendChild(categoryDiv);
+
+                let datalist=document.getElementById('options');
+                datalist.innerHTML+=`
+                <option value="${category}">
+                `
+
             });
         } else {
             console.log("No data available");

@@ -13,20 +13,23 @@
 <body onload="updateAnouncement()">
     <header onload="displayNotifications()">
         <div class="header-buttons">
-            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
+            <a href="#calendarEvents" style="text-decoration: none;">
+                <button class="upcoming-events" id="event">📅 UPCOMING EVENTS</button>
+            </a>
             <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;"><button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button></a>
         </div>
         
         <div class="header-container">
             <div class="logo">
-            
+            <a href="./components/pages/admin/login.html" target="_blank">
                  <img src="./components/assets/homepage-logo.png" alt="" srcset="" width="200px">
+                </a>
             </div>
             <div class="header-right">
                 <nav>
                     <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="./components/pages/user/CalenderPage.html">Calendar</a></li>
                         <li><a href="newsletter.html">Newsletter</a></li>
                         <li><a href="./components/pages/gallery.html">Gallery</a></li>
                     </ul>
@@ -47,7 +50,7 @@
             <iframe src="./components/pages/user/menuTiles.html" frameborder="0" width="100%"></iframe>
         </div>
     </section>
-    <section class="calendarEvents">
+    <section class="calendarEvents" id="calendarEvents">
         <div class="headingcontainer">
             <div class="header">Training Calendar</div>
             <div class="announcement">
@@ -107,11 +110,11 @@
     </section>
     <section class="announceAndCalendar">
         <div class="announcement">
-            <iframe src="./components/pages/user/Announcement.html" frameborder="0" width="100%" height="500px"></iframe>
+            <iframe src="./components/pages/user/Announcement.html" frameborder="0" width="100%" height="400px"></iframe>
 
         </div>
         <div class="calendar">
-            <iframe src="./components/pages/user/calender-1.html" frameborder="0" width="100%" height="500px"></iframe>
+            <iframe src="./components/pages/user/calender-1.html" frameborder="0" width="100%" height="400px"></iframe>
 
         </div>
     </section>
@@ -119,10 +122,11 @@
         
     </div>
 
-    <section class="leaderInsight">
+    <section class="leaderInsight" id="leaderInsight">
+        <iframe src="./components/pages/user/leader-insight.html" frameborder="0" width="100%" height="400px"></iframe>
 
     </section>
-    <div class="event-hover" id="event-hover" style="display: none;" onload="">
+    <div class="event-hover" id="event-hover" style="display: none;" onload="addEvents()">
         
     </div>
     
