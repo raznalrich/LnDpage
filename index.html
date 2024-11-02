@@ -11,32 +11,36 @@
 />
 </head>
 <body onload="updateAnouncement()">
-    <header onload="displayNotifications()">
+    <div class="header-container">
+        <div class="logotext">
+            <h1>Learning <span class="amp">&</span> Development</h1>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+
         <div class="header-buttons">
-            <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;"><button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button></a>
+            <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;">
+                <button class="announcements" id="announcement">
+                    <span class="bell-icon">🔔</span> 
+                    <span class="badge" id="badge">0</span>
+                </button>
+            </a>
         </div>
-        
-        <div class="header-container">
-            <div class="logotext">
-                <h1>Learning <span>&</span> Development</h1>
-            
-            </div>
-            <div class="header-right">
-                <div class="search-bar">
-                    <input type="text" placeholder=" Search">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="./components/pages/user/CalenderPage.html">Calendar</a></li>
-                        <li><a href="newsletter.html">Newsletter</a></li>
-                        <li><a href="./components/pages/gallery.html">Gallery</a></li>
-                    </ul>
-                </nav>
-                
-            </div>
-        </div>
-    </header>
+    </div>
+
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="./components/pages/user/CalenderPage.html">Calendar</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="./components/pages/gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <section class="carousel" id="carousel">
         <iframe src="./components/pages/user/topBanner.html"  frameborder="0" width="100%"></iframe>

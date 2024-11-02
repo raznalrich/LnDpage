@@ -22,13 +22,12 @@ function displayAnnouncement(announcement) {
     announcementContainer.appendChild(card);
 }
 
-
 function fetchAnnouncements() {
     const announcementsRef = ref(database, "announcement");
 
     onValue(announcementsRef, (snapshot) => {
         announcementContainer.innerHTML = ""; 
-        announcements = [];
+        announcements = []; // Reset announcements array
 
         if (snapshot.exists()) {
             snapshot.forEach((childSnapshot) => {
@@ -38,10 +37,17 @@ function fetchAnnouncements() {
                     date: new Date(data.date), 
                     desc: data.desc,
                 };
-                announcements.push(announcement); 
-
-                displayAnnouncement(announcement); 
+                // Only include announcements that are today or in the future
+                if (announcement.date >= new Date(new Date().setHours(0, 0, 0, 0))) {
+                    announcements.push(announcement); 
+                }
             });
+
+            // Sort announcements by date
+            announcements.sort((a, b) => a.date - b.date);
+
+            // Display the announcements
+            announcements.forEach(displayAnnouncement); 
         } else {
             const message = document.createElement("p");
             message.innerText = "No announcements found.";
@@ -49,6 +55,7 @@ function fetchAnnouncements() {
         }
     });
 }
+
 
 function filterAnnouncements() {
     const query = searchInput.value.toLowerCase(); 

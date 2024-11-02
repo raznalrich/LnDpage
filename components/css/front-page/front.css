@@ -55,45 +55,92 @@ html{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
-.carousel {
-    position: relative;
-    max-width: 100%;
-    height: 80vh;
-    overflow: hidden;
-    iframe{
-        height: 100vh;
-    }
-  }
+* {
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    height: 20vh; /* Set header height to 20% of viewport height */
+}
 
 .header-container {
     display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-between; 
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Distribute space evenly */
     background-color: white;
     margin-top: 10px;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 80px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Shadow below */
 }
 
 .logotext {
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 15px;
+    font-size: 18px; /* Further decrease logo size */
     font-weight: bold;
     color: #D42027;
-    /* margin-top: -60px; */
 }
 
-.logotext span {
-    color: #000000;
-    font-size: 25px;
+.logotext .amp {
+    /* font-size: 16px; Increase ampersand size slightly */
+    color: black; /* Ampersand color */
 }
 
-.header-right {
+.search-bar {
+    margin-left: 4cm; /* Move search bar 4cm to the right */
+}
+
+.search-bar input {
+    width: 10cm; /* Set width of the search bar to 8cm */
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+}
+
+.header-buttons {
     display: flex;
+    align-items: center; /* Center buttons vertically */
+}
+
+.bell-icon {
+    color: #D42027; /* Red color for the bell icon */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; /* Center the navigation */
+    margin-top: 10px; /* Space above the navigation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow above the nav */
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    display: flex; 
     align-items: center;
+    gap: 50px; /* Space between nav items */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #5F2A2A;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    font-weight: bold; /* Make the nav links bold */
+
+}
+
+nav ul li a:hover {
+    color: #D42027;
 }
 
 .announcements {
@@ -102,26 +149,13 @@ html{
 
 .announcements .badge {
     color: white;
-    background-color: #000000;
+    background-color: #D42027; /* Red background for badge */
     border-radius: 50%;
     padding: 5px 7px;
     font-size: 15px;
     position: absolute;
     top: -7px;
     right: -15px;
-}
-
-.menutiles{
-    width: 100%;
-}
-
-.header-buttons {
-    display: flex;
-    align-items: flex-start;
-    position: absolute;
-    left: 67%;
-    margin-top: -5px;
-    gap: 10px;
 }
 
 button {
@@ -137,72 +171,29 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    white-space: nowrap;
 }
 
 button:hover {
     background-color: #f8e3e3;
 }
 
-.header-right {
-    display: flex;
+
+
+.carousel {
     position: relative;
-    /* left: 30px; */
-    top: 20px;
+    max-width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    iframe{
+        height: 100vh;
+    }
+  }
+
+.menutiles{
+    width: 100%;
 }
 
-nav {
-    position: relative;
-    right: 50px;
 
-}
-
-nav ul {
-    display: flex; 
-    align-items: center;
-    gap: 40px;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline-block;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #5F2A2A;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #D42027;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    position: relative;
-    right: 80px;
-    background-color: #f7f7f7;
-    border: 2px solid #e78184;
-    border-radius: 25px;
-    padding: 6px 85px;
-}
-
-.search-bar input {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 14px;
-    margin-left: 5px; 
-    width: 200px;
-}
-
-.search-bar input::placeholder {
-    color: #A9A9A9;
-}
 
 
 /* swiper-calendar */
