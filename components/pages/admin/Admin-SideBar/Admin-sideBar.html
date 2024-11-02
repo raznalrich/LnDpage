@@ -31,13 +31,13 @@
     </div>
     <div class="input-image">
       <input type="file" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg" />
+      <!-- Preview of selected file -->
+      <img id="file-preview" class="file-preview" style="display:none; width: 50px; margin-top: 10px;"
+        alt="File Preview" />
+
       <label for="fileInp"></label>
       <span class="fileText"></span><br />
 
-      <!-- Preview of selected file -->
-      <img id="file-preview" class="file-preview" style="display:none; width: 100px; margin-top: 10px;"
-        alt="File Preview" />
-        
       <!-- Form inputs for description and category -->
       <div class="details-section">
         <label for="description-input">Description:</label>

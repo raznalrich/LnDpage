@@ -7,6 +7,7 @@ body{
     height: 100vh;
     background-color: #ffff;
 }
+
 *{
     font-family: Arial, sans-serif;
 }
@@ -201,4 +202,7 @@ body{
 }
 #update{
     background-color: #64A2F5;
+}
+#discard-button{
+    background-color: rebeccapurple;
 }
