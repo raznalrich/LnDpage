@@ -62,14 +62,6 @@
     }
   }
 
-
-
-
-
-
-
-
-
 .header-container {
     display: flex;
     flex-direction: row; 
@@ -79,18 +71,21 @@
     margin-top: 10px;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 80px;
 }
 
-.logo {
+.logotext {
     align-items: flex-start;
     justify-content: center;
-    font-size: 28px;
+    font-size: 15px;
     font-weight: bold;
     color: #D42027;
+    /* margin-top: -60px; */
 }
 
-.logo .and {
+.logotext span {
     color: #000000;
+    font-size: 25px;
 }
 
 .header-right {
@@ -155,7 +150,8 @@ button:hover {
 
 nav {
     position: relative;
-    right: 160px;
+    right: 50px;
+
 }
 
 nav ul {
@@ -185,11 +181,11 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     position: relative;
-    right: 30px;
+    right: 80px;
     background-color: #f7f7f7;
     border: 2px solid #e78184;
     border-radius: 25px;
-    padding: 6px 25px;
+    padding: 6px 85px;
 }
 
 .search-bar input {
