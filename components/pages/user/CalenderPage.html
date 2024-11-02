@@ -22,10 +22,9 @@
             Training Calendar
         </h1>
         <div class="monthSelect">
-            <i class="fa-solid fa-caret-left"></i>
-            <h4>July</h4>
-        <i class="fa-duotone fa-solid fa-caret-right"></i>
-        
+            <i class="fa-solid fa-caret-left" id="prevMonth"></i>
+            <h4 id="monthDisplay">July</h4>
+            <i class="fa-solid fa-caret-right" id="nextMonth"></i>
         </div>
         
         
@@ -38,7 +37,7 @@
        
 
     </div>
-    <div class="contents">
+    <div class="contents" id="eventContainer">
         <div class="card">
             <div class="card-content">
                 <h2>
@@ -107,6 +106,8 @@
                </div>
                <i class="fa-solid fa-laptop"></i>
         </div>
-    </div>    
+    </div>  
+    
+    <script type="module" src="../../js/front-page/calendarSapperate.js"></script>
 </body>
 </html>
