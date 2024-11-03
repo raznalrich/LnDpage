@@ -154,8 +154,9 @@ body{
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
-    top: 25%;
-    left: 80%;
+    width: 40%;
+    /* top: 25%;
+    left: 80%; */
     
 }
 .button-section button{
