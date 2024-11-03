@@ -10,136 +10,120 @@ body {
     padding: 0 20px 20px 20px;
 }
 
-.header-container {
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-between; 
-    background-color: white;
-    padding: 10px 20px;
-    height: 100px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+header {
+    height: 20vh; /* Set header height to 20% of viewport height */
 }
 
-.logo {
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 28px;
+.header-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Distribute space evenly */
+    background-color: white;
+    /* margin-top: 10px; */
+    padding: 10px 20px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Shadow below */
+}
+
+.logotext {
+    font-size: 18px; /* Further decrease logo size */
     font-weight: bold;
     color: #D42027;
 }
 
-.logo .and {
-    color: #000000;
+.logotext .amp {
+    /* font-size: 16px; Increase ampersand size slightly */
+    color: black; /* Ampersand color */
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
+.search-bar {
+    margin-left: 4cm; /* Move search bar 4cm to the right */
 }
 
-.announcements {
-    position: relative;
-    background-color: rgb(197, 144, 143);
-    opacity: .5;
-}
-
-.announcements .badge {
-    color: white;
-    background-color: #000000;
-    border-radius: 50%;
-    padding: 5px 7px;
-    font-size: 15px;
-    position: absolute;
-    top: -7px;
-    right: -15px;
-}
-
-.header-buttons {
-    display: flex;
-    align-items: flex-start;
-    position: absolute;
-    left: 67%;
-    margin-top: 10px;
-    gap: 10px;
-}
-
-button {
-    display: flex;
-    align-items: center;
+.search-bar input {
+    width: 10cm; /* Set width of the search bar to 8cm */
     padding: 10px;
     border: 2px solid #D42027;
     border-radius: 25px;
+}
+.suggestions-container {
+    position: absolute;
     background-color: white;
-    color: #D42027;
-    height: 40px;
-    font-size: 14px;
-    font-weight: bold;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions-container div {
+    padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
 }
 
-button:hover {
-    background-color: #f8e3e3;
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
 }
 
-.header-right {
+
+.header-buttons {
     display: flex;
-    position: relative;
-    top: 20px;
+    align-items: center; /* Center buttons vertically */
+}
+
+.bell-icon {
+    color: #D42027; /* Red color for the bell icon */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; /* Center the navigation */
+    margin-top: 10px; /* Space above the navigation */
+    box-shadow: 0 2px  rgba(0, 0, 0, 0.1); 
 }
 
 nav {
-    position: relative;
-    right: 160px;
+    display: flex;
 }
 
 nav ul {
     display: flex; 
     align-items: center;
-    gap: 40px;
+    gap: 50px; /* Space between nav items */
     margin: 0;
     padding: 0;
 }
 
 nav ul li {
     display: inline-block;
+    padding-bottom: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #5F2A2A;
-    font-size: 16px;
+    font-size: 15px;
     transition: color 0.3s ease;
+    font-weight: bold; /* Make the nav links bold */
+
 }
 
 nav ul li a:hover {
     color: #D42027;
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
+.announcements {
     position: relative;
-    right: 30px;
-    background-color: #f7f7f7;
-    border: 2px solid #e78184;
-    border-radius: 25px;
-    padding: 6px 25px;
 }
 
-.search-bar input {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 14px;
-    margin-left: 5px; 
-    width: 200px;
-}
-
-.search-bar input::placeholder {
-    color: #A9A9A9;
+.announcements .badge {
+    color: white;
+    background-color: #D42027; /* Red background for badge */
+    border-radius: 50%;
+    padding: 5px 7px;
+    font-size: 15px;
+    position: absolute;
+    top: -7px;
+    right: -15px;
 }
 
 .main-content {
@@ -216,6 +200,25 @@ h1 {
     margin-bottom: 5px; 
 
 }
+button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+    background-color: white;
+    color: #D42027;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f8e3e3;
+}
+
 
 .card h3 {
     margin: 0;
