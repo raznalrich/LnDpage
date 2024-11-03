@@ -86,8 +86,6 @@ body {
 .mySwiper {
     position: relative;
     top: 0; 
-}
-.swiper-button-next,
-.swiper-button-prev {
-    color: #d50032;
+    background-color: #d81717; /* Change this to your desired background color */
+    padding: 20px; /* Optional padding for better appearance */
 }

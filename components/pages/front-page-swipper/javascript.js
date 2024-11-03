@@ -1,8 +1,7 @@
-import { database } from "../../js/admin/Firebase.js"; // Adjust the path to Firebase config as needed
+import { database } from "../../js/admin/Firebase.js"; 
 import { ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs"; // Import Swiper
+import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs"; 
 
-// Fetch images and descriptions from Firebase and add to Swiper
 function fetchCarouselImages() {
     const swiperWrapper = document.getElementById('swiper-wrapper');
     const filesRef = ref(database, 'bannerfiles');
@@ -12,7 +11,6 @@ function fetchCarouselImages() {
             const filesData = snapshot.val();
             const activeSlides = [];
 
-            // Collect active slides
             for (const fileIndex in filesData) {
                 if (filesData.hasOwnProperty(fileIndex)) {
                     const fileData = filesData[fileIndex];
@@ -44,10 +42,8 @@ function fetchCarouselImages() {
                 }
             }
 
-            // Add slides to DOM
             activeSlides.forEach(slide => swiperWrapper.appendChild(slide));
 
-            // Initialize Swiper after slides are added
             if (activeSlides.length > 0) {
                 initializeSwiper(activeSlides.length > 1);
             } else {
@@ -61,7 +57,6 @@ function fetchCarouselImages() {
     });
 }
 
-// Initialize Swiper only after all slides are loaded
 function initializeSwiper(loopEnabled) {
     new Swiper('.carousel-swiper .swiper-container', {
         slidesPerView: 1,
@@ -82,5 +77,4 @@ function initializeSwiper(loopEnabled) {
     });
 }
 
-// Fetch images on load
 fetchCarouselImages();
