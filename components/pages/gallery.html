@@ -6,27 +6,31 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/gallery/gallery.css">
   </head>
-  <body onload="getAllFiles()">
-    <header>
+  <body onload="getCategories()">
+    <header onload="previewAllFiles()">
       <div class="g-logo">
+
         <h1>Gallery</h1>
+        <a href="../../index.html">Go home</a>
+
+        
       </div>
       <div class="gallery-header">
         
-        <nav>
-          <ul>
-            <li>All</li>
-            <li>Training</li>
-            <li>Events</li>
-            <li>Awards</li>
+        <nav id="nav-bar">
+          <ul id="nav-ul">
+           <li onclick="getFiles(event)" id="list-elemnts">All</li>
           </ul>
         </nav>
-        <div class="search">
+        <!-- <div class="search">
           <input type="text" placeholder="Search">
-        </div>
+        </div> -->
       </div>
       <div class="h-line"></div>
     </header>
-    <script type="module" src="../js/admin/gallery.js"></script>
+    <div class="image-content" id="image-content" >
+
+    </div>
+    <script type="module" src="../js/front-page/gallery.js"></script>
   </body>
 </html>

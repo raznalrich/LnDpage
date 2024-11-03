@@ -16,14 +16,14 @@
 
 :root {
     --fc-border-color: transparent;
-    --fc-today-bg-color: rgba(0, 122, 255, 0.5);
+    --fc-today-bg-color: rgba(220, 20, 60, 0.5);
+    --fc-event-bg-color: rgba(220, 20, 60, 1)
 }
 
 .fc-daygrid-day {
     border: none;
     height: 50px;
     width: 50px;
-    /* border-radius: 50%; */
 }
 
 .fc-daygrid-day-number {
@@ -34,7 +34,6 @@
 
 .fc-daygrid-event {
     border: none;
-    /* border-radius: 50%; */
 }
 
 .fc-col-header-cell {

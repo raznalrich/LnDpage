@@ -148,6 +148,7 @@ body{
     flex-direction: column;
     justify-content: center;
     position: relative;
+    flex-wrap: wrap;
     top: 10%;
     height: 80%;
 }
@@ -157,8 +158,9 @@ body{
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
-    top: 25%;
-    left: 80%;
+    width: 50%;
+    left: 30%;
+    top: 10%;
     
 }
 .button-section button{

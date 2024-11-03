@@ -10,25 +10,28 @@
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
 </head>
-<body>
-    <header>
+<body onload="updateAnouncement()">
+    <header onload="displayNotifications()">
         <div class="header-buttons">
-            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
-            <button class="announcements">📢 ANNOUNCEMENT <span class="badge">8</span></button>
+            <a href="#calendarEvents" style="text-decoration: none;">
+                <button class="upcoming-events" id="event">📅 UPCOMING EVENTS</button>
+            </a>
+            <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;"><button class="announcements" id="announcement">📢 ANNOUNCEMENT <span class="badge" id="badge" >0</span></button></a>
         </div>
         
         <div class="header-container">
             <div class="logo">
-                <!-- Learning <span class="and"> & </span> <br>Development -->
+            <a href="./components/pages/admin/login.html" target="_blank">
                  <img src="./components/assets/homepage-logo.png" alt="" srcset="" width="200px">
+                </a>
             </div>
             <div class="header-right">
                 <nav>
                     <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="./components/pages/user/CalenderPage.html">Calendar</a></li>
                         <li><a href="newsletter.html">Newsletter</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="./components/pages/gallery.html">Gallery</a></li>
                     </ul>
                 </nav>
                 <div class="search-bar">
@@ -38,63 +41,16 @@
         </div>
     </header>
 
-    <section class="carousel">
-        <div class="carousel-slide">
-            <img src="./components/assets/ILP Batch 51.jpg" alt="Batch Training Image 1">
-            <div class="description-overlay">
-                
-                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
-                <h2>Welcome Batch 5</h2>
-                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-                <button class="know-more-btn">Know More</button>
- 
-            </div>
-        </div>
-        <div class="carousel-slide">
-            <img src="./components/assets/Batch 4 Final.png" alt="Batch Training Image 2">
-            <div class="description-overlay">
-                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
-
-                <h2>4th Batch Completed Offline Training</h2>
-                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-                <button class="know-more-btn">Know More</button>
-            </div>
-        </div>
-        <div class="carousel-slide">
-            <img src="./components/images/temp/newsletter-publish.png" alt="Batch Training Image 3">
-            <div class="description-overlay">
-                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
-
-                <h2>ILP Newsletter</h2>
-                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-                <button class="know-more-btn">Know More</button>
-            </div>
-        </div>
-        <div class="carousel-slide">
-            <img src="./components/images/temp/l&d-logo.png" alt="Batch Training Image 4">
-            <div class="description-overlay">
-                <img src="./components/images/temp/Image (1).png" alt="" srcset="">
-
-                <h2>Learning & Development</h2>
-                <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-                <button class="know-more-btn">Know More</button>
-            </div>
-        </div> 
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-        <div class="carousel-dots">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-        </div>
+    <section class="carousel" id="carousel">
+        <iframe src="./components/pages/user/topBanner.html"  frameborder="0" width="100%"></iframe>
     </section>
+    
     <section class="menutiles">
         <div class="icon-bar">
             <iframe src="./components/pages/user/menuTiles.html" frameborder="0" width="100%"></iframe>
         </div>
     </section>
-    <section class="calendarEvents">
+    <section class="calendarEvents" id="calendarEvents">
         <div class="headingcontainer">
             <div class="header">Training Calendar</div>
             <div class="announcement">
@@ -107,25 +63,46 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper" id="swiperCalendar">
               <div class="swiper-slide">
-                <div class="calendarEventContainer">
-                    <div class="date">
-                        <p>Oct</p>
+                  
+                  <div class="calendarEventContainer">
+                      
+                        <div class="date">
+                            <p>Oct</p>
                         <h2>26</h2>
                         <p style="margin-top: 10px;font-size: 15px;">2024</p>
                     </div>
-                    <img src="./components/assets/imga.png" alt="" srcset="">
+                    <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
+                    <div class="courseDetails">
+
+                    
                     <div class="coursename">
                         <p><strong>Java program</strong></p>
                     </div>
+                    <div class="descCal">
+                        <div class="trainer">
+                            <img src="./components/assets/user-solid.svg" alt="" srcset="">
+                            <p>Aswanth</p>
+                        </div>
+                        <div class="mode">
+                            <div class="circle"></div>
+                            <p>online</p>
+                        </div>
+                       
+                    </div>
+                    <div class="calbottom">
+                            
+                    </div>
+               
+                </div>
                 </div>
               </div>
-              
+
             </div>
             <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev"></div>
             <!-- <div class="swiper-pagination"></div> -->
-          </div>
-   
+            </div>
+            
         
     </section>
     <section class="newsLetter">
@@ -133,23 +110,40 @@
     </section>
     <section class="announceAndCalendar">
         <div class="announcement">
-            <iframe src="./components/pages/user/Announcement.html" frameborder="0" width="100%" height="500px"></iframe>
+            <iframe src="./components/pages/user/Announcement.html" frameborder="0" width="100%" height="400px"></iframe>
 
         </div>
         <div class="calendar">
-            <iframe src="./components/pages/user/calender-1.html" frameborder="0" width="100%" height="500px"></iframe>
+            <iframe src="./components/pages/user/calender-1.html" frameborder="0" width="100%" height="400px"></iframe>
 
         </div>
     </section>
-    
+    <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
+        
+    </div>
 
-    <script type="module" src="./components/js/front-page/front.js"></script> 
+    <section class="leaderInsight" id="leaderInsight">
+        <iframe src="./components/pages/user/leader-insight.html" frameborder="0" width="100%" height="400px"></iframe>
+
+    </section>
+    <div class="event-hover" id="event-hover" style="display: none;" onload="addEvents()">
+        
+    </div>
+    
+    <script type="module" src="./components/js/front-page/fetchSlider.js"></script> 
+    <script type="module" src="./script.js"></script> 
     <script type="module" src="./components/js/fetchMenu.js"></script> 
+    <script type="module" src="./components/js/front-page/front.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
           slidesPerView: 3,
-          spaceBetween: 30,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -162,3 +156,4 @@
       </script>
 </body>
 </html>
+
