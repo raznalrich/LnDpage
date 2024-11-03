@@ -375,3 +375,33 @@ button:hover {
     margin-top: -1.2rem;
  }  
 
+.announcement-hover{
+    width: 20%;
+    height: auto;
+    border: 1px solid grey;
+    position: absolute;
+    top: 11%;
+    left: 78%;
+    background-color: rgba(244, 238, 238, 0.7) ;
+    border-radius: 7px;
+    font-size: 10px;
+}
+.announcement-section{
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    border: 1px solid grey;
+}
+.event-section{
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    border: 1px solid grey;
+}
+.event-icon{
+    padding-right: 4%;
+}
+.notification-icon{
+    padding-right: 4%;
+
+}
