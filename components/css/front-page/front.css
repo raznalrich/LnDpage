@@ -96,6 +96,24 @@ header {
     border: 2px solid #D42027;
     border-radius: 25px;
 }
+.suggestions-container {
+    position: absolute;
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
+}
+
 
 .header-buttons {
     display: flex;
