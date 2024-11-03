@@ -171,34 +171,32 @@ h1 {
 .announcement-container {
     margin-top: 20px;
 }
-/* Icon styles */
 .icon-wrapper {
-    display: inline-block; /* Aligns icon and text */
-    margin-right: 10px; /* Space between the icon and the title */
+    display: inline-block; 
+    margin-right: 10px; 
 }
 
 .red-circle {
-    width: 20px; /* Size of the red circle */
-    height: 20px; /* Size of the red circle */
-    background-color: red; /* Red color */
-    border-radius: 50%; /* Makes it circular */
-    position: relative; /* For positioning the white circle */
+    width: 20px; 
+    height: 20px; 
+    background-color: red;
+    border-radius: 50%;
+    position: relative; 
 }
 
 .white-circle {
-    width: 14px; /* Size of the white circle */
-    height: 14px; /* Size of the white circle */
-    background-color: white; /* White color */
-    border-radius: 50%; /* Makes it circular */
-    position: absolute; /* Position it inside the red circle */
-    top: 3px; /* Centers it vertically */
-    left: 3px; /* Centers it horizontally */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    width: 14px; 
+    height: 14px; 
+    background-color: white; 
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: background-color 0.3s;
 }
 
-/* Hover effect for the card */
 .card:hover .white-circle {
-    background-color: red; /* Change white circle to red on card hover */
+    background-color: red; 
 }
 
 .card {
@@ -208,33 +206,32 @@ h1 {
     margin-bottom: 10px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
-    display: flex; /* Make card a flex container */
-    flex-direction: column; /* Stack vertically */
+    display: flex; 
+    flex-direction: column; 
 }
 
 .icon-wrapper {
-    display: flex; /* Make icon and title in a row */
-    align-items: center; /* Center align items vertically */
-    margin-bottom: 5px; /* Space below the icon and heading */
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 5px; 
 
 }
 
 .card h3 {
-    margin: 0; /* Remove default margin */
-    margin-left: 10px; /* Space between icon and heading */
-    font-weight: bold; /* Make the heading bold */
+    margin: 0;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .card p {
-    margin: 0; /* Remove default margin */
+    margin: 0; 
     margin-left: 30px;
 }
 
-/* Specific styling for the description */
 .card .description {
-    margin-top: 10px; /* Space above the description */
-    margin-bottom: 10px; /* Space below the description */
-    line-height: 1.5; /* Increase line height for better readability */
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    line-height: 1.5; 
     margin-left: 30px;
 }
 
