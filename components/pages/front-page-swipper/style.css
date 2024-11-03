@@ -4,13 +4,11 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Swiper Container */
 .carousel-swiper .swiper-container {
     width: 100%;
-    height: 80vh; /* Adjust height as needed */
+    height: 80vh; 
 }
 
-/* Swiper Slide Styling */
 .carousel-swiper .swiper-slide {
     position: relative;
     display: flex;
@@ -20,16 +18,14 @@
     background-color: #000;
 }
 
-/* Slide Image Styling */
 .carousel-swiper .swiper-slide .slide-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: relative; /* Default image overlay will sit above */
+    position: relative; 
     z-index: 1;
 }
 
-/* Gradient Overlay */
 .carousel-swiper .swiper-slide::after {
     content: '';
     position: absolute;
@@ -38,46 +34,43 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(to left, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 100%);
-    pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
-    z-index: 2; /* Sits above the main image but below other elements */
+    pointer-events: none; 
+    z-index: 2; 
 }
 
-/* Default Image Styling */
 .carousel-swiper .swiper-slide .default-image {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%; /* Adjust as needed */
-    z-index: 3; /* Sits above gradient overlay and main image */
+    width: 80%; 
+    z-index: 3; 
 }
 
 .carousel-swiper .default-image img {
     width: 35%;
     height: auto;
-    opacity: 0.5; /* Optional transparency */
+    opacity: 0.5; 
     transform: translatex(180%);
 }
 
-/* Description Overlay */
 .carousel-swiper .description-overlay {
     position: absolute;
     bottom: 10%;
     left: 50%;
     transform: translate(90%, -250%);
-    background: rgba(37, 31, 31, 0); /* Semi-transparent background */
+    background: rgba(37, 31, 31, 0); 
     color: #fff;
     text-align: center;
     padding: 15px;
     border-radius: 10px;
-    z-index: 4; /* Sits above default image */
+    z-index: 4; 
 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Heading and Description Styling */
 .carousel-swiper .description-overlay h2 {
     font-size: 24px;
     margin-bottom: 15px;
@@ -103,12 +96,10 @@
 
 }
 
-/* Hover Effect for Know More Button */
 .know-more-btn:hover {
-    background-color: #ff5a5f; /* Changes color on hover */
+    background-color: #ff5a5f; 
 }
 
-/* Swiper Navigation and Pagination */
 .carousel-swiper .swiper-button-next,
 .carousel-swiper .swiper-button-prev {
     color: white;
