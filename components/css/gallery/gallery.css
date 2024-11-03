@@ -5,7 +5,7 @@
 }
 header{
     position: relative;
-    background: linear-gradient(to bottom, #9e0006, #ffffff);
+    /* background: linear-gradient(to bottom, #9e0006, #ffffff); */
     padding: 0px 0;
     border-bottom: 2px solid #ddd;
 
@@ -25,10 +25,11 @@ header{
     font-size: 30px;
     font-weight: 800;
     padding: 0 0px;
-    color: whitesmoke;
+    color: #D42027;
     justify-content: space-between;
-}.g-logo h1{
+}.g-logo h2{
     margin-left: 3%;
+    padding-bottom: 20px;
 }
 .g-logo a{
     cursor: pointer;
@@ -38,8 +39,11 @@ header{
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    top:   50px;
+    top:   20px;
     color: #000;
+}
+.gallery-header{
+    background-color: #D42027;
 }
 nav ul{
     display: flex;
@@ -50,7 +54,8 @@ nav ul{
 li{
     cursor: pointer;
     padding: 10px 20px;
-    font-size: 20px;
+    color: #ddd;
+    font-size: 15px;
     transition: background-color 0.3s ease;
     /* transition: opacity 0.3s ease, visibility 0s linear 0.3s; */
 }
