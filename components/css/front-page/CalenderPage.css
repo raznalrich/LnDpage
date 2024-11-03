@@ -73,6 +73,9 @@ body {
 }
 .content {
     padding: 20px;
+    flex-direction: column; /* Change to column layout */
+    display: flex;
+    flex-direction: column;
 }
 .card {
     background-color: white;
@@ -179,10 +182,10 @@ body {
     margin-top: 10px;
 }
 .search-bar:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a soft shadow on hover */
-    transform: scale(1.02); /* Slightly enlarges the search bar */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
-    border-radius: 5px; /* Optional: rounds corners on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.02); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 5px; 
 }
 
 
