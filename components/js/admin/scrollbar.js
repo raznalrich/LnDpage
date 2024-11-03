@@ -15,6 +15,7 @@ window.getFile = function (e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
+  fileText.style.fontSize = "10px"
   if (fileItem) {
     const reader = new FileReader();
     reader.onload = function (e) {
