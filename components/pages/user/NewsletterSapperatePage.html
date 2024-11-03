@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning & Development</title>
+    <link rel="stylesheet" href="../../css/front-page/front.css"> 
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+</head>
+<style>
+    .newletterHTMLFile{
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+    }
+</style>
+<body onload="updateAnouncement()">
+    <div class="header-container">
+        <div class="logotext">
+            <h2>Learning <span class="amp">&</span> Development</h2>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+
+        <div class="header-buttons">
+            <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;">
+                <button class="announcements" id="announcement">
+                    <span class="bell-icon">🔔</span> 
+                    <span class="badge" id="badge">0</span>
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="./components/pages/user/CalenderPage.html">Calendar</a></li>
+                <li><a style="color: red;" href="newsletter.html">Newsletter</a></li>
+                <li><a  href="../announcement-seperate-page/index.html">Announcement</a></li>
+                <li><a href="./components/pages/gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section class="newletterHTMLFile">
+    <iframe id="newsletter-iframe" width="585" height="auto"></iframe>
+</section>
+<script type="module" src="../../../script.js"></script>
+<script type="module" src="../../js/front-page/newsletter.js"></script>
+</body>
+</html>
