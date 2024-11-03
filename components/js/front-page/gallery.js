@@ -3,6 +3,7 @@ import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 
+
 window.getCategories=function(){
     const fileRef = dbRef(getDatabase(), 'files');
     console.log("entered program");
@@ -26,7 +27,7 @@ window.getCategories=function(){
                         console.log(category);
                         const ul=document.getElementById('nav-ul');
                         ul.innerHTML+=`
-                        <li onclick="getFiles(event)" class='list-image'>${category}</li>
+                        <li id="${category}" onclick="getFiles(event)" class='list-image'>${category}</li>
                         `
                     })
                 }
@@ -64,6 +65,16 @@ window.getFiles=function(e){
                 const fileDesc=fileData.fileDesc;
                 if(value=='All'){
                     // console.log('entered all if else')
+                    const listItems = document.querySelectorAll('li');
+
+
+                    listItems.forEach(item => {
+                      item.style.backgroundColor = '';
+                      item.style.color = '';
+                    });
+                         
+                    document.getElementById('list-elemnts').style.backgroundColor='white';
+                    document.getElementById('list-elemnts').style.color='red';
                     imageContainer.innerHTML+=`
                     <div class="imageAndDesc">
                         <div class="imageCard">
@@ -77,6 +88,15 @@ window.getFiles=function(e){
                     `
                 }
                 else if(fileCat==value){
+                    const listItems = document.querySelectorAll('li');
+
+
+listItems.forEach(item => {
+  item.style.backgroundColor = '';
+  item.style.color = '';
+});
+                    document.getElementById(fileCat).style.backgroundColor='white';
+                    document.getElementById(fileCat).style.color='red';
                 imageContainer.innerHTML+=`
                 <div class="imageAndDesc">
                         <div class="imageCard">
