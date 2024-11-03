@@ -1,16 +1,16 @@
 import { storage, database, app } from "../Firebase.js";
 import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-let imageCategory = document.getElementById('image-category');
-console.log('entered before function')
-window.getAllCategory = function () {
-    console.log("entered inside getAllCategory");
-    const fileRef = dbRef(getDatabase(), 'files');
-    console.log("entered program");
 
+let imageCategory = document.getElementById('image-category');
+// console.log('entered before function')
+
+window.getAllCategory = function () {
+    // console.log("entered inside getAllCategory");
+    const fileRef = dbRef(getDatabase(), 'files');
+    // console.log("entered program");
     get(fileRef).then((snapshot) => {
         if (snapshot.exists()) {
-            console.log("entered database");
-
+            // console.log("entered database");
             const fileData = snapshot.val();
             let categories = [];
             for (let fileCategory in fileData) {

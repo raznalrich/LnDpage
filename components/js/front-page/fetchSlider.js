@@ -195,7 +195,6 @@
     const dref = ref(database);
     const div = document.getElementById('swiperslide');
 
-    // Display a loading message or spinner
     const loadingMessage = document.createElement('p');
     loadingMessage.id = 'loadingMessage';
     loadingMessage.innerText = 'Loading...';
@@ -204,13 +203,11 @@
     try {
         const snapshot = await get(child(dref, 'bannerfiles'));
         
-        // Remove the loading message once data starts processing
         loadingMessage.remove();
 
         if (snapshot.exists()) {
             const banners = [];
 
-            // Collect all banners in an array
             snapshot.forEach((menu) => {
                 let value = menu.val();
                 const { fileURL, isActive, fileCat, fileDesc } = value;
@@ -220,15 +217,13 @@
                 }
             });
 
-            // Render banners and initialize Swiper after all data is collected
-            renderBanners(banners);
+            await renderBanners(banners); // Wait for banners to render before initializing Swiper
         } else {
             const noFilesMessage = document.createElement('p');
             noFilesMessage.innerHTML = 'No files found';
             div.appendChild(noFilesMessage);
         }
     } catch (error) {
-        // Remove the loading message if an error occurs and show an error
         loadingMessage.remove();
         const errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Failed to load images. Please try again later.';
@@ -237,42 +232,50 @@
     }
 }
 
-function renderBanners(banners) {
+async function renderBanners(banners) {
     const div = document.getElementById('swiperslide');
     div.innerHTML = ''; // Clear any existing content
 
-    banners.forEach((banner) => {
-        const { fileURL, fileCat, fileDesc } = banner;
+    // Render each banner and wait for images to load
+    await Promise.all(banners.map((banner) => {
+        return new Promise((resolve) => {
+            const { fileURL, fileCat, fileDesc } = banner;
 
-        const card = document.createElement('div');
-        card.classList.add('swiper-slide');
-        card.innerHTML = `
-            <img src="${fileURL}" alt="Batch Training Image">
-            <div class="description-overlay">
-                <img src="../../../components/images/temp/Image (1).png" alt="">
-                <h2>${fileCat}</h2>
-                <p>${fileDesc}</p>
-            </div>
-        `;
-        div.appendChild(card);
-    });
+            const card = document.createElement('div');
+            card.classList.add('swiper-slide');
+            card.innerHTML = `
+                <img src="${fileURL}" alt="Batch Training Image" onload="this.style.opacity=1;">
+                <div class="description-overlay">
+                    <img src="../../../components/images/temp/Image (1).png" alt="">
+                    <h2>${fileCat}</h2>
+                    <p>${fileDesc}</p>
+                </div>
+            `;
+            div.appendChild(card);
+            resolve(); // Resolve each image load
+        });
+    }));
 
-    // Initialize or update Swiper after all images are added
+    // Initialize or update Swiper after all images are loaded
     initializeSwiper(banners.length);
 }
 
 function initializeSwiper(slideCount) {
     const loopMode = slideCount > 1;
 
-    if (window.mySwiper) {
-        window.mySwiper.destroy(true, true); // Properly destroy any existing instance
-    }
+    // if (window.mySwiper) {
+    //     window.mySwiper.destroy(true, true);
+    // }
 
-    // Initialize a new Swiper instance with loop based on slide count
-    window.mySwiper = new Swiper('.swiper-container', {
+    window.mySwiper = new Swiper('.mySwiper', {
         slidesPerView: 1,
         spaceBetween: 10,
-        loop: loopMode,
+        loop: true,
+       
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -282,6 +285,11 @@ function initializeSwiper(slideCount) {
             prevEl: '.swiper-button-prev',
         },
     });
+
+    // Force Swiper to re-render
+    setTimeout(() => {
+        window.mySwiper.update();
+    }, 100); // Adjust delay if necessary
 }
 
 // Call the function to load and display banners

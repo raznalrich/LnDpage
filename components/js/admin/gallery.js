@@ -15,8 +15,19 @@ window.getFile = function (e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
   fileText.innerHTML = fileName;
+  fileText.style.fontSize = "10px"
+  //Image preview
+  if (fileItem) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById("file-preview");
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(fileItem);
+  }
 };
-window.getDetails = function (e) {};
+window.getDetails = function (e) { };
 
 window.uploadImage = function () {
   category = document.getElementById("category-input").value.trim();
@@ -102,10 +113,10 @@ window.getAllFiles = function () {
             // imageDiv.id='imagediv'.concat(i);
             imageDiv.style.width = "30%";
             imageDiv.style.height = "40%";
-            imageDiv.style.borderRadius='7px';
+            imageDiv.style.borderRadius = '7px';
             imageDiv.style.flexWrap = "wrap";
-            imageDiv.style.overflow='hidden';
-      
+            imageDiv.style.overflow = 'hidden';
+
             closeButton = document.createElement("button");
             // closeButton.id='closebutton'.concat(i);
             closeButton.style.backgroundColor = "#DC143C";
@@ -118,13 +129,13 @@ window.getAllFiles = function () {
             closeButton.style.cursor = "pointer";
             imageDiv.appendChild(closeButton);
             const img = document.createElement("img");
-            img.style.objectFit='cover';
-            img.style.borderRadius='7px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '7px';
             if (fileCat == value) {
               img.src = fileURL;
               img.alt = fileName;
               img.style.width = "100%";
-              img.style.height="100%"
+              img.style.height = "100%"
               img.style.margin = "10px";
 
               imageDiv.appendChild(img);

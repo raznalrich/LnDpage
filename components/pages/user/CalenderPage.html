@@ -14,15 +14,24 @@
             
             
         </div>
-        
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <button onclick="closeCurrentTab();" id="closetab" style="border: none;">
+
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
     </div>
     <div class="main" style="background-color: #DC143C;">
         <h1>
             Training Calendar
         </h1>
+        <div class="monthSelect">
+            <i class="fa-solid fa-caret-left" id="prevMonth"></i>
+            <h4 id="monthDisplay">July</h4>
+            <i class="fa-solid fa-caret-right" id="nextMonth"></i>
+        </div>
+        
+        
         <div class="search-bar">
-            <input placeholder="Search here" type="text"/>
+            <input id="searchInput" placeholder="Search here" type="text"/>
             <button>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -30,7 +39,7 @@
        
 
     </div>
-    <div class="contents">
+    <div class="contents" id="eventContainer">
         <div class="card">
             <div class="card-content">
                 <h2>
@@ -99,6 +108,14 @@
                </div>
                <i class="fa-solid fa-laptop"></i>
         </div>
-    </div>    
+    </div> 
+    <script >
+        function closeCurrentTab() {
+
+window.close(); // Close the current tab
+}
+    </script> 
+    
+    <script type="module" src="../../js/front-page/calendarSapperate.js"></script>
 </body>
 </html>
