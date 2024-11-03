@@ -36,7 +36,7 @@
 }
 
 .announcement-item .number {
-    background-color: #d01010;
+    background-color: #DC143C;
     color: #fff;
     font-size: 24px;
     width: 40px;
@@ -57,7 +57,7 @@
 
 .announcement-item .date {
     background-color: #efe4e4;
-    color: #c62828;
+    color: #000000;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
@@ -71,7 +71,7 @@
 }
 
 .arrow i {
-    color: #c62828;
+    color: #DC143C;
     font-size: 24px;
 }
 
@@ -102,69 +102,43 @@
     opacity: 1;
     transform: translateY(0);
 }
- 
+  
 button {
-    --primary-color: #da1818;
-    --secondary-color: #fff;
-    --hover-color: #111;
-    --arrow-width: 10px;
-    --arrow-stroke: 2px;
-    box-sizing: border-box;
-    border: 0;
-    border-radius: 20px;
-    color: var(--secondary-color);
-    padding: 1em 1.8em;
-    background: var(--primary-color);
-    display: flex;
-    transition: 0.2s;
-    align-items: center;
-    gap: 0.6em;
-    font-weight: bold;
-  }
-  
-  button .arrow-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  button .arrow {
-    margin-top: 1px;
-    width: var(--arrow-width);
-    background: var(--primary-color);
-    height: var(--arrow-stroke);
     position: relative;
-    transition: 0.2s;
-  }
-  
-  button .arrow::before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    border: solid var(--secondary-color);
-    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-    display: inline-block;
-    top: -3px;
-    right: 3px;
-    transition: 0.2s;
-    padding: 3px;
-    transform: rotate(-45deg);
-  }
-  
-  button:hover {
-    background-color: var(--hover-color);
-  }
-  
-  button:hover .arrow {
-    background: var(--secondary-color);
-  }
-  
-  button:hover .arrow:before {
-    right: 0;
-  }
-  a {
-    background: transparent;
-    color: #fff;
+    font-size: .8em;
+    padding: 0.7em 1.4em;
+    background-color: #BF0426;
     text-decoration: none;
-
+    border: none;
+    border-radius: 0.5em;
+    
+    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
   }
+  
+  button::before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, rgb(251, 251, 251) 0%, rgb(251, 250, 250) 50%, rgba(150,4,31,1) 50%, rgba(191,4,38,1) 60%);
+    border-radius: 0 0 0.5em 0;
+    box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+  }
+  
+  button:hover::before {
+    width: 1.6em;
+    height: 1.6em;
+  }
+  
+  button:active {
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    transform: translate(0.1em, 0.1em);
+  }
+a {
+    text-decoration: none;
+    background: transparent;
+    color: #ccc;
+}
