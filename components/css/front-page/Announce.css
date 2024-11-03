@@ -102,7 +102,10 @@
     opacity: 1;
     transform: translateY(0);
 }
- 
+ .buttonseemore{
+  display: flex;
+  justify-content: center;
+ }
 button {
     --primary-color: #da1818;
     --secondary-color: #fff;
