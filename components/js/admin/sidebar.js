@@ -18,7 +18,7 @@ let menuItems = document.getElementById("bannerImage");
 document.getElementById("bannerImage").addEventListener("click", showBannerImage);
 document.getElementById("announcement").addEventListener("click", showAnnouncement);
 document.getElementById("newsLetter").addEventListener("click", showNewsLetter);
-document.getElementById("calendar").addEventListener("click", showCalendarEvents);
+// document.getElementById("calendar").addEventListener("click", showCalendarEvents);
 document.getElementById("leaderInsight").addEventListener("click", showLeaderInsights);
 document.getElementById("galleryImport").addEventListener("click", showGallery);
 document.getElementById("menuItems").addEventListener("click", showMenuItems);
@@ -31,7 +31,7 @@ function removeAllClasses() {
     document.getElementById("bannerImage").classList.remove('announce-btn');
     document.getElementById("announcement").classList.remove('announce-btn');
     document.getElementById("newsLetter").classList.remove('announce-btn');
-    document.getElementById("calendar").classList.remove('announce-btn');
+    // document.getElementById("calendar").classList.remove('announce-btn');
     document.getElementById("leaderInsight").classList.remove('announce-btn');
     document.getElementById("galleryImport").classList.remove('announce-btn');
     document.getElementById("menuItems").classList.remove('announce-btn');
@@ -91,24 +91,7 @@ function showNewsLetter() {
     maincontent.appendChild(iframe);
     document.getElementById("newsLetter").classList.add('announce-btn')
 }
-function showCalendarEvents() {
 
-    removeAllClasses();
-    let existingIframe = document.querySelector('iframe');
-
-
-    if (existingIframe) {
-        existingIframe.remove();
-    }
-
-    let iframe = document.createElement('iframe');
-    iframe.src = "./calender.html";
-    iframe.width = '100%';
-    iframe.height = '550px';
-    iframe.style.border = 'none';
-    maincontent.appendChild(iframe);
-    document.getElementById("calendar").classList.add('announce-btn')
-}
 function showLeaderInsights() {
 
     removeAllClasses();
@@ -166,22 +149,22 @@ function showMenuItems() {
 
 showBannerImage();
 
-// Check authentication state changes
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        // User is signed in
+
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
             const userData = userDoc.data();
             console.log("User data:", userData);
-            // Perform post-login actions, like loading user-specific data or redirecting
+          
         } else {
             console.error("User data not found.");
         }
     } else {
-        // User is logged out, handle accordingly
+       
         console.log("No user logged in.");
         window.location.href = "../../pages/admin/login.html";
     }

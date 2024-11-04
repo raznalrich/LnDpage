@@ -28,7 +28,7 @@
     <form id="uploadFormannouncement">
         <div class="menuformtitle">
 
-            <label for="image" style="font-weight: bold;">Add Announcement</label> <p id="closebutton" style="font-size: larger;">X</p>
+            <label for="image" style="font-weight: bold;">Add Announcement</label> <p id="closebutton" class="closebutton"  style="font-size: larger;">X</p>
         </div>
        
 
@@ -39,6 +39,23 @@
         <input type="url" id="url" name="url" placeholder="URL" required><br>
    
         <button type="submit" id="submit">Submit</button>
+    </form>
+</div>
+<div class="updatenewsletter" id="updatenewsletter" style="display: none;">
+    <form id="editFormannouncement">
+        <div class="menuformtitle">
+
+            <label for="image" style="font-weight: bold;">Add Announcement</label> <p id="closebutton" class="updateclosebutton" style="font-size: larger;">X</p>
+        </div>
+       
+
+        <input type="text" id="title" name="title" placeholder="Title" required><br>
+        <input type="text" id="desc" name="desc" placeholder="Description" required><br>
+        <input type="date" id="date" name="title" placeholder="Date" required><br>
+
+        <input type="url" id="url" name="url" placeholder="URL" required><br>
+   
+        <button type="submit" id="update">Update</button>
     </form>
 </div>
 

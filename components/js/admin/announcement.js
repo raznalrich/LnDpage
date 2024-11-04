@@ -4,6 +4,7 @@ import {
   get,
   getDatabase,
   set,
+  update,
   ref,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import {
@@ -63,7 +64,8 @@ function saveFileMetadata(title, date, desc, url) {
     });
   });
 }
-
+let closeButton;
+let editButton;
 function showaddannouncement() {
   const dref = ref(database);
   let div = document.getElementById("container");
@@ -75,7 +77,8 @@ function showaddannouncement() {
         const title = value.title;
         const desc = value.desc;
         const date = value.date;
-
+        const fileIndex=value.index;
+        console.log(fileIndex);
         const card = document.createElement("div");
         card.classList.add("card");
         card.innerHTML = `
@@ -84,12 +87,30 @@ function showaddannouncement() {
         <p>${date}</p>
         <p>${desc}</p>
         <div class="actions">
-          <i class="fas fa-trash"></i>
-          <i class="fas fa-edit"></i>
+          <i class="fas fa-trash deleteButton"></i>
+          <i class="fas fa-edit editButton "></i>
         </div>
       `;
 
         container.appendChild(card);
+
+
+        const deleteButton=card.querySelector('.deleteButton');
+        const editButton=card.querySelector('.editButton');
+        console.log(closeButton);
+        deleteButton.addEventListener('click',function(){
+          console.log('REACHED LISTENER')
+          removeAnnouncementFromFirebase(fileIndex,card);
+        });
+
+        editButton.addEventListener('click',()=>{
+            toggle=1;
+            console.log(value);
+            displayaddnewmenu(fileIndex,value);
+            
+            // editAnnouncementInFirebase(fileData);
+            toggle=0;
+        });
       });
     } else {
       let p = document.createElement("p");
@@ -98,21 +119,109 @@ function showaddannouncement() {
     }
   });
 }
+function removeAnnouncementFromFirebase(fileIndex,card){
+  const dbRefToDelete = ref(getDatabase(), 'announcement/' + fileIndex);
 
+  set(dbRefToDelete, null)
+      .then(() => {
+          console.log('Image metadata removed from Firebase Database');
+          if (card && card.parentNode) {
+              card.parentNode.removeChild(card);
+          }
+      })
+      .catch((error) => {
+          console.error('error deleteing image from firebase', error)
+      });
+}
 showaddannouncement();
+let toggle=0;
+function displayaddnewmenu(fileIndex,data) {
+ 
+  console.log('box function')
 
-function displayaddnewmenu() {
-  let addnewmenu = document.getElementById("addnewsletter");
-  addnewmenu.style.display = "flex";
+  if(toggle==0){
+    let update=document.getElementById('addnewsletter');
+    update.style.display='flex'
+  }else{
+    let addnewmenu = document.getElementById("updatenewsletter");
+    
+    console.log(fileIndex);
+    const parent=document.getElementById('updatenewsletter');
+    const title=parent.querySelector('#title')
+    const desc=parent.querySelector('#desc')
+    const date=parent.querySelector('#date')
+    const  url=parent.querySelector('#url')
+
+    title.value=`${data.title}`;
+    desc.value=`${data.desc}`;
+    date.value=`${data.date}`;
+    url.value=`${data.url}`;
+    addnewmenu.style.display = "flex";
+
+    const newtitle=parent.querySelector('#title')
+    const newdesc=parent.querySelector('#desc')
+    const newdate=parent.querySelector('#date')
+    const  newurl=parent.querySelector('#url')
+    
+    // updateContents(fileIndex,newtitle,newdesc,newdate,newurl);
+    let parentUpdate=document.getElementById('updatenewsletter');
+    let button=parentUpdate.querySelector('#update');
+    button.addEventListener('click',()=>{
+      updateContents(fileIndex,newtitle.value,newdesc.value,newdate.value,newurl.value);
+    });
+
+  }
+
 }
 function closeaddnewmenu() {
   let addnewmenu = document.getElementById("addnewsletter");
   addnewmenu.style.display = "none";
+
+  let update = document.getElementById("updatenewsletter");
+  update.style.display = "none";
 }
 
 document
   .getElementById("addbutton")
   .addEventListener("click", displayaddnewmenu);
 document
-  .getElementById("closebutton")
+  .querySelector(".closebutton")
   .addEventListener("click", closeaddnewmenu);
+
+document.querySelector('.updateclosebutton').addEventListener("click",closeaddnewmenu)
+
+
+// function updateContents(fileIndex,title,desc,date,url){
+
+//   const dbRefToUpdate = ref(getDatabase(), 'announcement/' + fileIndex);
+//   update(dbRefToUpdate,{
+//       title:title,
+//       desc:desc,
+//       date:date,
+//       url:url,
+//   }).then(()=>{
+//       console.log('image data updated successfully');
+//   }).catch((error)=>{
+//       console.error('error updating data',error);
+//   })
+// }
+function updateContents(fileIndex, title, desc, date, url) {
+  const dbRefToUpdate = ref(getDatabase(), 'announcement/' + fileIndex); 
+  console.log(title,desc);
+  update(dbRefToUpdate, {
+    title: title,
+    desc: desc,
+    date: date,
+    url: url,
+  })
+    .then(() => {
+      console.log('Announcement data updated successfully');
+    })
+    .catch((error) => {
+      console.error('Error updating data:', error);
+    });
+}
+
+
+
+

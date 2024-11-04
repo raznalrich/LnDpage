@@ -154,8 +154,9 @@ body{
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
-    top: 25%;
-    left: 80%;
+    width: 40%;
+    /* top: 25%;
+    left: 80%; */
     
 }
 .button-section button{
@@ -191,8 +192,11 @@ body{
     border-radius: 50%;
 }
 #card-container{
-    width: 100vw;
-    height: 100vh;
+    width: 90vw;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .description-container{
     display: flex;
@@ -203,6 +207,9 @@ body{
 #update{
     background-color: #64A2F5;
 }
+.card{
+    margin-left: 10px;
+    margin-bottom: 10px;}
 #discard-button{
     background-color: rebeccapurple;
 }
