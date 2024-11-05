@@ -17,7 +17,7 @@ const form = document.getElementById("uploadFormNewsletter");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const title = document.getElementById("title").value;
+  // const title = document.getElementById("title").value;
   const date = document.getElementById("text").value;
   const htmlfile = document.getElementById("htmlfile").files[0];
 
@@ -42,7 +42,7 @@ form.addEventListener("submit", (e) => {
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
-        saveFileMetadata(title, date, downloadURL);
+        saveFileMetadata(date, downloadURL);
         let addnewmenu = document.getElementById("addnewsletter");
         addnewmenu.style.display = "none";
       });
@@ -53,7 +53,7 @@ form.addEventListener("submit", (e) => {
   // }, 10000);
 });
 
-function saveFileMetadata(title, date, downloadURL) {
+function saveFileMetadata(date, downloadURL) {
   const db = database;
   const indexRef = ref(db, "newsletterindex");
 
@@ -64,7 +64,7 @@ function saveFileMetadata(title, date, downloadURL) {
       const filesRef = ref(db, "newsletter/" + newIndex);
 
       set(filesRef, {
-        title: title,
+
         date: date,
         htmlurl: downloadURL,
 

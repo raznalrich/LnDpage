@@ -15,7 +15,7 @@ async function showData() {
                 });
             });
             console.log(events);
-            // Initialize the calendar with fetched events
+     
             const calendarEl = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',

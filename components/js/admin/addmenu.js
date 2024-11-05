@@ -89,6 +89,12 @@ function closeaddnewmenu() {
   let addnewmenu = document.getElementById("addnewmenu");
   addnewmenu.style.display = "none";
 }
+function displayEditmenu(menuData) {
+  let addnewmenu = document.getElementById("addnewmenu");
+  addnewmenu.style.display = "flex";
+  document.getElementById("title").value = menuData.title;
+  document.getElementById("url").value = menuData.url;
+}
 
 document.getElementById("addMenu").addEventListener("click", displayaddnewmenu);
 document
@@ -119,6 +125,9 @@ function adminlistmenu() {
           li.addEventListener("dragstart", (e) => {
             e.dataTransfer.setData("text/plain", li.id);
           });
+          const leftdiv = document.createElement("div");
+          leftdiv.classList.add("iconAndName");
+        
 
           const img = document.createElement("img");
           img.src = value.imageUrl;
@@ -127,8 +136,16 @@ function adminlistmenu() {
           const p = document.createElement("p");
           p.textContent = value.title;
 
-          li.appendChild(img);
-          li.appendChild(p);
+          const editButton = document.createElement("i");
+          editButton.classList = "fa-solid fa-edit fa-lg"
+          editButton.style.color = "#000"
+
+          editButton.addEventListener("click", () => displayEditmenu(value));
+
+          leftdiv.appendChild(img);
+          leftdiv.appendChild(p);
+          li.appendChild(leftdiv)
+          li.appendChild(editButton)
 
           if (value.active === 1) {
             left.appendChild(li);

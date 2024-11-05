@@ -46,7 +46,7 @@ function renderCalendarEvents(events) {
       } = menu;
 
       const dateObj = new Date(startDate);
-      const day = dateObj.getDate(); // Extract day (1-31)
+      const day = dateObj.getDate(); 
       const month = dateObj.toLocaleString('default', { month: 'short' });
       const year = dateObj.getFullYear();
 
@@ -84,10 +84,10 @@ function renderCalendarEvents(events) {
       swiperCalendar.appendChild(card);
   });
 
-  // Initialize or update Swiper after all events are added
+  
   initializeCalendarSwiper(events.length);
 
-  // Ensure Swiper updates when visibility changes
+
   observeSwiperVisibility();
 }
 
