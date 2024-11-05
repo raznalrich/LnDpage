@@ -65,7 +65,7 @@ function displayAnnouncements(announcementList) {
 function displayAnnouncement(announcement) {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `
+    card.innerHTML =`
         <div class="icon-wrapper">
             <div class="red-circle">
                 <div class="white-circle"></div>
@@ -140,3 +140,5 @@ showAllButton.addEventListener("click", () => {
     showAllButton.style.display = "none"; // Hide the "Show All" button
     fetchAnnouncements(); // Load and display all announcements
 });
+
+
