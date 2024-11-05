@@ -27,7 +27,6 @@ function getAnnouncement() {
       let item = announcement.url 
         ? `<a href="${announcement.url}" target="_blank" class="announcement-item-link">`
         : "";
-        
       item += `<div class="announcement-item">
                   <div class="number">${index + 1}</div>
                   <div class="text">${announcement.title}</div>
