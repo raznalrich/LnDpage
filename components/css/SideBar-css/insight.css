@@ -209,10 +209,12 @@ body {
 .leader-image {
     border-radius: 50%;
 }
-
-#card-container {
-    width: 100vw;
-    height: 100vh;
+#card-container{
+    width: 90vw;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .description-container {
@@ -225,7 +227,9 @@ body {
 #update {
     background-color: #64A2F5;
 }
-
-#discard-button {
+.card{
+    margin-left: 10px;
+    margin-bottom: 10px;}
+#discard-button{
     background-color: rebeccapurple;
 }

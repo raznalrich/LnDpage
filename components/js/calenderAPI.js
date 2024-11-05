@@ -27,4 +27,3 @@ const database = getDatabase(secondapp);
 export { storage, database, child, get, ref, secondapp }
 
 // Export the initialized services for use in other modules
-

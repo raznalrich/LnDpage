@@ -13,10 +13,13 @@ async function showData() {
     const snapshot = await get(dbRef);
     if (snapshot.exists()) {
       snapshot.forEach((item) => {
+      
         const data = item.val();
+        console.log(data)
         events.push({
           title: data.courseName,
           start: data.startDate,
+          mode: data.mode
         });
       });
       console.log(events);
@@ -24,7 +27,15 @@ async function showData() {
       const calendarEl = document.getElementById("calendar");
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
-        events: events,
+        eventDidMount: function(info) {
+          var tooltip = new Tooltip(info.el, {
+            title: info.event.title,
+            placement: 'top',
+            trigger: 'hover',
+            container: 'body'
+          });
+        },
+        events: events
       });
       calendar.render();
     } else {
