@@ -1,0 +1,13 @@
+body {
+    margin-left: 4rem;
+}
+
+
+.header {
+    font-size: 24px;
+    color: #333;;
+    position: relative;
+    /* margin-left: 9rem; */
+    padding-left: 30px;
+    margin-bottom: 1rem;
+}
