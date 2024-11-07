@@ -21,6 +21,29 @@ async function fetchEvents() {
     }
 }
 
+// Function to calculate duration in hours excluding Sundays
+function calculateDuration(startDate, endDate, startTime, endTime) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    // Parse the start and end times
+    const startTimeParts = startTime.split(':').map(Number);
+    const endTimeParts = endTime.split(':').map(Number);
+    
+    // Calculate daily duration in hours
+    const dailyDuration = (endTimeParts[0] - startTimeParts[0]) + (endTimeParts[1] - startTimeParts[1]) / 60; // Duration in hours
+    
+    let totalDuration = 0;
+
+    for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
+        if (d.getDay() !== 0) { // 0 represents Sunday
+            totalDuration += dailyDuration; // Add daily duration for each day excluding Sundays
+        }
+    }
+
+    return totalDuration; // Total hours
+}
+
 // Display events based on month and search query
 function displayFilteredEvents() {
     const query = searchInput.value.toLowerCase().trim();
@@ -36,6 +59,7 @@ function displayFilteredEvents() {
     });
     
     filteredEvents.forEach(event => {
+        const duration = calculateDuration(event.startDate, event.endDate, event.startTime, event.endTime); // Calculate duration
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
@@ -44,11 +68,12 @@ function displayFilteredEvents() {
                 <p>Key Points: ${event.keyPoints || "N/A"}</p>
                 <div class="details">
                     <p>Target Audience: <span>${event.targetAudience}</span></p>
-                    <p>Start Date: <span>${event.startDate}</span> ${event.startTime || ""}</p>
-                    <p>End Date: <span>${event.endDate}</span> ${event.endTime || ""}</p>
+                    <p>Start Date: <span>${event.startDate}</span></p>
+                    <p>End Date: <span>${event.endDate}</span></p>
+                    <p>Time: <span>${event.startTime || "N/A"} - ${event.endTime || "N/A"}</span></p> <!-- New Time row -->
                     <p>Trainer: <span>${event.trainerName}</span></p>
                     <p>Mode: <span>${event.mode}</span></p>
-                    <p>Max Participation: <span>${event.maxParticipation}</span></p>
+                    <p>Time Duration: <span>${duration.toFixed(2)} hours</span></p> <!-- Updated Time Duration field -->
                 </div>
             </div>
             <i class="fa-solid fa-laptop"></i>
@@ -56,7 +81,6 @@ function displayFilteredEvents() {
         eventContainer.appendChild(card);
     });
 }
-
 
 // Update month display
 function updateMonthDisplay() {
