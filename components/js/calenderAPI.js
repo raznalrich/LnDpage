@@ -20,7 +20,8 @@ const secondfirebaseConfig = {
   measurementId: "G-NBQVMQW0VL",
 };
 
-const secondapp = initializeApp(secondfirebaseConfig);
+// const secondapp = initializeApp(secondfirebaseConfig);
+const secondapp = initializeApp(secondfirebaseConfig, "app2");
 const analytics = getAnalytics(secondapp);
 const storageCalendar = getStorage(secondapp);
 const databaseCalendar = getDatabase(secondapp);
