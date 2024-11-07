@@ -12,36 +12,33 @@ body {
 }
 
 header {
-    height: 20vh; /* Set header height to 20% of viewport height */
+    height: 20vh; 
 }
 
 .header-container {
     display: flex;
-    align-items: center; /* Align items vertically centered */
-    justify-content: space-between; /* Distribute space evenly */
+    align-items: center; 
+    justify-content: space-between;
     background-color: white;
-    /* margin-top: 10px; */
     padding: 10px 20px;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Shadow below */
 }
 
 .logotext {
-    font-size: 18px; /* Further decrease logo size */
+    font-size: 18px; 
     font-weight: bold;
     color: #D42027;
 }
 
 .logotext .amp {
-    /* font-size: 16px; Increase ampersand size slightly */
-    color: black; /* Ampersand color */
+    color: black; 
 }
 
 .search-bar {
-    margin-left: 4cm; /* Move search bar 4cm to the right */
+    margin-left: 4cm; 
 }
 
 .search-bar input {
-    width: 10cm; /* Set width of the search bar to 8cm */
+    width: 10cm; 
     padding: 10px;
     border: 2px solid #D42027;
     border-radius: 25px;
@@ -67,18 +64,18 @@ header {
 
 .header-buttons {
     display: flex;
-    align-items: center; /* Center buttons vertically */
+    align-items: center; 
 }
 
 .bell-icon {
-    color: #D42027; /* Red color for the bell icon */
-    font-size: 20px; /* Adjust icon size */
+    color: #D42027;
+    font-size: 20px; 
 }
 
 .nav-container {
     display: flex;
-    justify-content: center; /* Center the navigation */
-    margin-top: 10px; /* Space above the navigation */
+    justify-content: center; 
+    margin-top: 10px; 
     box-shadow: 0 2px  rgba(0, 0, 0, 0.1); 
 }
 
@@ -89,7 +86,7 @@ nav {
 nav ul {
     display: flex; 
     align-items: center;
-    gap: 50px; /* Space between nav items */
+    gap: 50px; 
     margin: 0;
     padding: 0;
 }
@@ -104,7 +101,7 @@ nav ul li a {
     color: #5F2A2A;
     font-size: 15px;
     transition: color 0.3s ease;
-    font-weight: bold; /* Make the nav links bold */
+    font-weight: bold; 
 
 }
 
@@ -118,7 +115,7 @@ nav ul li a:hover {
 
 .announcements .badge {
     color: white;
-    background-color: #D42027; /* Red background for badge */
+    background-color: #D42027; 
     border-radius: 50%;
     padding: 5px 7px;
     font-size: 15px;
