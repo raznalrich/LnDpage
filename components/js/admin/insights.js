@@ -95,11 +95,10 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
           console.error("Error saving file metadata:", error);
         });
     });
-  });
+    discardBox();
 }
-let closeButton;
-let imageDiv;
-console.log("front of getAllFiles");
+
+console.log('front of getAllFiles')
 window.getAllFiles = function () {
   console.log("this is sample");
 
@@ -164,32 +163,61 @@ window.getAllFiles = function () {
     });
 };
 window.editImageInFirebase = function (fileData, fileIndex) {
-  let imageContent = document.getElementById("file-input");
-  let descContent = document.getElementById("description-input");
-  let catContent = document.getElementById("category-input");
-  console.log(fileData);
-  descContent.value = `${fileData.fileDesc}`;
-  catContent.value = `${fileData.fileCat}`;
-  imageContent.innerHTML = `${fileData.fileName}`;
-};
-window.updateContent = function (fileIndex) {
-  let newDescription = document.getElementById("description-input").value;
-  let newCategory = document.getElementById("category-input").value;
-  console.log(newCategory);
-  console.log(newDescription);
+    let imageContent = document.getElementById('file-input');
+    let descContent = document.getElementById('description-input');
+    let catContent = document.getElementById('category-input');
+    
+    // imageContent.value=`${fileData.fileURL}`;
+    descContent.value = `${fileData.fileDesc}`;
+    catContent.value = `${fileData.fileCat}`;
+    imageContent.innerHTML = `${fileData.fileName}`;
 
-  const dbRefToUpdate = dbRef(getDatabase(), "leaderfiles/" + fileIndex);
-  update(dbRefToUpdate, {
-    fileCat: newCategory,
-    fileDesc: newDescription,
-  })
-    .then(() => {
-      console.log("image data updated successfully");
+
+}
+function updateFileMetadata(fileName,url,newCategory,newDescription,fileIndex){
+    const dbRefToUpdate = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
+    update(dbRefToUpdate, {
+        fileName:fileName,
+        fileURL:url,
+        fileCat: newCategory,
+        fileDesc: newDescription
+    }).then(() => {
+        console.log('image data updated successfully');
+    }).catch((error) => {
+        console.error('error updating data', error);
     })
-    .catch((error) => {
-      console.error("error updating data", error);
-    });
-};
+    discardBox();
+    location.reload();
+}
+window.updateContent = function (fileIndex) {
+    const storageReference = storageRef(storage, "leaderimages/" + fileName);
+    const uploadTask = uploadBytesResumable(storageReference, fileItem);
+    let newDescription = document.getElementById('description-input').value;
+    let newCategory = document.getElementById('category-input').value;
+
+    uploadTask.on("state_changed",
+        (snapshot) => {
+            // Progress calculation
+            percentVal = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            console.log(percentVal);
+            uploadPercentage.innerHTML = percentVal + "%";
+            progress.style.width = percentVal + "%";
+        },
+        (error) => {
+            console.log("Error during upload:", error);
+        },
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                console.log("File available at:", url);
+                updateFileMetadata(fileName, url, newCategory, newDescription,fileIndex);
+            });
+        }
+    );
+        
+
+}
+
+
 
 let previewIndex = 0;
 let toggle = 0;
