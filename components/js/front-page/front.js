@@ -38,6 +38,24 @@ function renderCalendarEvents(events) {
   }
 
   events.forEach(menu => {
+      const {
+          courseName,
+          startDate,
+          startTime,
+          endDate,
+          endTime,
+          keyPoints,
+          maxParticipation,
+          targetAudience,
+          trainerName,
+          mode
+      } = menu;
+
+      const dateObj = new Date(startDate);
+      const day = dateObj.getDate(); 
+      const month = dateObj.toLocaleString('default', { month: 'short' });
+      const year = dateObj.getFullYear();
+
       const card = document.createElement('div');
       card.classList.add('swiper-slide');
 

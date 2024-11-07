@@ -22,9 +22,6 @@ const secondfirebaseConfig = {
 
 const secondapp = initializeApp(secondfirebaseConfig);
 const analytics = getAnalytics(secondapp);
-const storage = getStorage(secondapp);
-const database = getDatabase(secondapp);
-export { storage, database, child, get, ref, secondapp }
-
-// Export the initialized services for use in other modules
-
+const storageCalendar = getStorage(secondapp);
+const databaseCalendar = getDatabase(secondapp);
+export { storageCalendar, databaseCalendar, child, get, ref, secondapp }
