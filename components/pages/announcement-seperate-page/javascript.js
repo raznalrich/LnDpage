@@ -2,79 +2,128 @@ import { database } from "../../js/Firebase.js";
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 const announcementContainer = document.getElementById("announcementContainer");
-const searchInput = document.getElementById("searchInput");
+const showAllButton = document.getElementById("showAllButton");
+const searchInput = document.getElementById("homeSearchInput");
 
-// Array to hold announcements for search functionality
-let announcements = [];
+let announcements = []; 
 
-// Function to display an announcement
+function getTodayDate() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); 
+    return today;
+}
+
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+function fetchAnnouncements() {
+    const announcementsRef = ref(database, "announcement");
+
+    onValue(announcementsRef, (snapshot) => {
+        announcementContainer.innerHTML = ""; 
+        announcements = []; 
+        const today = getTodayDate();
+
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const data = childSnapshot.val();
+                const announcementDate = new Date(data.date);
+
+                if (announcementDate >= today) {
+                    announcements.push({
+                        title: data.title,
+                        date: announcementDate,
+                        desc: data.desc,
+                    });
+                }
+            });
+
+            announcements.sort((a, b) => a.date - b.date);
+
+            displayAnnouncements(announcements);
+        } else {
+            announcementContainer.innerHTML = "<p>No announcements found.</p>";
+        }
+    });
+}
+
+function displayAnnouncements(announcementList) {
+    announcementContainer.innerHTML = ""; 
+    announcementList.forEach(displayAnnouncement); 
+}
+
 function displayAnnouncement(announcement) {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `
+    card.innerHTML =`
         <div class="icon-wrapper">
             <div class="red-circle">
                 <div class="white-circle"></div>
             </div>
             <h3>${announcement.title}</h3>
         </div>
-        <p>${announcement.date.toLocaleDateString()} - ${announcement.date.toLocaleTimeString()}</p>
+        <p>${announcement.date.toLocaleDateString()}</p>
         <p class="description">${announcement.desc}</p>
     `;
     announcementContainer.appendChild(card);
 }
 
-
-// Function to fetch announcements from Firebase
-function fetchAnnouncements() {
+function displaySelectedAnnouncementByTitle(title) {
     const announcementsRef = ref(database, "announcement");
 
     onValue(announcementsRef, (snapshot) => {
-        announcementContainer.innerHTML = ""; // Clear existing announcements
-        announcements = []; // Reset announcements array
+        announcementContainer.innerHTML = ""; 
+        const today = getTodayDate();
+        let found = false;
 
         if (snapshot.exists()) {
             snapshot.forEach((childSnapshot) => {
                 const data = childSnapshot.val();
-                const announcement = {
-                    title: data.title,
-                    date: new Date(data.date), // Convert to Date object
-                    desc: data.desc,
-                };
-                announcements.push(announcement); // Add to the array
+                const announcementDate = new Date(data.date);
 
-                // Call the display function for each announcement
-                displayAnnouncement(announcement); // This should work now
+                if (data.title === title && announcementDate >= today) {
+                    const announcement = {
+                        title: data.title,
+                        date: announcementDate,
+                        desc: data.desc,
+                    };
+                    displayAnnouncement(announcement);
+                    found = true;
+                }
             });
+        }
+
+        if (found) {
+            showAllButton.style.display = "block";
         } else {
-            const message = document.createElement("p");
-            message.innerText = "No announcements found.";
-            announcementContainer.appendChild(message);
+            announcementContainer.innerHTML = "<p>Announcement not found.</p>";
         }
     });
 }
 
-// Function to filter announcements based on search input
 function filterAnnouncements() {
-    const query = searchInput.value.toLowerCase(); // Get the search query
-    announcementContainer.innerHTML = ""; // Clear the container
-
-    const filteredAnnouncements = announcements.filter(announcement => {
-        return announcement.title.toLowerCase().includes(query) || 
-               announcement.date.toLocaleDateString().includes(query);
-    });
-
-    if (filteredAnnouncements.length > 0) {
-        filteredAnnouncements.forEach(displayAnnouncement);
-    } else {
-        const message = document.createElement("p");
-        message.innerText = "No announcements found.";
-        announcementContainer.appendChild(message);
-    }
+    const query = searchInput.value.toLowerCase();
+    const filteredAnnouncements = announcements.filter(announcement =>
+        announcement.title.toLowerCase().includes(query)
+    );
+    displayAnnouncements(filteredAnnouncements); 
 }
 
-// Event listener for search input
 searchInput.addEventListener("input", filterAnnouncements);
 
-// Fetch announcements on page load
-fetchAnnouncements();
+const title = getQueryParam("title");
+if (title) {
+    displaySelectedAnnouncementByTitle(decodeURIComponent(title)); 
+} else {
+    fetchAnnouncements(); 
+}
+
+showAllButton.addEventListener("click", () => {
+    announcementContainer.innerHTML = ""; 
+    showAllButton.style.display = "none";
+    fetchAnnouncements();
+});
+
+

@@ -15,7 +15,7 @@ import {database,child, get,ref} from "./Firebase.js";
   
         if (isActive) { 
           var item = `<div class="icon-item">
-            <a href="${link}">
+            <a href="${link}" target="_blank">
               <img src='${imageUrl}'/>
             </a>
             <p>${title}</p>

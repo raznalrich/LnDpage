@@ -1,5 +1,5 @@
 import { storage, database, app } from "../Firebase.js";
-import { child, get, getDatabase, set,update, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase, set, update, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
@@ -15,11 +15,17 @@ window.getFile = function (e) {
     fileItem = e.target.files[0];
     fileName = fileItem.name;
     fileText.innerHTML = fileName;
+    fileText.style.fontSize = "10px"
+    if (fileItem) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview = document.getElementById("file-preview");
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        };
+        reader.readAsDataURL(fileItem);
+    }
 }
-// window.getDetails = function (e) {
-
-// }
-
 
 window.uploadImage = function () {
     category = document.getElementById("category-input").value;
@@ -74,10 +80,9 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
                 });
         });
     });
-
+    discardBox();
 }
-let closeButton;
-let imageDiv;
+
 console.log('front of getAllFiles')
 window.getAllFiles = function () {
     console.log('this is sample')
@@ -120,16 +125,16 @@ window.getAllFiles = function () {
 
                     // Set up delete functionality
                     const closeButton = card.querySelector('.deleteButton');
-                    const editButton=card.querySelector('.editButton');
+                    const editButton = card.querySelector('.editButton');
                     closeButton.addEventListener('click', function () {
                         removeImagefromFirebase(fileURL, fileIndex, card);
                     });
 
-                    editButton.addEventListener('click',function(){
-                        toggle=1;
+                    editButton.addEventListener('click', function () {
+                        toggle = 1;
                         previewBox(fileIndex);
                         editImageInFirebase(fileData);
-                        toggle=0;
+                        toggle = 0;
                     });
                 }
             }
@@ -140,56 +145,84 @@ window.getAllFiles = function () {
         console.error("Error retrieving files:", error);
     });
 }
-window.editImageInFirebase=function(fileData,fileIndex){
-        let imageContent=document.getElementById('file-input');
-        let descContent=document.getElementById('description-input');
-        let catContent=document.getElementById('category-input');
-        console.log(fileData)
-        descContent.value=`${fileData.fileDesc}`;
-        catContent.value=`${fileData.fileCat}`;
-        imageContent.innerHTML=`${fileData.fileName}`;
-
-
-}
-window.updateContent=function(fileIndex){
+window.editImageInFirebase = function (fileData, fileIndex) {
+    let imageContent = document.getElementById('file-input');
+    let descContent = document.getElementById('description-input');
+    let catContent = document.getElementById('category-input');
     
-    let newDescription=document.getElementById('description-input').value;
-    let newCategory=document.getElementById('category-input').value;
-    console.log(newCategory);
-    console.log(newDescription);
+    // imageContent.value=`${fileData.fileURL}`;
+    descContent.value = `${fileData.fileDesc}`;
+    catContent.value = `${fileData.fileCat}`;
+    imageContent.innerHTML = `${fileData.fileName}`;
 
-    const dbRefToUpdate = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
-    update(dbRefToUpdate,{
-        fileCat:newCategory,
-        fileDesc:newDescription
-    }).then(()=>{
-        console.log('image data updated successfully');
-    }).catch((error)=>{
-        console.error('error updating data',error);
-    })
+
 }
+function updateFileMetadata(fileName,url,newCategory,newDescription,fileIndex){
+    const dbRefToUpdate = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
+    update(dbRefToUpdate, {
+        fileName:fileName,
+        fileURL:url,
+        fileCat: newCategory,
+        fileDesc: newDescription
+    }).then(() => {
+        console.log('image data updated successfully');
+    }).catch((error) => {
+        console.error('error updating data', error);
+    })
+    discardBox();
+    location.reload();
+}
+window.updateContent = function (fileIndex) {
+    const storageReference = storageRef(storage, "leaderimages/" + fileName);
+    const uploadTask = uploadBytesResumable(storageReference, fileItem);
+    let newDescription = document.getElementById('description-input').value;
+    let newCategory = document.getElementById('category-input').value;
+
+    uploadTask.on("state_changed",
+        (snapshot) => {
+            // Progress calculation
+            percentVal = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            console.log(percentVal);
+            uploadPercentage.innerHTML = percentVal + "%";
+            progress.style.width = percentVal + "%";
+        },
+        (error) => {
+            console.log("Error during upload:", error);
+        },
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                console.log("File available at:", url);
+                updateFileMetadata(fileName, url, newCategory, newDescription,fileIndex);
+            });
+        }
+    );
+        
+
+}
+
+
 
 let previewIndex = 0
-let toggle=0;
-let buttonSection=document.getElementById('button-section');
-    let button=document.createElement('button');    
+let toggle = 0;
+let buttonSection = document.getElementById('button-section');
+let button = document.createElement('button');
 window.previewBox = function (fileIndex) {
-    
-    button.id='save';
+
+    button.id = 'save';
     if (document.getElementById("addimage").style.display != "none" && previewIndex != 1) {
         document.getElementById("addimage").style.display = "none";
     } else {
         document.getElementById("addimage").style.display = "flex"
         previewIndex = 1;
     }
-    if(toggle==0){
-        buttonSection.innerHTML=`
+    if (toggle == 0) {
+        buttonSection.innerHTML = `
         <button onclick="discardBox()">discard</button>
           <button onclick="uploadImage()" id="save">save</button>
         `;
-    }else{
-        buttonSection.innerHTML=`
-            <button onclick="discardBox()">discard</button>
+    } else {
+        buttonSection.innerHTML = `
+            <button onclick="discardBox()" id="discard-button">discard</button>
           <button onclick="updateContent(${fileIndex})" id="update">update</button>
         `;
     }

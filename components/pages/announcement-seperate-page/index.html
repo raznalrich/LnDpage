@@ -3,32 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Announcements</title>
+    <title>Announcement page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header-buttons">
-            <button class="upcoming-events">📅 UPCOMING EVENTS</button>
-            <button class="announcements">📢 ANNOUNCEMENT <span class="badge">8</span></button>
-        </div>
-        
+    <header onload="updateAnouncement()">
         <div class="header-container">
-            <div class="logo">Learning <span class="and"> & </span> <br>Development</div>
-            <div class="header-right">
-                <nav>
-                    <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
-                        <li><a href="newsletter.html">Newsletter</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                    </ul>
-                </nav>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search by title or date">
-                </div>                
+            <div class="logotext">
+                <h2>Learning <span class="amp">&</span> Development</h2>
             </div>
+    
+            <div class="search-bar">
+                <input type="text" id="homeSearchInput" placeholder="Search announcements" autocomplete="off">
+            </div>
+                
+    
+            <div class="header-buttons">
+                <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;">
+                    <button class="announcements" id="announcement">
+                        <span class="bell-icon">🔔</span> 
+                        <span class="badge" id="badge">0</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../user/CalenderPage.html">Calendar</a></li>
+                    <li><a href="../user/NewsletterSapperatePage.html">Newsletter</a></li>
+                    <li><a style="color: red;" href="./components/pages/announcement-seperate-page/index.html">Announcement</a></li>
+                    <li><a href="../gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <div class="main-content">
@@ -39,6 +53,8 @@
         
         <div class="announcement-container" id="announcementContainer">
         </div>
+        <button id="showAllButton" style="display: none; margin-top: 20px;">Show All Announcements</button>
+
     </div>
     <script type="module" src="javascript.js"></script>
 </body>

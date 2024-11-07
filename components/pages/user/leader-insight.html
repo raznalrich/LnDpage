@@ -1,33 +1,26 @@
-<html>
- <head>
-  <link rel="stylesheet" href="insight.css">
- </head>
- <title>Leader insights</title>
- <body>
-    
-  <div class="container">
-   <div class="header"> <h2>
-    Insights from our Leaders
-   </h2></div>
-    <img src="/LnDpage/components/assets/experionRhombus-Logo.png" alt="logo">
-    
-   </div>
-   
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="insight.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>Leader Insights</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Insights from our Leaders</h2>
+        </div>
+        <img src="/components/assets/experionRhombus-Logo.png" alt="logo">
+        <swiper-container class="mySwiper" navigation="true">
+        </swiper-container>
+    </div>
 
-  <swiper-container class="mySwiper" navigation="true">
-    <swiper-slide>
-        <div class="content"></div>
-</swiper-slide>
-    <swiper-slide>Leader Insight</swiper-slide>
-
-  </swiper-container>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
-
-
-
-  <script type="module" src="../../js/front-page/insight.js"></script>
- </body>
+    <script type="module" src="../../js/front-page/insight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</body>
 </html>

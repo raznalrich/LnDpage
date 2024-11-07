@@ -1,90 +1,58 @@
 <html>
-  <head>
-    <title>Leader Insights</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../../css/SideBar-css/insight.css" />
-  </head>
-  <body onload="getAllFiles()">
-    <div class="main-content" >
-      <div class="upload-banner">
-        <!-- <i class="fas fa-upload"> -->
-        <button class="add-button" onclick="previewBox()">ADD +</button>
-        <!-- <div class="card">
-            <div id="leader-image">
-                <img alt="Leader image" class="leader-image" />
-            </div>
-         
-          <h3 class="leader-heading">Lorem ipsum dolor</h3>
-          <p class="leader-quote">This is a sample insight</p>
-          <div class="actions">
-            <i class="fas fa-trash" id="deleteButton"> </i>
-            <i class="fas fa-edit"> </i>
-          </div>
-        </div> -->
-      </div>
-      <div id="card-container">
-      
-      </div>
+
+<head>
+  <title>Leader Insights</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../css/SideBar-css/insight.css" />
+</head>
+
+<body onload="getAllFiles()">
+  <div class="main-content">
+    <div class="upload-banner">
+      <button class="add-button" onclick="previewBox()">ADD +</button>
     </div>
-    <div class="input-section" id="addimage" style="display: none">
-      <div
-        class="top-section"
-        style="
+    <div id="card-container">
+
+    </div>
+  </div>
+  <div class="input-section" id="addimage" style="display: none">
+    <div class="top-section" style="
           width: 100%;
           background-color: #64a2f5;
           height: 25px;
           border-radius: 7px 7px 0px 0px;
-        "
-      >
-        <i
-          class="fa-solid fa-xmark fa-lg"
-          style="color: #ffffff"
-          onclick="discardBox()"
-        ></i>
-      </div>
-      <div class="input-image">
-        <input
-          type="file"
-          id="fileInp"
-          class="inputFile"
-          onchange="getFile(event)"
-          accept="image/png, image/jpeg"
-        />
-        <label for="fileInp" id="file-input"></label>
-        <span class="fileText"></span><br />
-
-        <!-- Form inputs for description and category -->
-        <div class="details-section">
-          <label for="description-input">Insight:</label>
-          <input
-            type="text"
-            id="description-input"
-            placeholder="Enter insight from leader"
-          />
-        </div>
-        <div class="details-section">
-          <label for="category-input" class="category-label"
-            >Leader Name:</label
-          >
-          <input
-            type="text"
-            id="category-input"
-            placeholder="Enter leader name"
-          /><br />
-        </div>
-
-        <div class="bar">
-          <div class="progress"></div>
-        </div>
-        <div class="uploadPercentage">0%</div>
-        <div class="button-section" id="button-section">
-          
-        </div>
-      </div>
+        ">
+      <i class="fa-solid fa-xmark fa-lg" style="color: #ffffff" onclick="discardBox()"></i>
     </div>
-    <script type="module" src="../../../js/admin/insights.js"></script>
-  </body>
+    <div class="input-image">
+      <input type="file" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg" />
+      <!-- Preview of selected file -->
+      <img id="file-preview" class="file-preview" style="display:none; width: 50px; margin-top: 10px;"
+        alt="File Preview" />
+      <label for="fileInp" id="file-input"></label>
+      <span class="fileText"></span><br />
+
+      <!-- Form inputs for description and category -->
+      <div class="details-section">
+        <label for="description-input">Insight:</label>
+        <input type="text" id="description-input" placeholder="Enter insight from leader" />
+      </div>
+      <div class="details-section">
+        <label for="category-input" class="category-label">Leader Name:</label>
+        <input type="text" id="category-input" placeholder="Enter leader name" /><br />
+      </div>
+
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+      <div class="uploadPercentage">0%</div>
+      
+    </div>
+    <div class="button-section" id="button-section">
+
+    </div>
+  </div>
+  <script type="module" src="../../../js/admin/insights.js"></script>
+</body>
+
 </html>

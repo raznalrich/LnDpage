@@ -1,145 +1,127 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: "Montserrat";
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat";
     background-color: #f4f4f4;
     margin: 0;
     padding: 0 20px 20px 20px;
 }
 
-.header-container {
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-between; 
-    background-color: white;
-    padding: 10px 20px;
-    height: 100px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+header {
+    height: 20vh; 
 }
 
-.logo {
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 28px;
+.header-container {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.logotext {
+    font-size: 18px; 
     font-weight: bold;
     color: #D42027;
 }
 
-.logo .and {
-    color: #000000;
+.logotext .amp {
+    color: black; 
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
+.search-bar {
+    margin-left: 4cm; 
 }
 
-.announcements {
-    position: relative;
-    background-color: rgb(197, 144, 143);
-    opacity: .5;
-}
-
-.announcements .badge {
-    color: white;
-    background-color: #000000;
-    border-radius: 50%;
-    padding: 5px 7px;
-    font-size: 15px;
-    position: absolute;
-    top: -7px;
-    right: -15px;
-}
-
-.header-buttons {
-    display: flex;
-    align-items: flex-start;
-    position: absolute;
-    left: 67%;
-    margin-top: 10px;
-    gap: 10px;
-}
-
-button {
-    display: flex;
-    align-items: center;
+.search-bar input {
+    width: 10cm; 
     padding: 10px;
     border: 2px solid #D42027;
     border-radius: 25px;
+}
+.suggestions-container {
+    position: absolute;
     background-color: white;
-    color: #D42027;
-    height: 40px;
-    font-size: 14px;
-    font-weight: bold;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions-container div {
+    padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
 }
 
-button:hover {
-    background-color: #f8e3e3;
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
 }
 
-.header-right {
+
+.header-buttons {
     display: flex;
-    position: relative;
-    top: 20px;
+    align-items: center; 
+}
+
+.bell-icon {
+    color: #D42027;
+    font-size: 20px; 
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px; 
+    box-shadow: 0 2px  rgba(0, 0, 0, 0.1); 
 }
 
 nav {
-    position: relative;
-    right: 160px;
+    display: flex;
 }
 
 nav ul {
     display: flex; 
     align-items: center;
-    gap: 40px;
+    gap: 50px; 
     margin: 0;
     padding: 0;
 }
 
 nav ul li {
     display: inline-block;
+    padding-bottom: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #5F2A2A;
-    font-size: 16px;
+    font-size: 15px;
     transition: color 0.3s ease;
+    font-weight: bold; 
+
 }
 
 nav ul li a:hover {
     color: #D42027;
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
+.announcements {
     position: relative;
-    right: 30px;
-    background-color: #f7f7f7;
-    border: 2px solid #e78184;
-    border-radius: 25px;
-    padding: 6px 25px;
 }
 
-.search-bar input {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 14px;
-    margin-left: 5px; 
-    width: 200px;
-}
-
-.search-bar input::placeholder {
-    color: #A9A9A9;
+.announcements .badge {
+    color: white;
+    background-color: #D42027; 
+    border-radius: 50%;
+    padding: 5px 7px;
+    font-size: 15px;
+    position: absolute;
+    top: -7px;
+    right: -15px;
 }
 
 .main-content {
@@ -171,34 +153,32 @@ h1 {
 .announcement-container {
     margin-top: 20px;
 }
-/* Icon styles */
 .icon-wrapper {
-    display: inline-block; /* Aligns icon and text */
-    margin-right: 10px; /* Space between the icon and the title */
+    display: inline-block; 
+    margin-right: 10px; 
 }
 
 .red-circle {
-    width: 20px; /* Size of the red circle */
-    height: 20px; /* Size of the red circle */
-    background-color: red; /* Red color */
-    border-radius: 50%; /* Makes it circular */
-    position: relative; /* For positioning the white circle */
+    width: 20px; 
+    height: 20px; 
+    background-color: red;
+    border-radius: 50%;
+    position: relative; 
 }
 
 .white-circle {
-    width: 14px; /* Size of the white circle */
-    height: 14px; /* Size of the white circle */
-    background-color: white; /* White color */
-    border-radius: 50%; /* Makes it circular */
-    position: absolute; /* Position it inside the red circle */
-    top: 3px; /* Centers it vertically */
-    left: 3px; /* Centers it horizontally */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    width: 14px; 
+    height: 14px; 
+    background-color: white; 
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: background-color 0.3s;
 }
 
-/* Hover effect for the card */
 .card:hover .white-circle {
-    background-color: red; /* Change white circle to red on card hover */
+    background-color: red; 
 }
 
 .card {
@@ -208,33 +188,51 @@ h1 {
     margin-bottom: 10px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
-    display: flex; /* Make card a flex container */
-    flex-direction: column; /* Stack vertically */
+    display: flex; 
+    flex-direction: column; 
 }
 
 .icon-wrapper {
-    display: flex; /* Make icon and title in a row */
-    align-items: center; /* Center align items vertically */
-    margin-bottom: 5px; /* Space below the icon and heading */
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 5px; 
 
 }
+button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+    background-color: white;
+    color: #D42027;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f8e3e3;
+}
+
 
 .card h3 {
-    margin: 0; /* Remove default margin */
-    margin-left: 10px; /* Space between icon and heading */
-    font-weight: bold; /* Make the heading bold */
+    margin: 0;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 .card p {
-    margin: 0; /* Remove default margin */
+    margin: 0; 
     margin-left: 30px;
 }
 
-/* Specific styling for the description */
 .card .description {
-    margin-top: 10px; /* Space above the description */
-    margin-bottom: 10px; /* Space below the description */
-    line-height: 1.5; /* Increase line height for better readability */
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    line-height: 1.5; 
     margin-left: 30px;
 }
 

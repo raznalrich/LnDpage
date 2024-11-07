@@ -1,7 +1,10 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Montserrat";
+}
+html{
+    scroll-behavior: smooth;
 }
 
 /* Main Carousel Swiper Container */
@@ -52,50 +55,111 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
-.carousel {
-    position: relative;
-    max-width: 100%;
-    height: 80vh;
-    overflow: hidden;
-    iframe{
-        height: 100vh;
-    }
-  }
+* {
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-
-
-
-
-
-
-
+header {
+    height: 20vh; /* Set header height to 20% of viewport height */
+}
 
 .header-container {
     display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-between; 
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Distribute space evenly */
     background-color: white;
     margin-top: 10px;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Shadow below */
 }
 
-.logo {
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 28px;
+.logotext {
+    font-size: 18px; /* Further decrease logo size */
     font-weight: bold;
     color: #D42027;
 }
 
-.logo .and {
-    color: #000000;
+.logotext .amp {
+    /* font-size: 16px; Increase ampersand size slightly */
+    color: black; /* Ampersand color */
 }
 
-.header-right {
+.search-bar {
+    margin-left: 4cm; /* Move search bar 4cm to the right */
+}
+
+.search-bar input {
+    width: 10cm; /* Set width of the search bar to 8cm */
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+}
+.suggestions-container {
+    position: absolute;
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
+}
+
+
+.header-buttons {
     display: flex;
+    align-items: center; /* Center buttons vertically */
+}
+
+.bell-icon {
+    color: #D42027; /* Red color for the bell icon */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; /* Center the navigation */
+    margin-top: 10px; /* Space above the navigation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow above the nav */
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    display: flex; 
     align-items: center;
+    gap: 50px; /* Space between nav items */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #5F2A2A;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    font-weight: bold; /* Make the nav links bold */
+
+}
+
+nav ul li a:hover {
+    color: #D42027;
 }
 
 .announcements {
@@ -104,26 +168,13 @@
 
 .announcements .badge {
     color: white;
-    background-color: #000000;
+    background-color: #D42027; /* Red background for badge */
     border-radius: 50%;
     padding: 5px 7px;
     font-size: 15px;
     position: absolute;
     top: -7px;
     right: -15px;
-}
-
-.menutiles{
-    width: 100%;
-}
-
-.header-buttons {
-    display: flex;
-    align-items: flex-start;
-    position: absolute;
-    left: 67%;
-    margin-top: -5px;
-    gap: 10px;
 }
 
 button {
@@ -139,71 +190,30 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    white-space: nowrap;
 }
 
 button:hover {
     background-color: #f8e3e3;
 }
 
-.header-right {
-    display: flex;
+
+
+
+.carousel {
     position: relative;
-    /* left: 30px; */
-    top: 20px;
+    max-width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    iframe{
+        height: 100vh;
+    }
+  }
+
+.menutiles{
+    width: 100%;
 }
 
-nav {
-    position: relative;
-    right: 160px;
-}
 
-nav ul {
-    display: flex; 
-    align-items: center;
-    gap: 40px;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline-block;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #5F2A2A;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #D42027;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    position: relative;
-    right: 30px;
-    background-color: #f7f7f7;
-    border: 2px solid #e78184;
-    border-radius: 25px;
-    padding: 6px 25px;
-}
-
-.search-bar input {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 14px;
-    margin-left: 5px; 
-    width: 200px;
-}
-
-.search-bar input::placeholder {
-    color: #A9A9A9;
-}
 
 
 /* swiper-calendar */
@@ -279,11 +289,16 @@ nav ul li a:hover {
             p{
                 padding-left: 5px;
                 font-size: 13px;
+                max-width: 100px; /* Adjust the width as needed */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }
     img{
-        height: 20px;
+        height: auto;
+        width: 20px;
     }
     .mode{
         display: flex;
@@ -305,7 +320,7 @@ nav ul li a:hover {
             padding-left: 5px;
             font-size: 13px;
          
-            padding-right: 30px;
+            padding-right: 10px;
         }
     }
     .calbottom{
@@ -326,7 +341,9 @@ nav ul li a:hover {
         color: white;
         p{
             text-align: end;
-            padding-right: 30px;
+            padding-right: 10px;
+            padding-left: 60px;
+           
         }
     }
   }
@@ -368,59 +385,30 @@ nav ul li a:hover {
 .announcement-hover{
     width: 20%;
     height: auto;
-    background-color: rgb(252, 250, 250);
-    border: 1px solid rgb(191, 189, 189);
-    border-radius: 8px;
-    position: absolute;
-    top: 9%;
-    left: 79%;
-    background-color: rgba(255, 255, 255, 0.5); 
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(1px);
-    
-}
-.anouncement-section{
     border: 1px solid grey;
+    position: absolute;
+    top: 11%;
+    left: 78%;
+    background-color: rgba(244, 238, 238, 0.7) ;
+    border-radius: 7px;
+    font-size: 10px;
+}
+.announcement-section{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 5%;
-    border-radius: 8px;
-}
-.anouncement-section:hover{
-    background-color: rgba(58, 58, 58, 0.5); 
-}
-.notification-icon{
-    padding-right: 1%;
-    padding-left: 1%;
-
-}
-.event-hover{
-    width: 20%;
-    height: auto;
-    background-color: rgb(252, 250, 250);
-    border: 1px solid rgb(191, 189, 189);
-    border-radius: 8px;
-    position: absolute;
-    top: 9%;
-    left: 64%;
-    background-color: rgba(255, 255, 255, 0.5); 
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(1px);
+    padding: 3%;
+    border: 1px solid grey;
 }
 .event-section{
-    border: 1px solid grey;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 5%;
-    border-radius: 8px;
-}
-.event-section:hover{
-    background-color: rgba(58, 58, 58, 0.5); 
-
+    padding: 3%;
+    border: 1px solid grey;
 }
 .event-icon{
-    padding-right: 3%;
-    padding-left: 1%;
+    padding-right: 4%;
+}
+.notification-icon{
+    padding-right: 4%;
+
 }

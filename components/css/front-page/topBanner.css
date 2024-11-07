@@ -1,12 +1,12 @@
 html,
     body {
       position: relative;
-      height: 500px;
+      height: 80vh;
     }
 
     body {
       background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-family: "Montserrat";
       font-size: 14px;
       color: #000;
       margin: 0;
