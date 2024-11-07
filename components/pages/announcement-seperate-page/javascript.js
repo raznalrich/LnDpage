@@ -40,6 +40,7 @@ function fetchAnnouncements() {
                         title: data.title,
                         date: announcementDate,
                         desc: data.desc,
+                        url: data.url // Fetch the URL from Firebase
                     });
                 }
             });
@@ -61,20 +62,39 @@ function displayAnnouncements(announcementList) {
     announcementList.forEach(displayAnnouncement); // Display each announcement in the list
 }
 
-// Function to display a single announcement card
+// Function to display a single announcement card with anchor tag for URL
 function displayAnnouncement(announcement) {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML =`
-        <div class="icon-wrapper">
-            <div class="red-circle">
-                <div class="white-circle"></div>
+
+    // If URL is provided, wrap the card content in an anchor tag
+    if (announcement.url) {
+        card.innerHTML = `
+            <a href="${announcement.url}" target="_blank" class="announcement-item-link" style="text-decoration: none; color: inherit;">
+                <div class="icon-wrapper">
+                    <div class="red-circle">
+                        <div class="white-circle"></div>
+                    </div>
+                    <h3>${announcement.title}</h3>
+                </div>
+                <p>${announcement.date.toLocaleDateString()}</p>
+                <p class="description">${announcement.desc}</p>
+            </a>
+        `;
+    } else {
+        // Display without anchor tag if URL is missing
+        card.innerHTML = `
+            <div class="icon-wrapper">
+                <div class="red-circle">
+                    <div class="white-circle"></div>
+                </div>
+                <h3>${announcement.title}</h3>
             </div>
-            <h3>${announcement.title}</h3>
-        </div>
-        <p>${announcement.date.toLocaleDateString()}</p>
-        <p class="description">${announcement.desc}</p>
-    `;
+            <p>${announcement.date.toLocaleDateString()}</p>
+            <p class="description">${announcement.desc}</p>
+        `;
+    }
+
     announcementContainer.appendChild(card);
 }
 
@@ -98,6 +118,7 @@ function displaySelectedAnnouncementByTitle(title) {
                         title: data.title,
                         date: announcementDate,
                         desc: data.desc,
+                        url: data.url // Fetch the URL from Firebase
                     };
                     displayAnnouncement(announcement);
                     found = true;
@@ -105,7 +126,6 @@ function displaySelectedAnnouncementByTitle(title) {
             });
         }
 
-        // Show the "Show All" button if a matching announcement is found
         if (found) {
             showAllButton.style.display = "block";
         } else {
@@ -140,5 +160,3 @@ showAllButton.addEventListener("click", () => {
     showAllButton.style.display = "none"; // Hide the "Show All" button
     fetchAnnouncements(); // Load and display all announcements
 });
-
-
