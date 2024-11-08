@@ -1,32 +1,19 @@
-import { databaseCalendar, secondapp } from "../calenderAPI.js";
 import { database, app } from "../Firebase.js";
-
 import {
+  child,
   get,
-  ref,
   getDatabase,
+  set,
+  update,
+  ref,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 async function showData() {
   const events = [];
-  const dbRef = ref(getDatabase(secondapp), "courses");
+  // const dbRef = ref(getDatabase(secondapp), "courses");
   const dRef = ref(getDatabase(app), "announcement");
-
   try {
-    // const snapshot = await get(dbRef);
-    // const snapshot1 = await get(dRef);
-    const [snapshot, snapshot1] = await Promise.all([get(dbRef), get(dRef)]);
-
-    if (snapshot.exists() || snapshot1.exists()) {
-    if (snapshot.exists()) {
-      snapshot.forEach((item) => {
-        const data = item.val();
-        console.log(data);
-        events.push({
-          title: data.courseName,
-          start: data.startDate,
-        });
-      });
+    const snapshot1 = await get(dRef);
 
       if (snapshot1.exists()) {
         snapshot1.forEach((item) => {
@@ -37,8 +24,7 @@ async function showData() {
             start: data.date,
           });
         });
-      }
-      }
+      
       const calendarEl = document.getElementById("calendar");
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
