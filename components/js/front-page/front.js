@@ -1,35 +1,41 @@
+// Fetch and render calendar events from Firebase
+document.addEventListener('DOMContentLoaded', () => {
+  showCalendarEvents(); // Call this function when the DOM is fully loaded
+});
 
+// Function to fetch calendar events from Firebase
 function showCalendarEvents() {
   const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
   let swiperCalendar = document.getElementById('swiperCalendar');
-  
+
   fetch(databaseURL)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data) {
-        const events = Object.values(data);
-        
-        // Render events and wait for all slides to be appended
-        renderCalendarEvents(events);
-      } else {
-        const p = document.createElement('p');
-        p.innerHTML = 'No files found';
-        swiperCalendar.appendChild(p);
-      }
-    })
-    .catch(error => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+          }
+          return response.json();
+      })
+      .then(data => {
+          const events = Object.values(data);
+          console.log("Events loaded: ", events.length); // Debug log to check number of events
+          renderCalendarEvents(events); // Render events if available
+      })
+      .catch(error => {
+          console.error("There was a problem with the fetch operation:", error);
+      });
 }
 
+// Function to render the calendar events in the Swiper
 function renderCalendarEvents(events) {
   const swiperCalendar = document.getElementById('swiperCalendar');
   swiperCalendar.innerHTML = ''; // Clear any existing content
+
+  if (events.length === 0) {
+      const noEventsMessage = document.createElement('p');
+      noEventsMessage.textContent = 'No events found';
+      swiperCalendar.appendChild(noEventsMessage);
+      return; // Stop execution if no events
+  }
 
   events.forEach(menu => {
       const {
@@ -46,33 +52,34 @@ function renderCalendarEvents(events) {
       } = menu;
 
       const dateObj = new Date(startDate);
-      const day = dateObj.getDate(); // Extract day (1-31)
+      const day = dateObj.getDate(); 
       const month = dateObj.toLocaleString('default', { month: 'short' });
       const year = dateObj.getFullYear();
 
       const card = document.createElement('div');
       card.classList.add('swiper-slide');
 
+      // Populate the card with event details (customize as needed)
       card.innerHTML = `
           <div class="calendarEventContainer">
               <div class="calendercontainer">
                   <div class="date">
-                      <p>${month}</p>
-                      <h2>${day}</h2>
-                      <p style="margin-top: 10px;font-size: 15px;">${year}</p>
+                      <p>${new Date(menu.startDate).toLocaleString('default', { month: 'short' })}</p>
+                      <h2>${new Date(menu.startDate).getDate()}</h2>
+                      <p style="margin-top: 10px;font-size: 15px;">${new Date(menu.startDate).getFullYear()}</p>
                   </div>
                   <div class="courseDetails">
                       <div class="coursename">
-                          <p><strong>${courseName}</strong></p>
+                          <p><strong>${menu.courseName}</strong></p>
                       </div>
                       <div class="descCal">
                           <div class="trainer">
                               <img src="./components/assets/user-solid.svg" alt="Trainer Icon">
-                              <p>${trainerName}</p>
+                              <p>${menu.trainerName}</p>
                           </div>
                           <div class="mode">
-                              <div class="circle ${mode === 'offline' ? 'black' : ''}"></div>
-                              <p>${mode}</p>
+                              <div class="circle ${menu.mode === 'offline' ? 'black' : ''}"></div>
+                              <p>${menu.mode}</p>
                           </div>
                       </div>
                       <div class="calbottom"></div>
@@ -81,24 +88,26 @@ function renderCalendarEvents(events) {
           </div>
       `;
 
-      swiperCalendar.appendChild(card);
+      swiperCalendar.appendChild(card); // Append the card to the swiper
   });
 
-  // Initialize or update Swiper after all events are added
+  // Initialize or update Swiper after all slides are added
   initializeCalendarSwiper(events.length);
-
-  // Ensure Swiper updates when visibility changes
-  observeSwiperVisibility();
+  
+  // Force update after all slides are appended
+  setTimeout(() => {
+      if (window.calendarSwiper) {
+          window.calendarSwiper.update();
+      }
+  }, 100); // Adjust this delay if necessary
 }
 
+// Function to initialize the Swiper
 function initializeCalendarSwiper(eventCount) {
-  const loopMode = eventCount > 1;
-
-  // Initialize or update Swiper instance with loop based on event count
-  window.calendarSwiper = new Swiper('.myCalendarSwiper', {
-      slidesPerView: 1,
+  window.calendarSwiper = new Swiper('.mySwiper', {
+      slidesPerView: 3,
       spaceBetween: 10,
-      loop: loopMode,
+      loop: eventCount > 1, // Enable loop if more than one event
       pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -108,26 +117,11 @@ function initializeCalendarSwiper(eventCount) {
           prevEl: '.swiper-button-prev',
       },
   });
+}
 
-  // Force Swiper to re-render after a slight delay
-  setTimeout(() => {
+// Update Swiper on window resize
+window.addEventListener('resize', () => {
+  if (window.calendarSwiper) {
       window.calendarSwiper.update();
-  }, 100);
-}
-
-// Use ResizeObserver to detect visibility or size changes
-function observeSwiperVisibility() {
-  const swiperCalendar = document.getElementById('swiperCalendar');
-  const resizeObserver = new ResizeObserver(() => {
-    if (swiperCalendar.offsetWidth > 0 && swiperCalendar.offsetHeight > 0) {
-      setTimeout(() => {
-        window.calendarSwiper.update();
-      }, 100);
-    }
-  });
-
-  resizeObserver.observe(swiperCalendar);
-}
-
-
-showCalendarEvents();
+  }
+});
