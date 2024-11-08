@@ -1,5 +1,5 @@
 import { databaseCalendar, secondapp } from "../calenderAPI.js";
-import { database, app } from "../Firebase.js";
+import { database, app1 } from "../Firebase.js";
 
 import {
   get,
@@ -10,11 +10,9 @@ import {
 async function showData() {
   const events = [];
   const dbRef = ref(getDatabase(secondapp), "courses");
-  const dRef = ref(getDatabase(app), "announcement");
+  const dRef = ref(getDatabase(app1), "announcement");
 
   try {
-    // const snapshot = await get(dbRef);
-    // const snapshot1 = await get(dRef);
     const [snapshot, snapshot1] = await Promise.all([get(dbRef), get(dRef)]);
 
     if (snapshot.exists() || snapshot1.exists()) {
