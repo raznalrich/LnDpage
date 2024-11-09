@@ -39,6 +39,7 @@ body {
 
 .announce-btn {
     margin-left: 4rem;
+   background-color: red;
     border-radius: right 0%;
 }
 
