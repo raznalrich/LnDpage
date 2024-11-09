@@ -30,6 +30,9 @@ body {
     font-size: 14px;
     
 }
+.announce-btn{
+    background-color: #DC143C;
+}
 #banner-btn{
     margin-left: 4rem;
     border-radius: right 0%;
@@ -89,11 +92,42 @@ body {
     top: 10%;
     border-radius: 7px;
 }
-.input-section{
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-left: 4px solid #FF3D00;
+    border-bottom: 4px solid transparent;
+    animation: rotation 0.5s linear infinite reverse;
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+.input-section , .addbuttonBg{
     /* width: 300px;
     height: 500px; */
     width: 40%;
-    height: 60%;
+    height: 65%;
     border: 1px solid black;
     border-radius: 10px;
     display: flex;
@@ -121,6 +155,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
+    justify-content: center;
     /* position: relative; */
     /* top: 5%; */
     /* left: 80%; */
@@ -129,6 +165,7 @@ body {
 .button-section button{
     margin-left: 5%;
     padding: 3px 10px;
+    width: 100px;
     border-radius: 15px;
     border: 0.3px solid black;
 }

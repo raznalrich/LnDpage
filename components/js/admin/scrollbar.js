@@ -5,17 +5,25 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, de
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
 let progress = document.querySelector(".progress");
+let loader = document.getElementById("loaderBg")
+
 let percentVal;
 let fileItem;
 let fileName;
 let category;
 let description;
 
+
+
+document.getElementById("file-preview").addEventListener('click',function(){
+  document.getElementById("fileInp").click();
+})
+
 window.getFile = function (e) {
   fileItem = e.target.files[0];
   fileName = fileItem.name;
-  fileText.innerHTML = fileName;
-  fileText.style.fontSize = "10px"
+  // fileText.innerHTML = fileName;
+  // fileText.style.fontSize = "10px"
   if (fileItem) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -31,6 +39,7 @@ window.getDetails = function (e) { }
 window.uploadImage = function () {
   category = document.getElementById("category-input").value;
   description = document.getElementById("description-input").value;
+  loader.style.display = "flex";
   console.log(category)
   console.log(description)
   console.log(fileItem)
@@ -88,6 +97,9 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
       })
         .then(() => {
           console.log('File metadata with index saved successfully!');
+          discardBox();
+          loader.style.display = "none";
+          getAllFiles();
         })
         .catch((error) => {
           console.error('Error saving file metadata:', error);
@@ -224,6 +236,9 @@ window.previewBox = function () {
 }
 window.discardBox = function () {
   document.getElementById("addimage").style.display = "none";
+  document.getElementById("file-preview").src = "https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/images%2FUploadImage.png?alt=media&token=951c565a-08e9-4c18-ad67-ad498365d053"
+  document.getElementById("category-input").value = "";
+  document.getElementById("description-input").value = "";
 }
 window.addEventListener('DOMContentLoaded', getAllFiles())
 

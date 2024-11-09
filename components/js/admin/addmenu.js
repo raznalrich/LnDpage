@@ -108,11 +108,21 @@ function displayEditmenu(menuData) {
   const iconSelector = document.getElementById("iconSelector");
   iconSelector.value = menuData.imageUrl || "";
 
-  // document.getElementById("image").addEventListener("change", function () {
-  //   console.log(this.value);
-    
-  //   document.getElementById("addIconImg").src = this.value;
-  // });
+  document.getElementById("image").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+  
+    // Ensure a file is selected and it is an SVG file
+    if (file && file.type === "image/svg+xml") {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        document.getElementById("addIconImg").src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please select a valid SVG file.");
+      e.target.value = ""; // Clear the input if it's not a valid SVG
+    }
+  });
 
   document.getElementById("image").value = "";
 
