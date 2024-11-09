@@ -11,31 +11,28 @@ async function showData() {
   const events = [];
   const dbRef = ref(getDatabase(secondapp), "courses");
   const dRef = ref(getDatabase(app1), "announcement");
-
   try {
     const [snapshot, snapshot1] = await Promise.all([get(dbRef), get(dRef)]);
-
     if (snapshot.exists() || snapshot1.exists()) {
-    if (snapshot.exists()) {
-      snapshot.forEach((item) => {
-        const data = item.val();
-        console.log(data);
-        events.push({
-          title: data.courseName,
-          start: data.startDate,
-        });
-      });
-
-      if (snapshot1.exists()) {
-        snapshot1.forEach((item) => {
+      if (snapshot.exists()) {
+        snapshot.forEach((item) => {
           const data = item.val();
           console.log(data);
           events.push({
-            title: data.title,
-            start: data.date,
+            title: data.courseName,
+            start: data.startDate,
           });
         });
-      }
+        if (snapshot1.exists()) {
+          snapshot1.forEach((item) => {
+            const data = item.val();
+            console.log(data);
+            events.push({
+              title: data.title,
+              start: data.date,
+            });
+          });
+        }
       }
       const calendarEl = document.getElementById("calendar");
       const calendar = new FullCalendar.Calendar(calendarEl, {
