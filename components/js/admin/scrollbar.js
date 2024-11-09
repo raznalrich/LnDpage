@@ -1,5 +1,5 @@
 import { storage, database, app } from "../Firebase.js";
-import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase,update, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
@@ -22,6 +22,8 @@ function getPosition(){
         let fileData=filesData[fileIndex];
         positionIndex=fileData.position;
       }
+    }else{
+      positionIndex=1;
     }
   });
 }
@@ -128,10 +130,12 @@ window.getAllFiles = function () {
           const fileName = fileData.fileName;
           const fileDesc = fileData.fileDesc;
           const position=fileData.position;
+          const dataIndex=fileData.index;
           console.log(position)
           let contentDiv = document.createElement('div');
           contentDiv.classList.add("draggableItem");
           contentDiv.draggable='true';
+          contentDiv.setAttribute("data-index",dataIndex)
           contentDiv.dataset.position=`${position}`;
           contentDiv.style.display = 'flex';
           contentDiv.style.flexDirection = 'row';
@@ -342,12 +346,15 @@ function updatePositions() {
   const updatedItems = document.querySelectorAll(".draggableItem");
   updatedItems.forEach((item, index) => {
     item.setAttribute("data-position", index + 1); 
+    const itemId = item.getAttribute("data-index");
     const newPosition = index + 1;
-
-    
+    const fileRef=dbRef(getDatabase(),`bannerfiles/${itemId}`)
+    update(fileRef,{
+      position:newPosition
+    })
+   
   });
 
-  // Optional: Log updated positions for verification
   console.log(
     Array.from(updatedItems).map(item => ({
       text: item.innerText,
@@ -355,5 +362,3 @@ function updatePositions() {
     }))
   );
 }
-
-
