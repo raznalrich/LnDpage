@@ -41,7 +41,7 @@ body {
     --fc-button-bg-color: rgba(220, 20, 60);
     --fc-button-border-color: rgba(220, 20, 60);
     --fc-button-hover-bg-color: rgb(161, 12, 42);
-    --fc-button-hover-border-color: rgba(161, 12, 42);
+    --fc-button-hover-border-color: #a10c2a;
     --fc-button-active-bg-color: #700707;
     --fc-button-active-border-color: #700707;   
 }
@@ -75,7 +75,8 @@ body {
     position: absolute;
     z-index: 9999;
     background: #f7f6f4;
-    color: rgb(220, 20, 60);
+    color: #4D4D4D;
+    font-weight: 700;
     width: 150px;
     border-radius: 3px;
     box-shadow: 0 0 2px rgba(77, 77, 77, 0.5);

@@ -21,6 +21,8 @@ async function showData() {
           events.push({
             title: data.courseName,
             start: data.startDate,
+            desc: data.desc,
+            color: "#DC143C",
           });
         });
         if (snapshot1.exists()) {
@@ -30,6 +32,8 @@ async function showData() {
             events.push({
               title: data.title,
               start: data.date,
+              desc: data.desc,
+              color: "#3F6889",
             });
           });
         }
@@ -37,6 +41,7 @@ async function showData() {
       const calendarEl = document.getElementById("calendar");
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
+        // eventColor: 'red',
         eventDidMount: function (info) {
           var tooltip = new Tooltip(info.el, {
             title: info.event.title,
@@ -46,6 +51,7 @@ async function showData() {
           });
         },
         events: events,
+        color: events.color,
       });
       calendar.render();
     } else {
