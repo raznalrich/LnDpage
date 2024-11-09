@@ -80,6 +80,9 @@ function saveFileMetadata(title, url, downloadURL) {
   });
 }
 
+
+
+
 let id = 1;
 function displayaddnewmenu() {
   let addnewmenu = document.getElementById("addnewmenu");
@@ -87,8 +90,112 @@ function displayaddnewmenu() {
 }
 function closeaddnewmenu() {
   let addnewmenu = document.getElementById("addnewmenu");
+
   addnewmenu.style.display = "none";
+  document.getElementById("title").value = " ";
+  document.getElementById("url").value = " ";
+  document.getElementById("addIconImg").src = "../../assets/addIcon.png";
 }
+function displayEditmenu(menuData) {
+  let addnewmenu = document.getElementById("addnewmenu");
+  addnewmenu.style.display = "flex";
+
+  // Set initial values for title and URL
+  document.getElementById("title").value = menuData.title;
+  document.getElementById("url").value = menuData.url;
+  document.getElementById("addIconImg").src = menuData.imageUrl;
+
+  const iconSelector = document.getElementById("iconSelector");
+  iconSelector.value = menuData.imageUrl || "";
+
+  document.getElementById("image").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+  
+    // Ensure a file is selected and it is an SVG file
+    if (file && file.type === "image/svg+xml") {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        document.getElementById("addIconImg").src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please select a valid SVG file.");
+      e.target.value = ""; // Clear the input if it's not a valid SVG
+    }
+  });
+
+  document.getElementById("image").value = "";
+
+
+  iconSelector.addEventListener("change", function () {
+    document.getElementById("addIconImg").src = this.value;
+  });
+
+
+  const form = document.getElementById("addnewmenu");
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    updateMenuDetails(menuData.index, menuData.imageUrl);
+  };
+}
+
+
+function updateMenuDetails(index, currentImageUrl) {
+  const newTitle = document.getElementById("title").value;
+  const newUrl = document.getElementById("url").value;
+  const selectedIcon = document.getElementById("iconSelector").value;
+  const newImageFile = document.getElementById("image").files[0];
+
+  const db = database;
+  const fileRef = ref(db, `menuicons/${index}`);
+
+ 
+  let imageUrlPromise;
+
+  if (newImageFile) {
+ 
+    const storageReference = storageRef(storage, "icons/" + newImageFile.name);
+    const uploadTask = uploadBytesResumable(storageReference, newImageFile);
+    imageUrlPromise = new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        null,
+        (error) => reject(error),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  } else if (selectedIcon) {
+    // Use selected icon from dropdown
+    imageUrlPromise = Promise.resolve(selectedIcon);
+  } else {
+    // If no new icon or upload, retain current image
+    imageUrlPromise = Promise.resolve(currentImageUrl);
+  }
+
+  // Once image URL is determined, update database
+  imageUrlPromise
+    .then((imageUrl) => {
+      set(fileRef, {
+        title: newTitle,
+        url: newUrl,
+        imageUrl: imageUrl,
+        active: 1,
+        index: index,
+      }).then(() => {
+        console.log("Menu item updated successfully!");
+        closeaddnewmenu();
+        adminlistmenu(); // Refresh list
+      });
+    })
+    .catch((error) => {
+      console.error("Error updating menu details:", error);
+    });
+}
+
 
 document.getElementById("addMenu").addEventListener("click", displayaddnewmenu);
 document
@@ -119,6 +226,9 @@ function adminlistmenu() {
           li.addEventListener("dragstart", (e) => {
             e.dataTransfer.setData("text/plain", li.id);
           });
+          const leftdiv = document.createElement("div");
+          leftdiv.classList.add("iconAndName");
+        
 
           const img = document.createElement("img");
           img.src = value.imageUrl;
@@ -127,8 +237,16 @@ function adminlistmenu() {
           const p = document.createElement("p");
           p.textContent = value.title;
 
-          li.appendChild(img);
-          li.appendChild(p);
+          const editButton = document.createElement("i");
+          editButton.classList = "fa-solid fa-edit fa-lg"
+          editButton.style.color = "#000"
+
+          editButton.addEventListener("click", () => displayEditmenu(value));
+
+          leftdiv.appendChild(img);
+          leftdiv.appendChild(p);
+          li.appendChild(leftdiv)
+          li.appendChild(editButton)
 
           if (value.active === 1) {
             left.appendChild(li);

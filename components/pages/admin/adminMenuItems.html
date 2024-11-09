@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Items | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../../css/adminMenuitems.css">
 </head>
 <body>
@@ -34,6 +39,7 @@
         
          <div class="rightbox">
             <h3 class="menuHead">Disabled Menu</h3>
+   
             <div class="right" id="right">
                 
                 <!-- <ul id="disabledMenuList" style="min-height: 400px;"> -->
@@ -50,16 +56,27 @@
 
                 <label for="image" style="font-weight: bold;">Add New Menu</label> <p id="closebutton" style="font-size: larger;">X</p>
             </div>
-            <input type="file" id="image" name="image" accept="image/*" required><br><br>
+            <div class="addIconImgDiv">
+
+                <img id="addIconImg" src="../../assets/addIcon.png" class="addIconImg" alt="" srcset="" width="20px" height="20px">
+                <select id="iconSelector">
+                    <option value="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FBook%20And%20Pencil.svg?alt=media&token=97b37601-0b9d-41e8-bd55-14efcbea9b9e">Default Icon</option>
+                    <option value="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FReading.svg?alt=media&token=5774ed95-1861-4e86-af75-07c799d361d8">Icon 1</option>
+                    <option value="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FComponent%2010.svg?alt=media&token=1d4a3aa1-f4d8-42be-8e0d-4fea73ba375a">Icon 2</option>
+                    <option value="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FSigning%20A%20Document%20(1).svg?alt=media&token=5acdd698-e8d7-4ccf-84e1-fd5801fb2c09">Icon 3</option>
+                  </select>
+            </div>
+            <input type="file" id="image" name="image" accept=".svg" ><br>
 
     
-            <input type="text" id="title" name="title" placeholder="Item name" required><br><br>
+            <input type="text" id="title" name="title" placeholder="Item name" required><br>
     
-            <input type="url" id="url" name="url" placeholder="URL" required><br><br>
+            <input type="url" id="url" name="url" placeholder="URL" required><br>
        
             <button type="submit" id="submit">Submit</button>
         </form>
     </div>
     <script type="module" src="../../js/admin/addmenu.js"></script>
+    <script src="https://kit.fontawesome.com/b6e6cee001.js" crossorigin="anonymous"></script>
 </body>
 </html>

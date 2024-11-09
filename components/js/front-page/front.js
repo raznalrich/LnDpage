@@ -1,160 +1,41 @@
+// Fetch and render calendar events from Firebase
+document.addEventListener('DOMContentLoaded', () => {
+  showCalendarEvents(); // Call this function when the DOM is fully loaded
+});
 
-
-// import { storage, database } from "../calenderAPI.js";
-// import { child, get, getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-// import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
-
-//removed the code of swipper for slideshow from here to front-page-swipper
-
-
-  
-
-// function showCalendarEvents(){
-//     const dref = ref(database);
-//     let div = document.getElementById('swiperCalendar');
-  
-//     get(child(dref,'courses')).then((snapshot)=>{
-//         if(snapshot.exists()){
-//             snapshot.forEach((menu)=>{
-//                 let value = menu.val();
-//                 console.log(value);
-                
-//                 const courseName = value.courseName;
-//                 const startDate = value.startDate;
-//                 const startTime = value.startTime;
-//                 const endDate = value.endDate;
-//                 const endTime = value.endTime;
-//                 const keyPoints = value.keyPoints;
-//                 const maxParticipation = value.maxParticipation;
-//                 const targetAudience = value.targetAudience;
-//                 const trainerName = value.trainerName;
-//                 const mode = value.mode;
-//                 console.log(startDate);
-                
-//                 const dateObj = new Date(startDate);
-//                 const day = dateObj.getDate(); // Extract day (1-31)
-//                 const month = dateObj.toLocaleString('default', { month: 'short' });
-//                 const card = document.createElement('div');
-//                 const year = dateObj.getFullYear();
-//                 card.classList.add('swiper-slide');
-//                 if (mode != 'offline') {
-//                     card.innerHTML = `
-        
-//       <div class="calendarEventContainer">
-//                         <div class="calendercontainer">
-//                         <div class="date">
-//                             <p>${month}</p>
-//                         <h2>${day}</h2>
-//                         <p style="margin-top: 10px;font-size: 15px;">${year}</p>
-//                     </div>
-//                     <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
-//                     <div class="courseDetails">
-
-                    
-//                     <div class="coursename">
-//                         <p><strong>${courseName}</strong></p>
-//                     </div>
-//                     <div class="descCal">
-//                         <div class="trainer">
-//                             <img src="./components/assets/user-solid.svg" alt="" srcset="">
-//                             <p>${trainerName}</p>
-//                         </div>
-//                         <div class="mode">
-//                             <div class="circle"></div>
-//                             <p>${mode}</p>
-//                         </div>
-                       
-//                     </div>
-//                     <div class="calbottom">
-                            
-//                     </div>
-//                 </div>
-//       `;
-//                 } else {
-//                     card.innerHTML = `
-        
-//                     <div class="calendarEventContainer">
-//                                       <div class="calendercontainer">
-//                                       <div class="date">
-//                                           <p>${month}</p>
-//                                       <h2>${day}</h2>
-//                                       <p style="margin-top: 10px;font-size: 15px;">${year}</p>
-//                                   </div>
-//                                   <!-- <img src="./components/assets/calbg.jpg" alt="" srcset="" > -->
-//                                   <div class="courseDetails">
-              
-                                  
-//                                   <div class="coursename">
-//                                       <p><strong>${courseName}</strong></p>
-//                                   </div>
-//                                   <div class="descCal">
-//                                       <div class="trainer">
-//                                           <img src="./components/assets/user-solid.svg" alt="" srcset="">
-//                                           <p>${trainerName}</p>
-//                                       </div>
-//                                       <div class="mode">
-//                                           <div class="circle black"></div>
-//                                           <p>${mode}</p>
-//                                       </div>
-                                     
-//                                   </div>
-//                                   <div class="calbottom">
-                                          
-//                                   </div>
-//                               </div>
-//                     `;
-//                 }
-                
-  
-  
-//       div.appendChild(card);
-                
-                
-//             })
-//         }
-//         else{
-//             let p = document.createElement('p');
-//             p.innerHTML = 'No files founded';
-//             div.appendChild(p);
-//         }
-//     })
-  
-//   }
-  
-//   showCalendarEvents();
-
-
+// Function to fetch calendar events from Firebase
 function showCalendarEvents() {
   const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
   let swiperCalendar = document.getElementById('swiperCalendar');
-  
+
   fetch(databaseURL)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data) {
-        const events = Object.values(data);
-        
-        // Render events and wait for all slides to be appended
-        renderCalendarEvents(events);
-      } else {
-        const p = document.createElement('p');
-        p.innerHTML = 'No files found';
-        swiperCalendar.appendChild(p);
-      }
-    })
-    .catch(error => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+          }
+          return response.json();
+      })
+      .then(data => {
+          const events = Object.values(data);
+          console.log("Events loaded: ", events.length); // Debug log to check number of events
+          renderCalendarEvents(events); // Render events if available
+      })
+      .catch(error => {
+          console.error("There was a problem with the fetch operation:", error);
+      });
 }
 
+// Function to render the calendar events in the Swiper
 function renderCalendarEvents(events) {
   const swiperCalendar = document.getElementById('swiperCalendar');
   swiperCalendar.innerHTML = ''; // Clear any existing content
+
+  if (events.length === 0) {
+      const noEventsMessage = document.createElement('p');
+      noEventsMessage.textContent = 'No events found';
+      swiperCalendar.appendChild(noEventsMessage);
+      return; // Stop execution if no events
+  }
 
   events.forEach(menu => {
       const {
@@ -171,33 +52,34 @@ function renderCalendarEvents(events) {
       } = menu;
 
       const dateObj = new Date(startDate);
-      const day = dateObj.getDate(); // Extract day (1-31)
+      const day = dateObj.getDate(); 
       const month = dateObj.toLocaleString('default', { month: 'short' });
       const year = dateObj.getFullYear();
 
       const card = document.createElement('div');
       card.classList.add('swiper-slide');
 
+      // Populate the card with event details (customize as needed)
       card.innerHTML = `
           <div class="calendarEventContainer">
               <div class="calendercontainer">
                   <div class="date">
-                      <p>${month}</p>
-                      <h2>${day}</h2>
-                      <p style="margin-top: 10px;font-size: 15px;">${year}</p>
+                      <p>${new Date(menu.startDate).toLocaleString('default', { month: 'short' })}</p>
+                      <h2>${new Date(menu.startDate).getDate()}</h2>
+                      <p style="margin-top: 10px;font-size: 15px;">${new Date(menu.startDate).getFullYear()}</p>
                   </div>
                   <div class="courseDetails">
                       <div class="coursename">
-                          <p><strong>${courseName}</strong></p>
+                          <p><strong>${menu.courseName}</strong></p>
                       </div>
                       <div class="descCal">
                           <div class="trainer">
                               <img src="./components/assets/user-solid.svg" alt="Trainer Icon">
-                              <p>${trainerName}</p>
+                              <p>${menu.trainerName}</p>
                           </div>
                           <div class="mode">
-                              <div class="circle ${mode === 'offline' ? 'black' : ''}"></div>
-                              <p>${mode}</p>
+                              <div class="circle ${menu.mode === 'offline' ? 'black' : ''}"></div>
+                              <p>${menu.mode}</p>
                           </div>
                       </div>
                       <div class="calbottom"></div>
@@ -206,25 +88,26 @@ function renderCalendarEvents(events) {
           </div>
       `;
 
-      swiperCalendar.appendChild(card);
+      swiperCalendar.appendChild(card); // Append the card to the swiper
   });
 
-  // Initialize or update Swiper after all events are added
+  // Initialize or update Swiper after all slides are added
   initializeCalendarSwiper(events.length);
+  
+  // Force update after all slides are appended
+  setTimeout(() => {
+      if (window.calendarSwiper) {
+          window.calendarSwiper.update();
+      }
+  }, 100); // Adjust this delay if necessary
 }
 
+// Function to initialize the Swiper
 function initializeCalendarSwiper(eventCount) {
-  const loopMode = eventCount > 1;
-
-  // if (window.calendarSwiper) {
-  //     window.calendarSwiper.destroy(true, true); // Properly destroy any existing instance
-  // }
-
-  // Initialize a new Swiper instance with loop based on event count
-  window.calendarSwiper = new Swiper('.myCalendarSwiper', {
-      slidesPerView: 1,
+  window.calendarSwiper = new Swiper('.mySwiper', {
+      slidesPerView: 3,
       spaceBetween: 10,
-      loop: true,
+      loop: eventCount > 1, // Enable loop if more than one event
       pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -234,14 +117,11 @@ function initializeCalendarSwiper(eventCount) {
           prevEl: '.swiper-button-prev',
       },
   });
-
-  // Force Swiper to re-render
-  setTimeout(() => {
-      window.calendarSwiper.update();
-  }, 100); // Adjust delay if necessary
 }
 
-// Call the function to load and display calendar events
-showCalendarEvents();
-
-  
+// Update Swiper on window resize
+window.addEventListener('resize', () => {
+  if (window.calendarSwiper) {
+      window.calendarSwiper.update();
+  }
+});

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calender Page</title>
-    <link rel="stylesheet" href="/components/css/front-page/CalenderPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../css/front-page/CalenderPage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -14,10 +18,13 @@
             
             
         </div>
-        <button onclick="closeCurrentTab();" id="closetab" style="border: none;">
+        <a href="../../../index.html">
 
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </button>
+            <button id="closetab" style="border: none;">
+                
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+        </a>
     </div>
     <div class="main" style="background-color: #DC143C;">
         <h1>
@@ -25,7 +32,7 @@
         </h1>
         <div class="monthSelect">
             <i class="fa-solid fa-caret-left" id="prevMonth"></i>
-            <h4 id="monthDisplay">July</h4>
+            <h4 id="monthDisplay">November</h4>
             <i class="fa-solid fa-caret-right" id="nextMonth"></i>
         </div>
         
