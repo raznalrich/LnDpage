@@ -5,7 +5,7 @@ import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs
 function fetchCarouselImages() {
     const swiperWrapper = document.getElementById('swiper-wrapper');
     const filesRef = ref(database, 'bannerfiles');
-    
+
     get(child(filesRef, '/')).then((snapshot) => {
         if (snapshot.exists()) {
             const filesData = snapshot.val();
@@ -18,10 +18,12 @@ function fetchCarouselImages() {
                     const fileURL = fileData.fileURL;
                     const fileCat = fileData.fileCat;
                     const fileDesc = fileData.fileDesc;
+                    const position = fileData.position;  // Access position attribute
 
                     if (isActive === 1) {
                         const slide = document.createElement('div');
                         slide.classList.add('swiper-slide');
+                        slide.setAttribute('data-position', position);  // Set position as attribute for sorting
                         slide.innerHTML = `
                             <!-- Default image overlay -->
                             <div class="default-image">
@@ -34,15 +36,18 @@ function fetchCarouselImages() {
                                 <h2>${fileCat}</h2>
                                 <p>${fileDesc}</p>
                                 <button class="know-more-btn">Know More</button>
-
                             </div>
                         `;
-                        activeSlides.push(slide);
+                        activeSlides.push({ slide, position });  // Push slide and its position
                     }
                 }
             }
 
-            activeSlides.forEach(slide => swiperWrapper.appendChild(slide));
+            // Sort activeSlides array by position attribute
+            activeSlides.sort((a, b) => a.position - b.position);
+
+            // Append sorted slides to the swiper wrapper
+            activeSlides.forEach(({ slide }) => swiperWrapper.appendChild(slide));
 
             if (activeSlides.length > 0) {
                 initializeSwiper(activeSlides.length > 1);
@@ -56,6 +61,7 @@ function fetchCarouselImages() {
         console.error("Error retrieving files:", error);
     });
 }
+
 
 function initializeSwiper(loopEnabled) {
     new Swiper('.carousel-swiper .swiper-container', {

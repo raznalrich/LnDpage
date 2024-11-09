@@ -95,6 +95,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   const indexRef = dbRef(db, 'fileIndex'); 
 
   get(indexRef).then((snapshot) => {
+    console.log('this is runnin')
     let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1;
     positionIndex++;
    
@@ -126,23 +127,29 @@ let closeButton;
 let imageDiv;
 console.log('#1')
 window.getAllFiles = function () {
-  console.log('hii')
+  
   const filesRef = dbRef(getDatabase(), 'bannerfiles');
   get(filesRef).then((snapshot) => {
 
     if (snapshot.exists()) {
       const filesData = snapshot.val();
-      console.log(filesData);
-      for (const fileIndex in filesData) {
-        if (filesData.hasOwnProperty(fileIndex)) {
-          const fileData = filesData[fileIndex];
-          const fileCat = fileData.fileCat;
-          const isActive = fileData.isActive;
-          const fileURL = fileData.fileURL;
-          const fileName = fileData.fileName;
-          const fileDesc = fileData.fileDesc;
-          const position=fileData.position;
-          const dataIndex=fileData.index;
+      const filesArray = Object.keys(filesData).map((key) => ({
+        id: key, // Add the original key as ID if needed
+        ...filesData[key]
+      }));
+  
+      // Sort the array by position
+      filesArray.sort((a, b) => a.position - b.position);
+  
+      // Now you can loop through filesArray in the sorted order
+      filesArray.forEach((item) => {
+          const fileCat = item.fileCat;
+          const isActive = item.isActive;
+          const fileURL = item.fileURL;
+          const fileName = item.fileName;
+          const fileDesc = item.fileDesc;
+          const position = item.position;
+          const dataIndex = item.index;
           console.log(position)
           let contentDiv = document.createElement('div');
           contentDiv.classList.add("draggableItem");
@@ -220,15 +227,15 @@ window.getAllFiles = function () {
           closeButton.addEventListener('click', function () {
             removeImagefromFirebase(fileURL, fileIndex, imageDiv);
           })
-        }
-      }
+        
+      });
     } else {
       console.log("No files found.");
     }
   }).catch((error) => {
     console.error("Error retrieving files:", error);
   });
-  
+
   
 }
 
