@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         if (userDoc.exists()) {
             const userData = userDoc.data();
             if (userData.role === "admin") {
-                window.location.href = "../../pages/admin/Admin-SideBar/adminSideBarMain.html"
+                window.location.href = "../../pages/admin/Admin-SideBar/adminSidebarMain.html"
             } else {
                 alert("Access denied! You are not an admin.");
                 await auth.signOut();
