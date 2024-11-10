@@ -150,25 +150,25 @@ function showMenuItems() {
 showBannerImage();
 
 
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
+// onAuthStateChanged(auth, async (user) => {
+//     if (user) {
 
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
+//         const userDocRef = doc(db, "users", user.uid);
+//         const userDoc = await getDoc(userDocRef);
 
-        if (userDoc.exists()) {
-            const userData = userDoc.data();
-            console.log("User data:", userData);
+//         if (userDoc.exists()) {
+//             const userData = userDoc.data();
+//             console.log("User data:", userData);
           
-        } else {
-            console.error("User data not found.");
-        }
-    } else {
+//         } else {
+//             console.error("User data not found.");
+//         }
+//     } else {
        
-        console.log("No user logged in.");
-        window.location.href = "../../pages/admin/login.html";
-    }
-});
+//         console.log("No user logged in.");
+//         window.location.href = "../../pages/admin/login.html";
+//     }
+// });
 
 //Logout function
 document.getElementById("logout-button").addEventListener("click", () => {
@@ -182,10 +182,10 @@ document.getElementById("logout-button").addEventListener("click", () => {
         });
 });
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log("User is signed in:", user.email);
-    } else {
-        window.location.href = "../../../pages/admin/login.html";
-    }
-});
+// onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//         console.log("User is signed in:", user.email);
+//     } else {
+//         window.location.href = "../../../pages/admin/login.html";
+//     }
+// });
