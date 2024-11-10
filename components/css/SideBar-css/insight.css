@@ -11,6 +11,13 @@ body {
 * {
     font-family: Arial, sans-serif;
 }
+.imgpreview{
+    display: flex;
+    justify-content: center;
+    img{
+        margin-bottom: 10px;
+    }
+}
 
 .sidebar {
     width: 250px;
@@ -156,7 +163,7 @@ body {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    top: 10%;
+    /* top: 10%; */
     height: 80%;
 
 
@@ -167,7 +174,8 @@ body {
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
-    width: 40%;
+    width: 100%;
+    justify-content: center;
     /* top: 25%;
     left: 80%; */
     
@@ -178,6 +186,8 @@ body {
     padding: 3px 10px;
     border-radius: 15px;
     border: 0.3px solid black;
+    width: 30%;
+
 }
 
 #save {
@@ -232,5 +242,36 @@ body {
     margin-left: 10px;
     margin-bottom: 10px;}
 #discard-button{
-    background-color: rebeccapurple;
+    background-color: rgb(255, 255, 255);
 }
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-left: 4px solid #FF3D00;
+    border-bottom: 4px solid transparent;
+    animation: rotation 0.5s linear infinite reverse;
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
