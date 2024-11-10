@@ -10,27 +10,40 @@ body {
 
 .header {
     font-size: 24px;
-    color: #333;;
+    color: #333;
+    ;
     position: relative;
-    /* margin-left: 9rem; */
     padding-left: 30px;
     margin-bottom: 1rem;
 }
 
 #calendar {
     width: 400px;
-    height: auto;
+    height: 420px;
     font-size: xx-small;
-    border: solid black 1px;
+    border: solid rgba(77, 77, 77, 0.5) 2px;
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
+    overflow-y: auto;
+    /* transition: transform 0.9s ease; */
 }
+/* 
+#calendar:hover {
+    transform: scale(1.01);
+} */
 
 :root {
     --fc-border-color: transparent;
     --fc-today-bg-color: rgba(220, 20, 60, 0.5);
-    --fc-event-bg-color: rgba(220, 20, 60, 1)
+    --fc-event-bg-color: rgba(220, 20, 60);
+    --fc-button-text-color: #fff;
+    --fc-button-bg-color: rgba(220, 20, 60);
+    --fc-button-border-color: rgba(220, 20, 60);
+    --fc-button-hover-bg-color: rgb(161, 12, 42);
+    --fc-button-hover-border-color: #a10c2a;
+    --fc-button-active-bg-color: #700707;
+    --fc-button-active-border-color: #700707;   
 }
 
 .fc-daygrid-day {
@@ -62,7 +75,8 @@ body {
     position: absolute;
     z-index: 9999;
     background: #f7f6f4;
-    color: rgb(220, 20, 60);
+    color: #4D4D4D;
+    font-weight: 700;
     width: 150px;
     border-radius: 3px;
     box-shadow: 0 0 2px rgba(77, 77, 77, 0.5);
