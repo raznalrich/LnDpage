@@ -1,61 +1,65 @@
-import { database, secondapp } from "../calenderAPI.js";
-import { child, get, ref, getDatabase } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { databaseCalendar, secondapp } from "../calenderAPI.js";
+import { database, app1 } from "../Firebase.js";
+
+import {
+  get,
+  ref,
+  getDatabase,
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 async function showData() {
-    const events = [];
-    const dbRef = ref(getDatabase(secondapp), 'courses');
-    try {
-        const snapshot = await get(dbRef);
-        if (snapshot.exists()) {
-            snapshot.forEach((item) => {
-                const data = item.val();
-                events.push({
-                    title: data.courseName,
-                    start: data.startDate
-                });
+  const events = [];
+  const dbRef = ref(getDatabase(secondapp), "courses");
+  const dRef = ref(getDatabase(app1), "announcement");
+  try {
+    const [snapshot, snapshot1] = await Promise.all([get(dbRef), get(dRef)]);
+    if (snapshot.exists() || snapshot1.exists()) {
+      if (snapshot.exists()) {
+        snapshot.forEach((item) => {
+          const data = item.val();
+          console.log(data);
+          events.push({
+            title: data.courseName,
+            start: data.startDate,
+            desc: data.desc,
+            color: "#DC143C",
+          });
+        });
+        if (snapshot1.exists()) {
+          snapshot1.forEach((item) => {
+            const data = item.val();
+            console.log(data);
+            events.push({
+              title: data.title,
+              start: data.date,
+              desc: data.desc,
+              color: "#3F6889",
             });
-            console.log(events);
-     
-            const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                events: events
-            });
-            calendar.render();
-        } else {
-            console.log("No data found at 'courses' path.");
+          });
         }
-    } catch (error) {
-        console.error("Error fetching data:", error);
+      }
+      const calendarEl = document.getElementById("calendar");
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth",
+        // eventColor: 'red',
+        eventDidMount: function (info) {
+          var tooltip = new Tooltip(info.el, {
+            title: info.event.title,
+            placement: "top",
+            trigger: "hover",
+            container: "body",
+          });
+        },
+        events: events,
+        color: events.color,
+      });
+      calendar.render();
+    } else {
+      console.log("No data found at 'courses' path.");
     }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 }
 
 showData();
-
-
-// let events = [];
-// const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
-
-// async function calenderView() {
-//     await fetch(databaseURL)
-//         .then(response => response.json())
-//         .then(data => {
-//             Object.keys(data).forEach(key => {
-//                 events.push({ title: data[key].courseName, start: data[key].startDate})
-//             });
-
-//             console.log(events)
-//         })
-//         .catch(error => {
-//             console.error("Error fetching data:", error);
-//         });
-
-//     var calendarEl = document.getElementById('calendar');
-//     var calendar = new FullCalendar.Calendar(calendarEl, {
-//         initialView: 'dayGridMonth',
-//         events: events
-//     });
-//     calendar.render();
-// }
-
-// calenderView()

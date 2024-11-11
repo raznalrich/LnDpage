@@ -14,12 +14,38 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 const form = document.getElementById("uploadFormNewsletter");
+let fileInp = document.getElementById("htmlfile");
+let loader = document.getElementById("loaderBg")
+document.getElementById("html").addEventListener('click',function(){
+fileInp.click();
+
+})
+window.getFile = function (e) {
+  let fileItem = e.target.files[0];
+ let fileName = fileItem.name;
+ console.log(fileName);
+ 
+  document.getElementById("filechosen").innerHTML = fileName;
+  // fileText.style.fontSize = "10px"
+  // if (fileItem) {
+  //     const reader = new FileReader();
+  //     reader.onload = function (e) {
+  //         const filechosen = document.getElementById("filechosen");
+  //         console.log(filechosen);
+          
+  //         preview.src = e.target.result;
+  //         // preview.style.display = "block";
+  //     };
+  //     reader.readAsDataURL(fileItem);
+  // }
+}
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   // const title = document.getElementById("title").value;
   const date = document.getElementById("text").value;
   const htmlfile = document.getElementById("htmlfile").files[0];
+  loader.style.display = "flex";
 
   if (!htmlfile) {
     alert("Please upload an image.");
@@ -72,6 +98,10 @@ function saveFileMetadata(date, downloadURL) {
       })
         .then(() => {
           console.log("File metadata with index saved successfully!");
+          closeaddnewmenu();
+          loader.style.display = "none";
+          window.location.reload();
+
         })
         .catch((error) => {
           console.error("Error saving file metadata:", error);

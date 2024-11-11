@@ -5,6 +5,7 @@ body {
     display: flex;
     height: 100vh;
     background-color: #ffff;
+    width: 100%;
 }
 .sidebar {
     width: 250px;
@@ -43,6 +44,7 @@ body {
     box-sizing: border-box;
     background-color: white;
     position: relative;
+    width: 100%;
 }
 .upload-banner {
     display: flex;
@@ -82,7 +84,7 @@ body {
     position: relative;
     display: flex;
     top: 6%;
-    width: 80vw;
+    width: 100%;
     border: 1px solid black;
     height: 90%;
     border-radius: 7px;

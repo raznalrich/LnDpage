@@ -5,11 +5,19 @@ import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, de
 let fileText = document.querySelector(".fileText");
 let uploadPercentage = document.querySelector(".uploadPercentage");
 let progress = document.querySelector(".progress");
+let fileinput = document.getElementById("fileInp");
+let loader = document.getElementById("loaderBg")
+
 let percentVal;
 let fileItem;
 let fileName;
 let category;
 let description;
+
+document.getElementById("file-preview").addEventListener("click",function(){
+    fileinput.click();
+   
+})
 
 window.getFile = function (e) {
     fileItem = e.target.files[0];
@@ -20,8 +28,10 @@ window.getFile = function (e) {
         const reader = new FileReader();
         reader.onload = function (e) {
             const preview = document.getElementById("file-preview");
+            console.log(preview);
+            
             preview.src = e.target.result;
-            preview.style.display = "block";
+            // preview.style.display = "block";
         };
         reader.readAsDataURL(fileItem);
     }
@@ -30,6 +40,7 @@ window.getFile = function (e) {
 window.uploadImage = function () {
     category = document.getElementById("category-input").value;
     description = document.getElementById("description-input").value;
+    loader.style.display = "flex";
     if (!fileItem || !description || !category) {
         alert("Please fill all fields");
         return;
@@ -74,6 +85,11 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
             })
                 .then(() => {
                     console.log('File metadata with index saved successfully!');
+                    discardBox();
+                    loader.style.display = "none";
+                    // getAllFiles();
+                    window.location.reload();
+
                 })
                 .catch((error) => {
                     console.error('Error saving file metadata:', error);
@@ -147,13 +163,16 @@ window.getAllFiles = function () {
 }
 window.editImageInFirebase = function (fileData, fileIndex) {
     let imageContent = document.getElementById('file-input');
+    let imgPreview = document.getElementById('file-preview')
     let descContent = document.getElementById('description-input');
     let catContent = document.getElementById('category-input');
+    imgPreview.src = fileData.fileURL;
     
     // imageContent.value=`${fileData.fileURL}`;
     descContent.value = `${fileData.fileDesc}`;
     catContent.value = `${fileData.fileCat}`;
-    imageContent.innerHTML = `${fileData.fileName}`;
+    // imageContent.innerHTML = `${fileData.fileName}`;
+
 
 
 }
@@ -229,6 +248,10 @@ window.previewBox = function (fileIndex) {
 }
 window.discardBox = function () {
     document.getElementById("addimage").style.display = "none"
+    document.getElementById("file-preview").src = "https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FaddIcon.png?alt=media&token=8801a2e8-d627-4f96-bd59-26e3604363ea";
+    document.getElementById("category-input").value ="";
+    document.getElementById("description-input").value ="";
+
     // buttonSection.removeChild(button);
 }
 // window.addEventListener('DOMContentLoaded',getAllFiles())

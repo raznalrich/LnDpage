@@ -9,15 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../css/SideBar-css/calender-1.css">
+
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+
     <title>L&D | Calendar</title>
-    <link rel="stylesheet" href="/components/css/front-page/calender-1.css">
+    <!-- <link rel="stylesheet" href="/components/css/front-page/calender-1.css"> -->
 </head>
+
 <body>
     <div class="header">Calendar</div>
     <div id="calendar"></div>
+
+    <div class="tooltip" role="tooltip" id="tooltip_ojwezyepk2" aria-hidden="true" x-placement="top"
+        style="position: absolute; will-change: transform; visibility: hidden; top: 0px; left: 0px; transform: translate3d(44px, 426px, 0px);">
+        <div class="tooltip-arrow" style="left: 75px;"></div>
+        <div class="tooltip-inner"></div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script type="module" src="../../js/admin/calendar-1.js"></script>
+
 </body>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-<script type="module" src="../../js/admin/calendar-1.js"></script>
-<!-- <script type="module" src="../../js/front-page/calendar.js"></script> -->
 
 </html>

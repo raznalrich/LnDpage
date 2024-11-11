@@ -30,7 +30,9 @@
 
             <label for="image" style="font-weight: bold;">Add Newsletter</label> <p id="closebutton" style="font-size: larger;">X</p>
         </div>
-        <input type="file" id="htmlfile" name="image"  required><br><br>
+        <input style="display: none;" type="file" id="htmlfile" onchange="getFile(event)" name="image" accept=".html"  required>
+        <p id="filechosen">*No HTML file is chosen</p>
+        <div id="html" style="margin-bottom: 10px;margin-top: 0;background-color: cornflowerblue;cursor: pointer;border-radius: 20px;color: white; padding: 5px;">Upload HTML File</div>
 
 
         <!-- <input type="text" id="title" name="title" placeholder="Title" required><br><br> -->
@@ -40,6 +42,10 @@
         <button type="submit" id="submit">Submit</button>
     </form>
 </div>
+<div class="loaderBg" id="loaderBg" style="width: 100%;height: 100vh;position: absolute;top: 0;display: flex;justify-content: center;align-items: center;background-color: rgba(128, 128, 128, 0.489);display: none;z-index: 999;">
+  
+    <span class="loader"></span> 
+  </div>
 <script type="module" src="../../../js/admin/newsletter.js"></script>
  </body>
 </html>

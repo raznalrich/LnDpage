@@ -21,7 +21,8 @@
     </div>
   </div>
   <!-- </div> -->
-  <div class="input-section" id="addimage" style="display: none;">
+   
+  <div class="input-section" id="addimage" style="display: none;z-index: 100;">
     <div class="top-section" style="
       width: 100%;
       background-color: #64a2f5;
@@ -30,9 +31,9 @@
     "><i class="fa-solid fa-xmark fa-lg" style="color: #ffffff;" onclick="discardBox()"></i>
     </div>
     <div class="input-image">
-      <input type="file" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg" />
+      <input type="file" id="fileInp" class="inputFile" style="display: none;" onchange="getFile(event)" accept="image/png, image/jpeg" />
       <!-- Preview of selected file -->
-      <img id="file-preview" class="file-preview" style="display:none; width: 50px; margin-top: 10px;"
+      <img id="file-preview" src="../../../assets/UploadImage.png" class="file-preview" style="width: 250px;height: 180px; margin-top: 0px;border: black 1px solid;border-radius: 5px;object-fit: cover;"
         alt="File Preview" />
 
       <label for="fileInp"></label>
@@ -40,25 +41,30 @@
 
       <!-- Form inputs for description and category -->
       <div class="details-section">
-        <label for="description-input">Description:</label>
-        <input type="text" id="description-input" placeholder="Short description" />
+        <!-- <label for="description-input">T:</label> -->
+        <input style="padding: 5px;width: 100%;" type="text" id="category-input" placeholder="Title" /><br />
       </div>
       <div class="details-section">
-        <label for="category-input" class="category-label">Category:</label>
-        <input type="text" id="category-input" placeholder="Image category" /><br />
+        <!-- <label for="category-input" class="category-label">Category:</label> -->
+        
+        <input style="padding: 5px;width: 100%;" type="text" id="description-input" placeholder="Short description" />
       </div>
 
       <div class="bar">
         <div class="progress"></div>
       </div>
       <div class="uploadPercentage">0%</div>
-      <div class="button-section">
+      <div class="button-section" style="width: 100%;">
         <button onclick="discardBox()">discard</button>
         <button onclick="uploadImage()" id="save">save</button>
       </div>
     </div>
-  </div>
 
+</div>
+<div class="loaderBg" id="loaderBg" style="width: 100%;height: 100vh;position: absolute;top: 0;display: flex;justify-content: center;align-items: center;background-color: rgba(128, 128, 128, 0.489);display: none;z-index: 999;">
+  
+  <span class="loader"></span> 
+</div>
   <script type="module" src="../../../js/admin/scrollbar.js"></script>
 </body>
 

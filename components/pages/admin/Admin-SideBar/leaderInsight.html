@@ -25,32 +25,40 @@
       <i class="fa-solid fa-xmark fa-lg" style="color: #ffffff" onclick="discardBox()"></i>
     </div>
     <div class="input-image">
-      <input type="file" id="fileInp" class="inputFile" onchange="getFile(event)" accept="image/png, image/jpeg" />
+      <input type="file" id="fileInp" class="inputFile" style="display: none;" onchange="getFile(event)" />
       <!-- Preview of selected file -->
-      <img id="file-preview" class="file-preview" style="display:none; width: 50px; margin-top: 10px;"
+       <div class="imgpreview">
+        <img src="../../../assets/addIcon.png" id="file-preview" class="file-preview" style=" width: 60px;height: 60px;object-fit: cover; margin-top: 0px; border-radius: 50px;"
         alt="File Preview" />
+       </div>
+      
       <label for="fileInp" id="file-input"></label>
-      <span class="fileText"></span><br />
+      <span style="display: none;" class="fileText"></span><br />
 
       <!-- Form inputs for description and category -->
       <div class="details-section">
-        <label for="description-input">Insight:</label>
-        <input type="text" id="description-input" placeholder="Enter insight from leader" />
+        <!-- <label for="description-input">Insight:</label> -->
+        <input style="padding: 5px;" type="text" id="category-input" placeholder="Enter leader name" /><br />
+       
       </div>
       <div class="details-section">
-        <label for="category-input" class="category-label">Leader Name:</label>
-        <input type="text" id="category-input" placeholder="Enter leader name" /><br />
+        <!-- <label for="category-input" class="category-label">Leader Name:</label> -->
+        <input style="padding: 5px;width: 100%;" type="text" id="description-input" placeholder="Enter insight from leader" />
       </div>
 
       <div class="bar">
         <div class="progress"></div>
       </div>
-      <div class="uploadPercentage">0%</div>
+      <!-- <div class="uploadPercentage">0%</div> -->
       
     </div>
     <div class="button-section" id="button-section">
 
     </div>
+  </div>
+  <div class="loaderBg" id="loaderBg" style="width: 100%;height: 100vh;position: absolute;top: 0;display: flex;justify-content: center;align-items: center;background-color: rgba(128, 128, 128, 0.489);display: none;z-index: 999;">
+  
+    <span class="loader"></span> 
   </div>
   <script type="module" src="../../../js/admin/insights.js"></script>
 </body>
