@@ -77,7 +77,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
       })
         .then(() => {
           console.log("File metadata with index saved successfully!");
-        })
+        }).then(window.location.reload)
         .catch((error) => {
           console.error("Error saving file metadata:", error);
         });
