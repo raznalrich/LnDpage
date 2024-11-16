@@ -316,6 +316,10 @@ button:hover {
             background-color: #4c4c4c89;
             border: #000000 2px solid;
         }
+        .yellow{
+            background-color: #ded413;
+            border: #000000 2px solid;
+        }
         p{
             padding-left: 5px;
             font-size: 13px;
