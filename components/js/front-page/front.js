@@ -78,7 +78,8 @@ function renderCalendarEvents(events) {
                               <p>${menu.trainerName}</p>
                           </div>
                           <div class="mode">
-                              <div class="circle ${menu.mode === 'offline' ? 'black' : ''}"></div>
+                             <div class="circle ${menu.mode === 'offline' ? 'black' : menu.mode === 'blended' ? 'yellow' : ''}"></div>
+
                               <p>${menu.mode}</p>
                           </div>
                       </div>

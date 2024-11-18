@@ -14,9 +14,9 @@ get(dref)
       const data = snapshot.val();
       // console.log(data[1]);
       document.getElementById("newsletter-iframe").src = data[1].htmlurl;
-      document.getElementById("newsletter-button").onclick = () => {
-        window.location.href = data[1].htmlurl
-      };
+      // document.getElementById("newsletter-button").onclick = () => {
+      //   window.location.href = data[1].htmlurl
+      // };
       document.getElementById("newsletter-button").innerHTML = data[1].date;
     } else {
       console.log("No data available");

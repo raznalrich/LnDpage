@@ -100,7 +100,8 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
           discardBox();
           loader.style.display = "none";
           getAllFiles();
-        })
+        }).then(window.location.reload()
+      )
         .catch((error) => {
           console.error('Error saving file metadata:', error);
         });
@@ -251,8 +252,11 @@ window.removeImagefromFirebase = function (fileURL, fileIndex, imageDiv) {
       if (imageDiv && imageDiv.parentNode) {
         imageDiv.parentNode.removeChild(imageDiv);
       }
-    })
+    }).then(window.location.reload()
+  )
     .catch((error) => {
       console.error('Error deleting image from Firebase:', error);
+      alert('Error deleting image from Firebase:', error);
     });
+
 }

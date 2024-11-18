@@ -113,6 +113,7 @@ li:active{
     margin: 10px;
     margin-top: 10px;
     display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -142,7 +143,8 @@ li:active{
     display: flex;
     z-index: 1;
     flex-wrap: wrap;
-    width: 21.5%;
+    /* width: 21.5%; */
+    width: 24%;
     height: 200px;
     align-items: center;
     justify-content: center;
@@ -169,5 +171,7 @@ li:active{
     opacity: 1;
     visibility: visible;
     display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
