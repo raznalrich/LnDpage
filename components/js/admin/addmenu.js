@@ -21,8 +21,12 @@ form.addEventListener("submit", (e) => {
   const url = document.getElementById("url").value;
   const imageFile = document.getElementById("image").files[0];
 
-  if (!imageFile) {
-    alert("Please upload an image.");
+  // if (!imageFile) {
+  //   alert("Please upload an image.");
+  //   return;
+  // }
+  if (!imageFile && !selectedIcon) {
+    alert("Please select an icon or upload an image.");
     return;
   }
 
