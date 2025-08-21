@@ -1,5 +1,5 @@
 import { storage, database, app } from "../Firebase.js";
-import { child, get, getDatabase, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { child, get, getDatabase,update, set, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
 let fileText = document.querySelector(".fileText");
@@ -12,6 +12,24 @@ let fileItem;
 let fileName;
 let category;
 let description;
+let positionIndex;
+
+function getPosition(){
+  const filesRef = dbRef(getDatabase(), 'bannerfiles');
+  get(filesRef).then((snapshot) =>{
+    if (snapshot.exists()) {
+      const filesData = snapshot.val();
+      console.log(filesData);
+      for(const fileIndex in filesData){
+        let fileData=filesData[fileIndex];
+        positionIndex=fileData.position;
+      }
+    }else{
+      positionIndex=1;
+    }
+  });
+}
+getPosition();
 
 
 
@@ -48,13 +66,11 @@ window.uploadImage = function () {
     return;
   }
 
-  // Reference to the storage path
   const storageReference = storageRef(storage, "bannerimage/" + fileName);
   const uploadTask = uploadBytesResumable(storageReference, fileItem);
 
   uploadTask.on("state_changed",
     (snapshot) => {
-      // Progress calculation
       percentVal = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       console.log(percentVal);
       uploadPercentage.innerHTML = percentVal + "%";
@@ -64,7 +80,7 @@ window.uploadImage = function () {
       console.log("Error during upload:", error);
     },
     () => {
-      // Get the download URL on successful upload
+     
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
         console.log("File available at:", url);
         saveFileMetadata(fileName, url, category, description);
@@ -76,24 +92,23 @@ window.uploadImage = function () {
 function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
   const db = database;
   let isActive = 1;
-  const indexRef = dbRef(db, 'fileIndex'); // Reference to a counter for file index
+  const indexRef = dbRef(db, 'fileIndex'); 
 
-  // Read the current index value and increment it
   get(indexRef).then((snapshot) => {
-    let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1; // Increment the index, or start at 1
-
-    // Save the incremented index to the database
+    console.log('this is runnin')
+    let newIndex = snapshot.exists() ? parseInt(snapshot.val(), 10) + 1 : 1;
+    positionIndex++;
+   
     set(indexRef, newIndex).then(() => {
-      const filesRef = dbRef(db, 'bannerfiles/' + newIndex); // Use the index as the key
-
-      // Save the file metadata under the indexed entry
+      const filesRef = dbRef(db, 'bannerfiles/' + newIndex);
       set(filesRef, {
         fileName: fileName,
         fileURL: fileURL,
         index: newIndex,
         fileCat: fileCategory,
         fileDesc: fileDescription,
-        isActive: isActive
+        isActive: isActive,
+        position: positionIndex
       })
         .then(() => {
           console.log('File metadata with index saved successfully!');
@@ -113,23 +128,35 @@ let closeButton;
 let imageDiv;
 console.log('#1')
 window.getAllFiles = function () {
-  console.log('hii')
+  
   const filesRef = dbRef(getDatabase(), 'bannerfiles');
   get(filesRef).then((snapshot) => {
 
     if (snapshot.exists()) {
       const filesData = snapshot.val();
-      console.log(filesData);
-      for (const fileIndex in filesData) {
-        if (filesData.hasOwnProperty(fileIndex)) {
-          const fileData = filesData[fileIndex];
-          const fileCat = fileData.fileCat;
-          const isActive = fileData.isActive;
-          const fileURL = fileData.fileURL;
-          const fileName = fileData.fileName;
-          const fileDesc = fileData.fileDesc;
-
+      const filesArray = Object.keys(filesData).map((key) => ({
+        id: key, // Add the original key as ID if needed
+        ...filesData[key]
+      }));
+  
+      // Sort the array by position
+      filesArray.sort((a, b) => a.position - b.position);
+  
+      // Now you can loop through filesArray in the sorted order
+      filesArray.forEach((item) => {
+          const fileCat = item.fileCat;
+          const isActive = item.isActive;
+          const fileURL = item.fileURL;
+          const fileName = item.fileName;
+          const fileDesc = item.fileDesc;
+          const position = item.position;
+          const dataIndex = item.index;
+          console.log(position)
           let contentDiv = document.createElement('div');
+          contentDiv.classList.add("draggableItem");
+          contentDiv.draggable='true';
+          contentDiv.setAttribute("data-index",dataIndex)
+          contentDiv.dataset.position=`${position}`;
           contentDiv.style.display = 'flex';
           contentDiv.style.flexDirection = 'row';
 
@@ -138,19 +165,19 @@ window.getAllFiles = function () {
           heading.style.margin = '3px 0px 0px 0px';
           let desc = document.createElement('p');
 
-          // Toggle switch
+
           let switchdiv = document.createElement('label');
           switchdiv.className = 'ios-switch';
           let toggle = document.createElement('input');
           toggle.className = 'checkbox';
           toggle.id = 'mytoggle';
           toggle.type = 'checkbox';
-          toggle.checked = isActive === 1; // Set initial state based on the stored value in Firebase
+          toggle.checked = isActive === 1;
 
-          // Toggle event listener
+
           toggle.addEventListener('change', () => {
             const newStatus = toggle.checked ? 1 : 0;
-            updateFileStatus(fileIndex, newStatus); // Update Firebase when toggled
+            updateFileStatus(fileIndex, newStatus);
           });
 
           let togglespan = document.createElement('span');
@@ -201,14 +228,16 @@ window.getAllFiles = function () {
           closeButton.addEventListener('click', function () {
             removeImagefromFirebase(fileURL, fileIndex, imageDiv);
           })
-        }
-      }
+        
+      });
     } else {
       console.log("No files found.");
     }
   }).catch((error) => {
     console.error("Error retrieving files:", error);
   });
+
+  
 }
 
 // Update file status function
@@ -259,4 +288,103 @@ window.removeImagefromFirebase = function (fileURL, fileIndex, imageDiv) {
       alert('Error deleting image from Firebase:', error);
     });
 
+}
+
+let isDragging = false;
+let currentItem = null;
+let containerOffsetY = 0;
+let initY = 0;
+
+const container = document.querySelector(".slidebar-content");
+container.style.width = container.offsetWidth + "px";
+container.style.height = container.offsetHeight + "px";
+
+document.addEventListener("mousedown", (e) => {
+  const item = e.target.closest(".draggableItem");
+  if (item) {
+    isDragging = true;
+    currentItem = item;
+    containerOffsetY = currentItem.offsetTop;
+    currentItem.classList.add("dragging");
+    document.body.style.userSelect = "none";
+    currentItem.classList.add("insert-animation");
+    currentItem.style.top = containerOffsetY + "px";
+    initY = e.clientY;
+  }
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (isDragging && currentItem) {
+    currentItem.classList.remove("insert-animation");
+    let newTop = containerOffsetY - (initY - e.clientY);
+    if (newTop < -50) {
+      newTop = -50;
+    } else if (newTop > container.offsetHeight - 30) {
+      newTop = container.offsetHeight - 30;
+    }
+    currentItem.style.top = newTop + "px";
+
+    let itemSiblings = [
+      ...document.querySelectorAll(".draggableItem:not(.dragging)"),
+    ];
+    let nextItem = itemSiblings.find((sibling) => {
+      return (
+        e.clientY - container.getBoundingClientRect().top <=
+        sibling.offsetTop + sibling.offsetHeight / 2
+      );
+    });
+
+    itemSiblings.forEach((sibling) => {
+      sibling.style.marginTop = "1px";
+    });
+
+    if (nextItem) {
+      nextItem.style.marginTop = currentItem.offsetHeight + 5 + "px";
+    }
+    container.insertBefore(currentItem, nextItem);
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  if (currentItem) {
+    currentItem.classList.remove("dragging");
+    currentItem.style.top = "auto";
+    currentItem = null;
+    isDragging = false;
+
+    document.body.style.userSelect = "auto";
+  }
+
+  let itemSiblings = [
+    ...document.querySelectorAll(".draggableItem:not(.dragging)"),
+  ];
+
+  itemSiblings.forEach((sibling) => {
+    sibling.style.marginTop = "1px";
+  });
+
+  // Call function to update data-position attributes after drag ends
+  updatePositions();
+});
+
+// Function to update the data-position attribute based on order in the DOM
+function updatePositions() {
+  const updatedItems = document.querySelectorAll(".draggableItem");
+  updatedItems.forEach((item, index) => {
+    item.setAttribute("data-position", index + 1); 
+    const itemId = item.getAttribute("data-index");
+    const newPosition = index + 1;
+    const fileRef=dbRef(getDatabase(),`bannerfiles/${itemId}`)
+    update(fileRef,{
+      position:newPosition
+    })
+   
+  });
+
+  console.log(
+    Array.from(updatedItems).map(item => ({
+      text: item.innerText,
+      position: item.getAttribute("data-position")
+    }))
+  );
 }
