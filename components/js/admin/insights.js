@@ -13,6 +13,8 @@ let fileItem;
 let fileName;
 let category;
 let description;
+let fileTitle;
+
 
 document.getElementById("file-preview").addEventListener("click",function(){
     fileinput.click();
@@ -40,8 +42,9 @@ window.getFile = function (e) {
 window.uploadImage = function () {
     category = document.getElementById("category-input").value;
     description = document.getElementById("description-input").value;
+    fileTitle = document.getElementById("title-input").value;
     loader.style.display = "flex";
-    if (!fileItem || !description || !category) {
+    if (!fileItem || !description || !category || !fileTitle) {
         alert("Please fill all fields");
         return;
     }
@@ -64,12 +67,12 @@ window.uploadImage = function () {
         () => {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                 console.log("File available at:", url);
-                saveFileMetadata(fileName, url, category, description);
+                saveFileMetadata(fileName, url, category, description , fileTitle);
             });
         }
     );
 }
-function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
+function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription,fileTitle) {
     const db = database;
     const indexRef = dbRef(db, 'fileIndex');
     get(indexRef).then((snapshot) => {
@@ -79,6 +82,7 @@ function saveFileMetadata(fileName, fileURL, fileCategory, fileDescription) {
             set(filesRef, {
                 fileName: fileName,
                 fileURL: fileURL,
+                fileTitle:fileTitle,
                 index: newIndex,
                 fileCat: fileCategory,
                 fileDesc: fileDescription
@@ -115,7 +119,9 @@ window.getAllFiles = function () {
                     const fileDes = fileData.fileDesc;
                     const fileURL = fileData.fileURL;
                     const fileName = fileData.fileName;
+                    const fileTitle = fileData.fileTitle;
 
+                    // Create the card element
                     // Create the card element
                     let cardContainer = document.getElementById('card-container');
                     let card = document.createElement('div');
@@ -126,10 +132,11 @@ window.getAllFiles = function () {
                         <div class="leader-image-container">
                             <img src="${fileURL}" alt="${fileName}" class="leader-image" style="width: 30px; height:30px; border-radius:50% margin: 10px;" />
                         </div>
-                        <div class="description-container">
-                         <h3 class="leader-heading">${fileCat}</h3>
-                        <p class="leader-quote">${fileDes}</p>
-                        <div class="actions">
+                        <div style="width: 100%;" class="description-container">
+                         <h3 style="width: 100%;" class="leader-heading">${fileCat}</h3>
+                         <span style="font-size: 10px;color: #888888; font-style: italic; letter-spacing: 0.01em;" class="leader-quote">${fileTitle}</span>
+                        <p style="width: 100%;" class="leader-quote">${fileDes}</p>
+                        <div style="width: 100%;" class="actions">
                             <i class="fas fa-trash deleteButton"></i>
                             <i class="fas fa-edit editButton" value=${fileIndex}></i>
                         </div>
@@ -166,23 +173,26 @@ window.editImageInFirebase = function (fileData, fileIndex) {
     let imgPreview = document.getElementById('file-preview')
     let descContent = document.getElementById('description-input');
     let catContent = document.getElementById('category-input');
+    let titleContent = document.getElementById('title-input');
     imgPreview.src = fileData.fileURL;
     
     // imageContent.value=`${fileData.fileURL}`;
     descContent.value = `${fileData.fileDesc}`;
     catContent.value = `${fileData.fileCat}`;
+    titleContent.value = `${fileData.fileTitle}`;
     // imageContent.innerHTML = `${fileData.fileName}`;
 
 
 
 }
-function updateFileMetadata(fileName,url,newCategory,newDescription,fileIndex){
+function updateFileMetadata(fileName,url,newCategory,newDescription,fileIndex,newTitle){
     const dbRefToUpdate = dbRef(getDatabase(), 'leaderfiles/' + fileIndex);
     update(dbRefToUpdate, {
         fileName:fileName,
         fileURL:url,
         fileCat: newCategory,
-        fileDesc: newDescription
+        fileDesc: newDescription,
+        fileTitle:newTitle
     }).then(() => {
         console.log('image data updated successfully');
     }).catch((error) => {
@@ -192,10 +202,30 @@ function updateFileMetadata(fileName,url,newCategory,newDescription,fileIndex){
     location.reload();
 }
 window.updateContent = function (fileIndex) {
-    const storageReference = storageRef(storage, "leaderimages/" + fileName);
-    const uploadTask = uploadBytesResumable(storageReference, fileItem);
+    // let effectiveFileName = fileName;
+    // console.log("file name",effectiveFileName);
+    
+    // effectiveFileName = document.getElementById('title-input').getAttribute('data-filename') || effectiveFileName;
+    // const storageReference = storageRef(storage, "leaderimages/" + effectiveFileName);
+    // const uploadTask = uploadBytesResumable(storageReference, fileItem);
     let newDescription = document.getElementById('description-input').value;
     let newCategory = document.getElementById('category-input').value;
+    let newTitle = document.getElementById('title-input').value;
+    let newFileName = document.getElementById("file-preview")   ;
+
+     // New file selected - upload new file to storage
+    const storageReference = storageRef(storage, "leaderimages/" + newFileName.name);
+    const uploadTask = uploadBytesResumable(storageReference, fileItem);
+
+    // Check if there's a new file to upload
+    if (!fileItem) {
+        // No new file selected - update metadata only using existing fileName and URL
+        const existingFileName = fileName || "";  // fallback if undefined
+        const existingFileURL = document.getElementById('file-preview').src;
+
+        updateFileMetadata(existingFileName, existingFileURL, newCategory, newDescription, fileIndex, newTitle);
+        return;
+    }
 
     uploadTask.on("state_changed",
         (snapshot) => {
@@ -211,7 +241,7 @@ window.updateContent = function (fileIndex) {
         () => {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                 console.log("File available at:", url);
-                updateFileMetadata(fileName, url, newCategory, newDescription,fileIndex);
+                updateFileMetadata(newFileName, url, newCategory, newDescription,fileIndex,newTitle);
             });
         }
     );
@@ -251,7 +281,7 @@ window.discardBox = function () {
     document.getElementById("file-preview").src = "https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/icons%2FaddIcon.png?alt=media&token=8801a2e8-d627-4f96-bd59-26e3604363ea";
     document.getElementById("category-input").value ="";
     document.getElementById("description-input").value ="";
-
+    document.getElementById("title-input").value ="";
     // buttonSection.removeChild(button);
 }
 // window.addEventListener('DOMContentLoaded',getAllFiles())
