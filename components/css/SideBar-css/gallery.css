@@ -1,210 +1,347 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    height: 100vh;
-    background-color: #ffff;
-    width: 100%;
+/* Reset and general styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  border: 0;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f4f6fa;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+/* Sidebar Styles */
 .sidebar {
-    width: 250px;
-    background-color: #4A90E2;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 250px;
+  background-color: #4A90E2;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 .sidebar h2 {
-    color: white;
-    font-size: 18px;
-    margin-bottom: 20px;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 24px;
+  letter-spacing: 0.6px;
 }
-.sidebar button {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #ffff;
-    border: none;
-    border-radius: 25px;
-    color: #4D4D4D;
-    font-size: 14px;
-    cursor: pointer;
+.sidebar button, .sidebar a {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 14px;
+  background: #fff;
+  border: none;
+  border-radius: 25px;
+  color: #4D4D4D;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: background 0.15s, color 0.15s;
+  box-shadow: 0 1px 4px rgba(80, 120, 200, 0.1);
+}
+.sidebar button:hover, .sidebar a:hover {
+  background: #e0e0e0;
+  color: #37609b;
 }
 
-.sidebar button:hover {
-    background-color: #e0e0e0;
-}
-.gallery-btn{
-   margin-left: 4rem;
-   border-radius: right 0%;
-}
+/* Main Content */
 .main-content {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: white;
-    position: relative;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px 32px 32px;
+  background: white;
+  position: relative;
+  flex: 1;
+  min-height: 100vh;
 }
+
+/* Upload Banner and Add Button */
 .upload-banner {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
 }
 .upload-banner i {
-    font-size: 24px;
-    margin-right: 10px;
+  font-size: 24px;
+  margin-right: 12px;
+  color: #4A90E2;
 }
 .upload-banner span {
-    font-size: 16px;
+  font-size: 16px;
+  color: #355888;
 }
 .add-button {
-    background-color: #6aa9ff;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  background: #6aa9ff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  z-index: 1000;
+  top: 8px;
+  right: 40px;
+  transition: background 0.15s;
+}
+.add-button:hover {
+  background: #3383d0;
 }
 
+/* Folder/Image Gallery Section */
+.folder-section {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.inner-section {
+  width: 67vw;
+  left: 10%;
+  flex-wrap: wrap;
+  overflow: auto;
+  display: flex;
+  position: relative;
+}
 
-
+/* Individual Card Actions */
 .card .actions i {
-    cursor: pointer;
-}
-.sidebar a{
-    text-decoration: none;
-    color:#4D4D4D;
-}
-.image-category{
-    position: relative;
-    display: flex;
-    top: 6%;
-    width: 100%;
-    border: 1px solid black;
-    height: 90%;
-    border-radius: 7px;
-}
-.main-div{
-    display: flex;
-    flex-direction: row;
+  cursor: pointer;
 }
 
-body{
-    width: 100vw;
-    height: 100vh;
-    
-}
-*{
-    border: 0px;
-    margin: 0px;
-    font-family: "Montserrat", sans-serif;
-}
-.folder-section{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-}
- .inner-section{
-    width: 67vw;
-    height: 80%;
-
-    position: relative;
-    left: 10%;
-    flex-wrap: wrap;
-    overflow: auto;
-    display: flex;
-}
-.add-image-button{
-    width: 80px;
-    padding: 1px 3px;
-    border-radius: 7px;
-    background-color: #3F6889;
-    margin: 5px;
-    position: relative;
-    left: 95%;
-}
-.input-section{
-    width: 40%;
-    height: 60%;
-    border: 1px solid black;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    position: absolute;
-    top : 20%;
-    left: 30%;
-    flex-wrap: wrap;
-    background-color: white;
-}
-.input-image{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    flex-wrap: wrap;
-    top: 10%;
-    height: 80%;
+/* Image Category Border */
+.image-category {
+  display: flex;
+  width: 100%;
+  border: 1px solid #c9e0fc;
+  border-radius: 7px;
+  background: #f9fafd;
+  margin-bottom: 18px;
+  height: 90%;
+  position: relative;
 }
 
-.button-section{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    position: relative;
-    width: 50%;
-    left: 30%;
-    top: 10%;
-    
+/* Add image button */
+.add-image-button {
+  width: 82px;
+  padding: 6px 12px;
+  border-radius: 7px;
+  background: #3F6889;
+  color: #fff;
+  font-size: 15px;
+  margin: 7px 0 12px 0;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  left: 95%;
+  transition: background 0.15s;
 }
-.button-section button{
-    margin-left: 5%;
-    padding: 3px 10px;
-    border-radius: 15px;
-    border: 0.3px solid black;
-}
-#save{
-    background-color: #64A2F5;
+.add-image-button:hover {
+  background: #4a90e2;
 }
 
-#description-input{
-    border: 1px solid black;
-    border-radius: 7px;
-    position: relative;
-    top: 5%;
+/* MODAL: Input section Styles */
+.input-section {
+  width: 360px;
+  min-height: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(32, 66, 148, 0.14);
+  border: 1.5px solid #c9e0fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 2221;
+  top: 16%;
+  left: 39vw;
+  padding-bottom: 18px;
 }
-#category-input{
-    border: 1px solid black;
-    border-radius: 7px;
-    position: relative;
-    top: 5%;
-}
-.details-section{
-    margin-bottom: 5px;
-}
-.details-section .category-label{
-    padding-right: 6%;
-}
+
 .top-section {
-    display: flex;
-    justify-content: end;
-    align-content: baseline;
-    position: absolute;
+  width: 100%;
+  background: linear-gradient(90deg,#64a2f5 80%, #538ed6 100%);
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 17px;
+  border-radius: 12px 12px 0 0;
+  position: relative;
 }
-.top-section i{
-    position: relative;
-    bottom: -40%;
-    right: 2%;
+.top-section i {
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  transition: color 0.17s;
+}
+.top-section i:hover {
+  color: #dc143c;
+}
 
+.input-image {
+  padding: 26px 20px 8px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.top-section i:hover{
-    cursor: pointer;
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 17px;
+  width: 100%;
+}
+.inputFile {
+  display: none;
+}
+.file-label {
+  background: #eef4fb;
+  color: #3383d0;
+  padding: 8px 17px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #aac4e9;
+  font-weight: 500;
+  transition: background 0.16s;
+  font-size: 14px;
+}
+.file-label:hover {
+  background: #3383d0;
+  color: #fff;
+}
+.file-preview {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid #d1dbed;
+  margin-left: 10px;
+  box-shadow: 0 1px 7px rgba(32,66,148,0.10);
+  display: block;
+}
+
+/* Input Fields and Labels in Modal */
+.details-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.details-section label {
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: #37609b;
+  font-weight: 500;
+}
+.details-section input {
+  height: 33px;
+  border-radius: 8px;
+  border: 1px solid #c9e0fc;
+  font-size: 15px;
+  padding: 0 11px;
+  background: #fff;
+  margin-bottom: 2px;
+  transition: border 0.17s;
+}
+.details-section input:focus {
+  border: 1.5px solid #4b9cea;
+  outline: none;
+}
+
+/* Progress Bar and Upload Percentage */
+.bar {
+  width: 100%;
+  height: 8px;
+  background: #e3eefa;
+  border-radius: 4px;
+  margin: 12px 0 4px 0;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #64a2f5, #4b9cea 60%);
+  width: 0%;
+  transition: width 0.2s;
+}
+.uploadPercentage {
+  font-size: 13px;
+  color: #5692d8;
+  text-align: right;
+  width: 100%;
+  margin-bottom: 7px;
+}
+
+/* Modal Action Buttons */
+.button-section {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin-top: 10px;
+  gap: 12px;
+  padding: 0 4px;
+  align-self: center;
+}
+.button-section button {
+  padding: 8px 26px;
+  font-size: 15px;
+  border-radius: 17px;
+  border: none;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(32,66,148,0.06);
+  cursor: pointer;
+  background: #64A2F5;
+  font-weight: 500;
+  transition: background 0.14s, color 0.15s;
+}
+.button-section button.discard-btn {
+  background: #c4cad4;
+  color: #355888;
+}
+.button-section button.discard-btn:hover {
+  background: #828599;
+}
+.button-section button.save-btn:hover, .button-section button#save:hover {
+  background: #3383d0;
+}
+.button-section button#save {
+  background: #64A2F5;
+}
+
+#description-input,
+#category-input {
+  border: 1px solid #c9e0fc;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 7px 11px;
+  transition: border 0.18s;
+  background: #fff;
+}
+
+/* Misc minor adjustments */
+.details-section .category-label {
+  padding-right: 8px;
+}
+
+/* Responsive for modal on small screens */
+@media (max-width: 700px) {
+  .input-section {
+    left: 5vw;
+    width: 90vw;
+  }
 }
