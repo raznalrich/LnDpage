@@ -175,7 +175,7 @@ body {
     flex-direction: row;
     position: relative;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     /* top: 25%;
     left: 80%; */
     
