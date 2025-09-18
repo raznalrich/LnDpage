@@ -10,40 +10,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../css/front-page/navbar.css">
 </head>
 <body>
     <header onload="updateAnouncement()">
-        <div class="header-container">
-            <div class="logotext">
-                <h2>Learning <span class="amp">&</span> Development</h2>
-            </div>
-    
-            <div class="search-bar">
-                <input type="text" id="homeSearchInput" placeholder="Search announcements" autocomplete="off">
-            </div>
-                
-    
-            <div class="header-buttons">
-                <a href="./components/pages/announcement-seperate-page/index.html" style="text-decoration: none;">
-                    <button class="announcements" id="announcement">
-                        <span class="bell-icon">🔔</span> 
-                        <span class="badge" id="badge">0</span>
-                    </button>
-                </a>
-            </div>
+    <!-- navbar -->
+      <div class="header-container">
+        <div class="logotext">
+            <h2>Learning <span class="amp">&</span> Development</h2>
         </div>
-    
-        <div class="nav-container">
-            <nav>
-                <ul>
-                    <li><a href="../../../index.html">Home</a></li>
-                    <li><a href="../user/CalenderPage.html">Calendar</a></li>
-                    <li><a href="../user/NewsletterSapperatePage.html">Newsletter</a></li>
-                    <li><a style="color: red;" href="./components/pages/announcement-seperate-page/index.html">Announcement</a></li>
-                    <li><a href="../gallery.html">Gallery</a></li>
-                </ul>
-            </nav>
+
+        <div class="search-bar-nav">
+            <input type="text" placeholder="Search">
         </div>
+
+        <div class="header-buttons">
+            <a href="../announcement-seperate-page/index.html" style="text-decoration: none;">
+                <button class="announcements" id="announcement">
+                    <span class="bell-icon">🔔</span> 
+                    <span class="badge" id="badge">0</span>
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../user/CalenderPage.html">Calendar</a></li>
+                <li><a href="../user/NewsletterSapperatePage.html">Newsletter</a></li>
+                <li><a style="color: red;"  href="#">Announcement</a></li>
+                <li><a  href="../gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- navbar -->
     </header>
     <div class="main-content">
         <div class="header-wrapper">

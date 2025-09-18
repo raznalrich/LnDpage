@@ -9,16 +9,42 @@
         rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="../css/gallery/gallery.css">
+    <link rel="stylesheet" href="../css/front-page/navbar.css">
   </head>
   <body onload="getCategories()">
     <header onload="previewAllFiles()">
-      <div class="g-logo">
+      <!-- navbar -->
+      <div class="header-container">
+        <div class="logotext">
+            <h2>Learning <span class="amp">&</span> Development</h2>
+        </div>
 
-        <h2>Gallery</h2>
-        <a href="../../index.html">Go home</a>
+        <div class="search-bar-nav">
+            <input type="text" placeholder="Search">
+        </div>
 
-        
-      </div>
+        <div class="header-buttons">
+            <a href="../announcement-seperate-page/index.html" style="text-decoration: none;">
+                <button class="announcements" id="announcement">
+                    <span class="bell-icon">🔔</span> 
+                    <span class="badge" id="badge">0</span>
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../pages/user/CalenderPage.html">Calendar</a></li>
+                <li><a href="../pages/user/NewsletterSapperatePage.html">Newsletter</a></li>
+                <li><a  href="../pages/announcement-seperate-page/index.html">Announcement</a></li>
+                <li><a style="color: red;" href="#">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- navbar -->
       <div class="gallery-header">
         
         <nav id="nav-bar">
@@ -30,7 +56,7 @@
           <input type="text" placeholder="Search">
         </div> -->
       </div>
-      <div class="h-line"></div>
+      <!-- <div class="h-line"></div> -->
     </header>
     
 
