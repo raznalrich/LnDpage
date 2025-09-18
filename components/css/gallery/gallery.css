@@ -45,13 +45,13 @@ header{
 .gallery-header{
     background-color: #D42027;
 }
-nav ul{
+.gallery-header nav ul{
     display: flex;
     list-style: none;
     gap: 20px;
     padding: 10px;
 }
-li{
+.gallery-header li{
     cursor: pointer;
     padding: 10px 20px;
     color: #ddd;
@@ -59,7 +59,7 @@ li{
     transition: background-color 0.3s ease;
     /* transition: opacity 0.3s ease, visibility 0s linear 0.3s; */
 }
-li:active{
+.gallery-header li:active{
     color: red;
 }
 
@@ -111,7 +111,7 @@ li:active{
     height: 100vh;
     width: 97%;
     margin: 10px;
-    margin-top: 10px;
+    margin-top: 60px;
     display: flex;
     
     flex-direction: row;

@@ -1,0 +1,418 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat";
+}
+html{
+    scroll-behavior: smooth;
+}
+
+/* Main Carousel Swiper Container */
+/* .carousel-swiper .swiper-container {
+    width: 100%;
+    height: 80vh; /* Adjust as needed */
+/* } */
+
+/* Swiper Slide Styling */
+/* .carousel-swiper .swiper-slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+} */
+
+/* Image Styling */
+/* .carousel-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+/* Description Overlay for Carousel */
+/* .carousel-swiper .description-overlay {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 10;
+} */
+
+/* Carousel Swiper Navigation Buttons */
+/* .carousel-swiper .swiper-button-next,
+.carousel-swiper .swiper-button-prev {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+} */ */
+*{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+* {
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    height: 20vh; /* Set header height to 20% of viewport height */
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Distribute space evenly */
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px 20px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Shadow below */
+}
+
+.logotext {
+    font-size: 18px; /* Further decrease logo size */
+    font-weight: bold;
+    color: #D42027;
+}
+
+.logotext .amp {
+    /* font-size: 16px; Increase ampersand size slightly */
+    color: black; /* Ampersand color */
+}
+
+.search-bar-nav {
+    margin-left: 4cm; /* Move search bar 4cm to the right */
+}
+
+.search-bar-nav input {
+    width: 10cm; /* Set width of the search bar to 8cm */
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+}
+.suggestions-container {
+    position: absolute;
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions-container div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions-container div:hover {
+    background-color: #f0f0f0;
+}
+
+
+.header-buttons {
+    display: flex;
+    align-items: center; /* Center buttons vertically */
+}
+
+.bell-icon {
+    color: #D42027; /* Red color for the bell icon */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center; /* Center the navigation */
+    margin-top: 10px; /* Space above the navigation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow above the nav */
+}
+
+.nav-container nav {
+    display: flex;
+}
+
+.nav-container nav ul {
+    display: flex; 
+    align-items: center;
+    gap: 50px; /* Space between nav items */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-container nav ul li {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.nav-container nav ul li a {
+    text-decoration: none;
+    color: #5F2A2A;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    font-weight: bold; /* Make the nav links bold */
+
+}
+
+.nav-container nav ul li a:hover {
+    color: #D42027;
+}
+
+.announcements {
+    position: relative;
+}
+
+.announcements .badge {
+    color: white;
+    background-color: #D42027; /* Red background for badge */
+    border-radius: 50%;
+    padding: 5px 7px;
+    font-size: 15px;
+    position: absolute;
+    top: -7px;
+    right: -15px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #D42027;
+    border-radius: 25px;
+    background-color: white;
+    color: #D42027;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f8e3e3;
+}
+
+
+
+
+.carousel {
+    position: relative;
+    max-width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    iframe{
+        height: 100vh;
+    }
+  }
+
+.menutiles{
+    width: 100%;
+}
+
+
+
+
+/* swiper-calendar */
+.calendarEvents{
+    padding-bottom: 40px;
+}
+.swiper {
+    width: 100%;
+    height: 100px;
+    
+  }
+  #swiperCalendar{
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    top: 0; */
+    width: 100%;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .calendarEventContainer{
+    /* padding-left: 50px;
+    padding-right: 50px;
+    width: 100%; */
+    
+    .date{
+        background-color: #4D4D4D;
+        color: white;
+        line-height: 4px;
+        position: relative;
+        top: 0px;
+        left: 10px;
+        width: 50px;
+        height: 80px;
+        z-index: 999;
+        p{
+            padding-top: 10px;
+            
+        }
+        h2{
+            padding-top: 20px;
+        }
+        .swiper{
+            .swiper-pagination{
+                padding-top: 50px;
+            }
+        }
+        
+        
+    }
+    .descCal{
+        display: flex;
+        justify-content: space-between;
+        .trainer{
+            display: flex;
+            padding-top: 10px;
+            padding-left: 70px;
+            p{
+                padding-left: 5px;
+                font-size: 13px;
+                max-width: 100px; /* Adjust the width as needed */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    img{
+        height: auto;
+        width: 20px;
+    }
+    .mode{
+        display: flex;
+        padding-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+        .circle{
+            width: 16px;
+            height: 16px;
+            border-radius: 50px;
+            background-color: green;
+            border: #00000041 2px solid;
+        }
+        .black{
+            background-color: #4c4c4c89;
+            border: #000000 2px solid;
+        }
+        .yellow{
+            background-color: #ded413;
+            border: #000000 2px solid;
+        }
+        p{
+            padding-left: 5px;
+            font-size: 13px;
+         
+            padding-right: 10px;
+        }
+    }
+    .calbottom{
+        height: 20px;
+        border-bottom: #000000 1px solid;
+       
+    }
+    .courseDetails{
+        position: absolute;
+        top: 15px;
+       width: 300px;
+    }
+    .coursename{
+        background-color: #D42027;
+        height: 30px;
+       
+        /* margin-top: -20px; */
+        color: white;
+        p{
+            text-align: end;
+            padding-right: 10px;
+            padding-left: 60px;
+           
+        }
+    }
+  }
+  /* newsletter */
+
+.newsLetter{
+    iframe{
+        padding-top: 20px;
+    }
+}
+.announceAndCalendar{
+    display: flex;
+    .announcement{
+        width: 60%;
+    }
+    .calendar{
+        width: 40%;
+    }
+}
+
+.header {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    position: relative;
+}
+.announcement {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+.headingcontainer{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.logo{
+    margin-top: -1.2rem;
+ }  
+
+.announcement-hover{
+    width: 20%;
+    height: auto;
+    border: 1px solid grey;
+    position: absolute;
+    top: 11%;
+    left: 78%;
+    background-color: rgba(244, 238, 238, 0.7) ;
+    border-radius: 7px;
+    font-size: 10px;
+}
+.announcement-section{
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    border: 1px solid grey;
+}
+.event-section{
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+    border: 1px solid grey;
+}
+.event-icon{
+    padding-right: 4%;
+}
+.notification-icon{
+    padding-right: 4%;
+
+}
