@@ -1,106 +1,121 @@
-const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
-const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let currentMonth = new Date().getMonth();
-let events = []; // Store fetched events
 const monthDisplay = document.getElementById("monthDisplay");
 const eventContainer = document.getElementById("eventContainer");
 const searchInput = document.getElementById("searchInput");
+import { database ,ref} from "../Firebase.js";
+import { child, get, getDatabase, set, update, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
-// Fetch events from Firebase
-async function fetchEvents() {
+
+// === Fetch & Preview Calendar Image ===
+window.getCalendarImage = async function () {
+    const calendarImageRef = dbRef(database, "calendarImage");
+
     try {
-        const response = await fetch(databaseURL);
-        if (!response.ok) {
-            throw new Error("Network response was not ok " + response.statusText);
+        const snapshot = await get(calendarImageRef);
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            const preview = document.getElementById("calendarImagePreview");
+            preview.innerHTML = `<img src="${data.url}" style="width:1000px;height:auto;" />`;
+        } else {
+            console.log("No calendar image found in DB");
         }
-        const data = await response.json();
-        events = Object.values(data); // Store events in global array
-        displayFilteredEvents(); // Display events on initial load
     } catch (error) {
-        console.error("Error fetching events:", error);
+        console.error("Error fetching calendar image:", error);
     }
-}
+};
 
-// Function to calculate duration in hours excluding Sundays
-function calculateDuration(startDate, endDate, startTime, endTime) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    
-    // Parse the start and end times
-    const startTimeParts = startTime.split(':').map(Number);
-    const endTimeParts = endTime.split(':').map(Number);
-    
-    // Calculate daily duration in hours
-    const dailyDuration = (endTimeParts[0] - startTimeParts[0]) + (endTimeParts[1] - startTimeParts[1]) / 60; // Duration in hours
-    
-    let totalDuration = 0;
 
-    for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
-        if (d.getDay() !== 0) { // 0 represents Sunday
-            totalDuration += dailyDuration; // Add daily duration for each day excluding Sundays
-        }
-    }
+function getSidebarAnnouncements(){
+  const sidebar = document.querySelector("#pageSideBar .announcement-list");
+  const dref = ref(database);
 
-    return totalDuration; // Total hours
-}
+  get(child(dref,"announcement")).then((announce) => {
+        let announcementsArray = [];
+        announce.forEach(announcement => {
+            let announcementDate = announcement.child("date").val();
+            let announcementDesc = announcement.child("desc").val();
+            let announcementTitle = announcement.child("title").val();
+            let announcementUrl = announcement.child("url").val();
 
-// Display events based on month and search query
-function displayFilteredEvents() {
-    const query = searchInput.value.toLowerCase().trim();
-    eventContainer.innerHTML = ""; // Clear existing events
+           announcementsArray.push({
+        date: new Date(announcementDate),
+        title: announcementTitle,
+        desc: announcementDesc,
+        url: announcementUrl,
+      }); 
+        });
+        announcementsArray.sort((a, b) => b.date - a.date);
 
-    const filteredEvents = events.filter(event => {
-        const isMonthMatch = new Date(event.startDate).getMonth() === currentMonth;
-        const isSearchMatch = !query || 
-                              event.courseName.toLowerCase().includes(query) || 
-                              event.trainerName.toLowerCase().includes(query) || 
-                              event.targetAudience.toLowerCase().includes(query);
-        return isMonthMatch && isSearchMatch;
+    // Limit to 3
+    const limited = announcementsArray.slice(0, 3);
+
+    // Clear existing
+    sidebar.innerHTML = "";
+
+    limited.forEach((a) => {
+      const li = document.createElement("li");
+
+      // If URL exists → wrap title in <a>
+      const title = a.url
+        ? `<a href="${a.url}" target="_blank"><h3>${a.title}</h3></a>`
+        : `<h3>${a.title}</h3>`;
+
+      li.innerHTML = `
+        ${title}
+        <p>${a.desc}</p>
+      `;
+
+      sidebar.appendChild(li);
     });
-    
-    filteredEvents.forEach(event => {
-        const duration = calculateDuration(event.startDate, event.endDate, event.startTime, event.endTime); // Calculate duration
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <div class="card-content">
-                <h2><span class="red">${new Date(event.startDate).getDate()}</span> ${event.courseName}</h2>
-                <p>Key Points: ${event.keyPoints || "N/A"}</p>
-                <div class="details">
-                    <p>Target Audience: <span>${event.targetAudience}</span></p>
-                    <p>Start Date: <span>${event.startDate}</span></p>
-                    <p>End Date: <span>${event.endDate}</span></p>
-                    <p>Time: <span>${event.startTime || "N/A"} - ${event.endTime || "N/A"}</span></p> <!-- New Time row -->
-                    <p>Trainer: <span>${event.trainerName}</span></p>
-                    <p>Mode: <span>${event.mode}</span></p>
-                    <p>Time Duration: <span>${duration.toFixed(2)} hours</span></p> <!-- Updated Time Duration field -->
-                </div>
-            </div>
-            <i class="fa-solid fa-laptop"></i>
-        `;
-        eventContainer.appendChild(card);
+  })
+}
+//image
+function getPhotoGallery(){
+  const sidebarpic = document.querySelector("#gallery-preview-list .photo-list");
+  const dref = ref(database);
+
+  get(child(dref,"files")).then((announce) => {
+        let announcementsArray = [];
+        announce.forEach(announcement => {
+            let fileCategory = announcement.child("fileCat").val();
+            let fileDesc = announcement.child("fileDesc").val();
+            let fileName = announcement.child("fileName").val();
+            let fileURL = announcement.child("fileURL").val();
+
+           announcementsArray.push({
+        category: fileCategory,
+        title: fileName,
+        desc: fileDesc,
+        url: fileURL,
+      }); 
+        });
+        console.log(announcementsArray);
+        
+        announcementsArray.sort((a, b) => b.date - a.date);
+
+    // Limit to 3
+    const limited = announcementsArray.slice(0, 3);
+            console.log(limited);
+
+
+    // Clear existing
+    sidebarpic.innerHTML = "";
+
+    limited.forEach((a) => {
+      const li = document.createElement("li");
+
+        li.innerHTML = `
+    <div class="gallery-item">
+      <img src="${a.url}" alt="${a.title}" />
+      <p>${a.desc}</p>
+    </div>
+  `;
+
+      sidebarpic.appendChild(li);
     });
+  })
 }
-
-// Update month display
-function updateMonthDisplay() {
-    monthDisplay.textContent = monthNames[currentMonth];
-    displayFilteredEvents();
-}
-
-// Event listeners for month navigation
-document.getElementById("prevMonth").addEventListener("click", () => {
-    currentMonth = (currentMonth - 1 + 12) % 12; // Loop back if at January
-    updateMonthDisplay();
-});
-
-document.getElementById("nextMonth").addEventListener("click", () => {
-    currentMonth = (currentMonth + 1) % 12; // Loop back if at December
-    updateMonthDisplay();
-});
-
-// Event listener for search input
-searchInput.addEventListener("input", displayFilteredEvents);
-
-// Initial load
-fetchEvents();
+// Run on page load
+getCalendarImage();
+getSidebarAnnouncements();
+getPhotoGallery();

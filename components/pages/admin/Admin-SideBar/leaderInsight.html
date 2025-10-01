@@ -10,47 +10,80 @@
   <div class="main-content">
     <div class="upload-banner">
       <button class="add-button" onclick="previewBox()">ADD +</button>
+      <button class="add-button2" onclick="imagepreviewBox()">ADD Image +</button>
     </div>
     <div id="card-container">
 
     </div>
   </div>
+  <div id="addjpegcalendar" style="display: none" class="input-section">
+     <div class="button-section-calendar" id="button-section-calendar">
+ <button style="background: none;border: none;cursor: pointer;" onclick="discardBox()"><span>&#10060;</span></button>
+    </div>
+
+    <!-- Image Upload Section -->
+  <div class="calendar-image-upload">
+    <input type="file" id="calendarImageInput" style="display:none;" onchange="uploadCalendarImage(event)" />
+    <label for="calendarImageInput" class="upload-label">Upload Calendar Image</label>
+    
+    <!-- Preview -->
+    <div id="calendarImagePreview" class="calendar-preview"></div>
+  </div>
+ 
+  </div>
   <div class="input-section" id="addimage" style="display: none">
     <div class="top-section" style="
-          width: 100%;
-          background-color: #64a2f5;
-          height: 25px;
-          border-radius: 7px 7px 0px 0px;
-        ">
-      <i class="fa-solid fa-xmark fa-lg" style="color: #ffffff" onclick="discardBox()"></i>
-    </div>
+  width: 100%;
+  background-color: #64a2f5;
+  height: 40px;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers text */
+  position: relative;
+">
+  <!-- Title -->
+  <span id="header-title" class="optionedit" style="color: #ffffff; font-weight: 500; font-size: 14px;">
+    
+  </span>
+
+  <!-- Close button -->
+  <i class="fa-solid fa-xmark fa-lg" 
+     style="color: #ffffff; cursor: pointer; position: absolute; right: 10px;"
+     onclick="discardBox()"></i>
+</div>
     <div class="input-image">
       <input type="file" id="fileInp" class="inputFile" style="display: none;" onchange="getFile(event)" />
       <!-- Preview of selected file -->
        <div class="imgpreview">
-        <img src="../../../assets/addIcon.png" id="file-preview" class="file-preview" style=" width: 60px;height: 60px;object-fit: cover; margin-top: 0px; border-radius: 50px;"
-        alt="File Preview" />
+
        </div>
       
       <label for="fileInp" id="file-input"></label>
       <span style="display: none;" class="fileText"></span><br />
 
       <!-- Form inputs for description and category -->
-       <div class="input-fields">
-      <div class="details-section">
-        <!-- <label for="description-input">Insight:</label> -->
-        <input style="padding: 5px;" type="text" id="category-input" placeholder="Enter leader name" /><br />
-       
-      </div>
-      <div class="details-section">
-        <!-- <label for="category-input" class="category-label">Leader Name:</label> -->
-        <input style="padding: 5px;width: 100%;" type="text" id="title-input" placeholder="Enter Designation" />
-      </div>
-      <div class="details-section">
-        <!-- <label for="category-input" class="category-label">Leader Name:</label> -->
-        <input style="padding: 5px;width: 100%;" type="text" id="description-input" placeholder="Enter insight from leader" />
-      </div>
-      </div>
+      <div class="input-fields">
+  <div class="details-section">
+    <input style="padding: 5px;width: 100%;" type="text" id="courseName-input" placeholder="Enter course name" /><br />
+  </div>
+  <div class="details-section">
+  <select style="padding: 5px; width: 100%;" id="mode-input">
+    <option value="" disabled selected>Select mode</option>
+    <option value="offline">Offline</option>
+    <option value="online">Online</option>
+    <option value="blended">Blended</option>
+  </select>
+</div>
+
+  <div class="details-section">
+    <input style="padding: 5px; width: 100%;" type="date" id="startDate-input" placeholder="Enter start date" />
+  </div>
+  <div class="details-section">
+    <input style="padding: 5px; width: 100%;" type="text" id="trainerName-input" placeholder="Enter trainer name" />
+  </div>
+</div>
+
 
       <div class="bar">
         <div class="progress"></div>

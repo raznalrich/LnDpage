@@ -1,3 +1,6 @@
+import { database } from "../Firebase.js";
+import { child, get, getDatabase, set, update, ref as dbRef } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
 // Fetch and render calendar events from Firebase
 document.addEventListener('DOMContentLoaded', () => {
   showCalendarEvents(); // Call this function when the DOM is fully loaded
@@ -5,8 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to fetch calendar events from Firebase
 function showCalendarEvents() {
-  const databaseURL = "https://training-calendar-ilp05-default-rtdb.asia-southeast1.firebasedatabase.app/courses/.json";
+  const filesRef = dbRef(getDatabase(), "insights");    
   let swiperCalendar = document.getElementById('swiperCalendar');
+  get(filesRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const insightsData = snapshot.val();
+                renderCalendarEvents(insightsData);
+            }
+        }
+    )
 
   fetch(databaseURL)
       .then(response => {
@@ -18,7 +29,7 @@ function showCalendarEvents() {
       .then(data => {
           const events = Object.values(data);
           console.log("Events loaded: ", events.length); // Debug log to check number of events
-          renderCalendarEvents(events); // Render events if available
+        //   renderCalendarEvents(events); // Render events if available
       })
       .catch(error => {
           console.error("There was a problem with the fetch operation:", error);

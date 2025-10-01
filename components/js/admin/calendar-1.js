@@ -1,61 +1,71 @@
-import { databaseCalendar, secondapp } from "../calenderAPI.js";
-import { database, app1 } from "../Firebase.js";
-
-import {
-  get,
-  ref,
-  getDatabase,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { app1 } from "../Firebase.js";
+import { get, ref, getDatabase } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 async function showData() {
   const events = [];
-  const dbRef = ref(getDatabase(secondapp), "courses");
-  const dRef = ref(getDatabase(app1), "announcement");
+  const insightsRef = ref(getDatabase(app1), "insights");
+  const announcementRef = ref(getDatabase(app1), "announcement");
+
   try {
-    const [snapshot, snapshot1] = await Promise.all([get(dbRef), get(dRef)]);
-    if (snapshot.exists() || snapshot1.exists()) {
-      if (snapshot.exists()) {
-        snapshot.forEach((item) => {
-          const data = item.val();
-          console.log(data);
-          events.push({
-            title: data.courseName,
-            start: data.startDate,
-            desc: data.desc,
-            color: "#DC143C",
-          });
+    const [snapshot, snapshot1] = await Promise.all([get(insightsRef), get(announcementRef)]);
+
+    if (snapshot.exists()) {
+      const insightsData = snapshot.val();
+
+      // If insights are an object with push keys
+      Object.values(insightsData).forEach((data) => {
+        console.log("Insight:", data);
+        events.push({
+          title: data.courseName,
+          start: data.startDate,
+          desc: data.desc,
+          color: "#DC143C",
         });
-        if (snapshot1.exists()) {
-          snapshot1.forEach((item) => {
-            const data = item.val();
-            console.log(data);
-            events.push({
-              title: data.title,
-              start: data.date,
-              desc: data.desc,
-              color: "#3F6889",
-            });
-          });
-        }
-      }
+      });
+
+      // If insights are stored as an array (optional fallback)
+      // snapshot.forEach((item) => {
+      //   const data = item.val();
+      //   console.log("Insight:", data);
+      //   events.push({
+      //     title: data.courseName,
+      //     start: data.startDate,
+      //     desc: data.desc,
+      //     color: "#DC143C",
+      //   });
+      // });
+    }
+
+    if (snapshot1.exists()) {
+      const announcementsData = snapshot1.val();
+      Object.values(announcementsData).forEach((data) => {
+        console.log("Announcement:", data);
+        events.push({
+          title: data.title,
+          start: data.date,
+          desc: data.desc,
+          color: "#3F6889",
+        });
+      });
+    }
+
+    if (events.length > 0) {
       const calendarEl = document.getElementById("calendar");
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
-        // eventColor: 'red',
         eventDidMount: function (info) {
-          var tooltip = new Tooltip(info.el, {
+          new Tooltip(info.el, {
             title: info.event.title,
             placement: "top",
             trigger: "hover",
             container: "body",
           });
         },
-        events: events,
-        color: events.color,
+        events: events, // ✅ correct
       });
       calendar.render();
     } else {
-      console.log("No data found at 'courses' path.");
+      console.log("No data found at 'insights' or 'announcement'");
     }
   } catch (error) {
     console.error("Error fetching data:", error);
