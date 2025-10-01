@@ -119,10 +119,9 @@ function shownewsletter() {
       snapshot.forEach((menu) => {
         let value = menu.val();
 
-        let iframe = document.createElement("iframe");
+        let iframe = document.createElement("img");
         iframe.src = value.htmlurl;
-        iframe.width = "100%";
-        iframe.height = "500px";
+        iframe.style.width = "100%"; 
         console.log(iframe);
         console.log(div);
 
