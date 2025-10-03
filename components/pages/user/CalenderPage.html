@@ -47,91 +47,32 @@
         <h1>
             Training Calendar
         </h1>
-        <div class="monthSelect">
-            <i class="fa-solid fa-caret-left" id="prevMonth"></i>
-            <h4 id="monthDisplay">November</h4>
-            <i class="fa-solid fa-caret-right" id="nextMonth"></i>
-        </div>
-        
-        
-        <div class="search-bar">
-            <input id="searchInput" placeholder="Search here" type="text"/>
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
-       
-
     </div>
     <div class="contents" id="eventContainer">
-        <div class="card">
-            <div class="card-content">
-                <h2>
-                 <span class="red">
-                  1
-                 </span>
-                 OOPS Concepts
-                </h2>
-                <p>
-                  oops
-                </p>
-                <div class="details">
-                 <p>
-                  Target Audience:
-                  <span>
-                   d
-                  </span>
-                 </p>
-                 <p>
-                  Date:
-                  <span class="date">
-                   2024-10-23
-                  </span>
-                 </p>
-                 <p>
-                  Trainer:
-                  <span class="trainer">
-                   raj
-                  </span>
-                 </p>
-                </div>
-               </div>
-               <i class="fa-solid fa-laptop"></i>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <h2>
-                 <span class="red">
-                  1
-                 </span>
-                 OOPS Concepts
-                </h2>
-                <p>
-                  oops
-                </p>
-                <div class="details">
-                 <p>
-                  Target Audience:
-                  <span>
-                   d
-                  </span>
-                 </p>
-                 <p>
-                  Date:
-                  <span class="date">
-                   2024-10-23
-                  </span>
-                 </p>
-                 <p>
-                  Trainer:
-                  <span class="trainer">
-                   raj
-                  </span>
-                 </p>
-                </div>
-               </div>
-               <i class="fa-solid fa-laptop"></i>
-        </div>
+        <div id="calendarImagePreview" class="calendar-preview"></div>
+        <!-- <div id="pageSideBar"></div> -->
+        <!-- Sidebar (40%) -->
+  <div id="pageSideBar" class="sidebar">
+    <h2>📢 Announcements</h2>
+    <ul class="announcement-list">
+      <li>
+        <h3>No Announcements !</h3>
+        <p>.................</p>
+      </li>
+
+    </ul>
+    <button class="show-more">Show More</button>
+
+    <div class="gallery-preview" id="gallery-preview-list">
+      <h2>Photo Gallery</h2>
+      <ul class="photo-list" style="  list-style-type: none;">
+<li>
+
+    <img src="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/image%2FSecurity%20Incidents.png?alt=media&token=ebfc9cfb-0eba-46a5-b19b-eb8a2e5a279d" alt="Gallery">
+</li>
+        </ul>
+    </div>
+  </div>
     </div> 
     <script >
         function closeCurrentTab() {
