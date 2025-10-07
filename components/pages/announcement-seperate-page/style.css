@@ -36,6 +36,20 @@ header {
 .search-bar {
     margin-left: 4cm; 
 }
+#homeSearchInput {
+    width: 100%;               /* full width or adjust as needed */
+    padding: 10px 15px;        /* inner spacing */
+    border: 2px solid #545454; /* red border matching your theme */
+    border-radius: 25px;       /* makes it fully rounded */
+    outline: none;             /* removes default outline on focus */
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+#homeSearchInput:focus {
+    border-color: #a8001f;    /* darker red on focus */
+    box-shadow: 0 0 5px rgba(220, 20, 60, 0.5); /* subtle glow */
+}
 
 .search-bar input {
     width: 10cm; 
