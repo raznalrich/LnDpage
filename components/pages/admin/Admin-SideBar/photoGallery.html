@@ -1,0 +1,96 @@
+<html>
+ <head>
+  <title>
+   Gallery
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../../css/SideBar-css/gallery.css">
+ </head>
+ <style>
+  .edit-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.edit-btn .fa-edit {
+  font-size: 18px;
+}
+
+ </style>
+ <body>
+  <div class="main-content">
+   <div class="upload-banner">
+    <button class="add-folder-button" id="add-folder-button"  onclick="showCategoryModal()">
+        <img src="../../../assets/add-folder.png" height="30px" width="auto" alt="" srcset="">
+    </button>
+    <button class="add-button" id="add-button" onclick="previewBox()">
+        Add +
+    </button>
+   </div>
+   <div class="image-category" id="image-category" onload="getAllCategory()">
+
+   </div>
+  </div>
+<div class="input-section" id="addimage" style="display: none;">
+  <div class="top-section">
+    <i class="fa-solid fa-xmark fa-lg close-icon" onclick="discardBox()"></i>
+  </div>
+  <div class="input-image">
+    <div class="file-upload">
+      <input
+        type="file"
+        id="fileInp"
+        class="inputFile"
+        onchange="getFile(event)"
+        accept="image/png, image/jpeg"
+      />
+      <label for="fileInp" class="file-label">Choose Image</label>
+      <span class="fileText"></span>
+      <img id="file-preview" class="file-preview" style="display:none;" alt="File Preview" />
+    </div>
+    <div class="details-section">
+      <label for="description-input">Description:</label>
+      <input type="text" id="description-input" placeholder="Short description" />
+    </div>
+    <div class="details-section">
+      <label for="category-input" class="category-label">Category:</label>
+      <select id="category-select" name="category-select">
+  <option value="" disabled selected>Select a category</option>
+  <!-- Options will be populated dynamically -->
+</select>
+    </div>
+    <div class="bar">
+      <div class="progress"></div>
+    </div>
+    <div class="uploadPercentage">0%</div>
+  </div>
+  <div class="button-section">
+    <button class="discard-btn" onclick="discardBox()">Discard</button>
+    <button class="save-btn" onclick="uploadImage()" id="save">Save</button>
+  </div>
+</div>
+<div class="category-modal" id="category-modal" style="display: none;">
+  <div class="top-section">
+    <i class="fa-solid fa-xmark fa-lg close-icon" onclick="discardCategoryBox()"></i>
+  </div>
+  <div class="category-input-section">
+    <label for="category-name-input">Category Name:</label>
+    <input type="text" id="category-name-input" placeholder="Enter category name" />
+  </div>
+  <div class="button-section">
+    <button class="discard-btn" onclick="discardCategoryBox()">Discard</button>
+    <button class="save-btn" onclick="saveCategoryName()" id="saveCategory">Save</button>
+  </div>
+<input type="hidden" id="category-id-hidden" name="categoryId" />
+
+</div>
+
+
+  <!-- <script type="module" src="../../../js/admin/galeryCategory.js" ></script> -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase.js"></script>
+    <script type="module" src="../../../js/admin/photoGallery.js"></script>
+    <script src="https://kit.fontawesome.com/b6e6cee001.js" crossorigin="anonymous"></script>
+ </body>
+</html>

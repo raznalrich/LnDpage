@@ -52,12 +52,18 @@
             <img src="announcement-images/campaign_24dp_BB271A_FILL0_wght400_GRAD0_opsz24.png" class="announcement-icon" alt="Campaign Icon" /> <!-- Directly include the image -->
             <h1>Announcements</h1>
         </div>
-        
+        <div class="header-wrapper">
+
+            <input type="text" id="homeSearchInput" placeholder="Search announcements..."/>
+        </div>
         <div class="announcement-container" id="announcementContainer">
         </div>
         <button id="showAllButton" style="display: none; margin-top: 20px;">Show All Announcements</button>
 
     </div>
+              <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
+
     <script type="module" src="javascript.js"></script>
+    <script type="module" src="../../../script.js"></script>
 </body>
 </html>
