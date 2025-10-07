@@ -97,26 +97,102 @@ body {
   right: 40px;
   transition: background 0.15s;
 }
+.add-folder-button {
+
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  z-index: 1000;
+  top: 8px;
+  right: 150px;
+  transition: background 0.15s;
+}
 .add-button:hover {
   background: #3383d0;
 }
+.add-folder-button:hover {
+  background: #3383d0;
+}
+
 
 /* Folder/Image Gallery Section */
 .folder-section {
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  width: 100%;
   justify-content: center;
-  flex-wrap: wrap;
 }
 .inner-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
   width: 67vw;
   left: 10%;
-  flex-wrap: wrap;
-  overflow: auto;
-  display: flex;
   position: relative;
+  padding: 12px;
+  overflow: auto;
 }
+/* Each image card */
+.image-div {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f6f8fd;
+  box-shadow: 0 3px 10px rgba(32, 66, 148, 0.10);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* Maintain uniform tiles */
+  aspect-ratio: 1 / 1; /* square tiles; change to 4/3 if preferred */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image should fill the tile neatly */
+.image-div img.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Subtle lift on hover */
+.image-div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(32, 66, 148, 0.16);
+}
+
+/* Close/Delete button */
+.image-div .close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: #dc143c;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(220, 20, 60, 0.35);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.12s ease, transform 0.12s ease, background 0.12s ease;
+}
+
+.image-div:hover .close-button {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.image-div .close-button:hover {
+  background: #b11233;
+}
+
 
 /* Individual Card Actions */
 .card .actions i {
@@ -153,6 +229,50 @@ body {
 .add-image-button:hover {
   background: #4a90e2;
 }
+
+.category-modal {
+ width: 350px;
+ min-height: 180px;
+ background: #fff;
+ border-radius: 12px;
+ box-shadow: 0 4px 24px rgba(32, 66, 148, 0.14);
+ border: 1.5px solid #c9e0fc;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ position: fixed;
+ z-index: 2222;
+ top: 24%;
+ left: 41vw;
+ padding-bottom: 18px;
+}
+.category-input-section {
+ padding: 38px 26px 12px 26px;
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+}
+.category-input-section label {
+ font-size: 15px;
+ margin-bottom: 7px;
+ color: #37609b;
+ font-weight: 500;
+}
+.category-input-section input {
+ height: 34px;
+ border-radius: 8px;
+ border: 1px solid #c9e0fc;
+ font-size: 15px;
+ padding: 0 10px;
+ background: #fff;
+ margin-bottom: 2px;
+ transition: border 0.17s;
+}
+.category-input-section input:focus {
+ border: 1.5px solid #4b9cea;
+ outline: none;
+}
+
 
 /* MODAL: Input section Styles */
 .input-section {

@@ -121,7 +121,7 @@ function showGallery() {
     }
 
     let iframe = document.createElement('iframe');
-    iframe.src = "./Gallery.html";
+    iframe.src = "./photoGallery.html";
     iframe.width = '100%';
     iframe.height = '550px';
     iframe.style.border = 'none';

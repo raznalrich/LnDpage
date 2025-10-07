@@ -5,6 +5,7 @@ import {
   getDatabase,
   set,
   ref,
+  remove
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import {
   getStorage,
@@ -76,6 +77,8 @@ function saveFileMetadata(title, url, downloadURL) {
       })
         .then(() => {
           console.log("File data with index saved successfully!");
+           alert("Menu item addedd successfully!");
+      window.location.reload();
         })
         .catch((error) => {
           console.error("Error saving file metadata:", error);
@@ -83,6 +86,22 @@ function saveFileMetadata(title, url, downloadURL) {
     });
   });
 }
+
+window.deleteFileMetadata = function(index) {
+  const db = database;
+  const itemRef = ref(db, "menuicons/" + index);
+
+  remove(itemRef)
+    .then(() => {
+      console.log("File data with index " + index + " deleted successfully!");
+      alert("Menu item deleted successfully!");
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("Error deleting file metadata:", error);
+    });
+}
+
 
 
 
@@ -241,16 +260,32 @@ function adminlistmenu() {
           const p = document.createElement("p");
           p.textContent = value.title;
 
-          const editButton = document.createElement("i");
-          editButton.classList = "fa-solid fa-edit fa-lg"
-          editButton.style.color = "#000"
+         const buttonContainer = document.createElement("div");
+buttonContainer.style.display = "flex";         // optional styling to align horizontally
+buttonContainer.style.gap = "8px";               // space between buttons
 
-          editButton.addEventListener("click", () => displayEditmenu(value));
+const editButton = document.createElement("i");
+editButton.classList = "fa-solid fa-edit fa-lg";
+editButton.style.color = "#000";
+editButton.addEventListener("click", () => displayEditmenu(value));
+
+const deleteButton = document.createElement("i");
+deleteButton.classList = "fa-solid fa-trash fa-lg";
+deleteButton.style.color = "#d10d0dff";
+deleteButton.addEventListener("click", () => deleteFileMetadata(value.index));
+
+// Append buttons to container div
+buttonContainer.appendChild(editButton);
+buttonContainer.appendChild(deleteButton);
+          
+
 
           leftdiv.appendChild(img);
           leftdiv.appendChild(p);
           li.appendChild(leftdiv)
-          li.appendChild(editButton)
+          li.appendChild(buttonContainer)
+
+
 
           if (value.active === 1) {
             left.appendChild(li);
