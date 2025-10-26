@@ -245,11 +245,7 @@ async function renderBanners(banners) {
             card.classList.add('swiper-slide');
             card.innerHTML = `
                 <img src="${fileURL}" alt="Batch Training Image" onload="this.style.opacity=1;">
-                <div class="description-overlay">
-                    <img src="../../../components/images/temp/Image (1).png" alt="">
-                    <h2>${fileCat}</h2>
-                    <p>${fileDesc}</p>
-                </div>
+            
             `;
             div.appendChild(card);
             resolve(); // Resolve each image load
