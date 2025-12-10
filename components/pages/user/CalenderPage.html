@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../../css/front-page/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="header-container">
         <div class="logotext">
@@ -25,7 +27,7 @@
         <div class="header-buttons">
             <a href="../announcement-seperate-page/index.html" style="text-decoration: none;">
                 <button class="announcements" id="announcement">
-                    <span class="bell-icon">🔔</span> 
+                    <span class="bell-icon">🔔</span>
                     <span class="badge" id="badge">0</span>
                 </button>
             </a>
@@ -36,9 +38,9 @@
         <nav>
             <ul>
                 <li><a href="../../../index.html">Home</a></li>
-                <li><a  style="color: red;" href="#">Calendar</a></li>
+                <li><a style="color: red;" href="#">Calendar</a></li>
                 <li><a href="../../pages/user/NewsletterSapperatePage.html">Newsletter</a></li>
-                <li><a  href="../announcement-seperate-page/index.html">Announcement</a></li>
+                <li><a href="../announcement-seperate-page/index.html">Announcement</a></li>
                 <li><a href="../gallery.html">Gallery</a></li>
             </ul>
         </nav>
@@ -46,9 +48,12 @@
     <div class="main" style="background-color: #DC143C;">
         <div style="display: flex; align-items: center; justify-content: space-between;">
             <h1 style="margin: 0;">Training Calendar</h1>
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Zw7sE8UAxESL21KttKL-rsIWBP2MflRLldta8d80O9ZUNjJKWlJVRU1ZRkRCVU45SjdIN0E1MUlNMiQlQCNjPTEu" style="list-style: none; text-decoration: none;">
-                <button style="background-color: #fff; color: #DC143C; border: 1px solid #DC143C; border-radius: 5px; padding: 8px 18px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.07); transition: background 0.2s;" onmouseover="this.style.backgroundColor='#ffe5ec'" onmouseout="this.style.backgroundColor='#fff'">
-                    Nominate for Trainers
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=Zw7sE8UAxESL21KttKL-rsIWBP2MflRLldta8d80O9ZUNjJKWlJVRU1ZRkRCVU45SjdIN0E1MUlNMiQlQCNjPTEu"
+                style="list-style: none; text-decoration: none;">
+                <button
+                    style="background-color: #fff; color: #DC143C; border: 1px solid #DC143C; border-radius: 5px; padding: 8px 18px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.07); transition: background 0.2s;"
+                    onmouseover="this.style.backgroundColor='#ffe5ec'" onmouseout="this.style.backgroundColor='#fff'">
+                    Nominate for Training
                 </button>
             </a>
         </div>
@@ -57,37 +62,39 @@
         <div id="calendarImagePreview" class="calendar-preview"></div>
         <!-- <div id="pageSideBar"></div> -->
         <!-- Sidebar (40%) -->
-  <div id="pageSideBar" class="sidebar">
-    <h2>📢 Announcements</h2>
-    <ul class="announcement-list">
-      <li>
-        <h3>No Announcements !</h3>
-        <p>.................</p>
-      </li>
+        <div id="pageSideBar" class="sidebar">
+            <h2>📢 Announcements</h2>
+            <ul class="announcement-list">
+                <li>
+                    <h3>No Announcements !</h3>
+                    <p>.................</p>
+                </li>
 
-    </ul>
-    <button class="show-more">Show More</button>
+            </ul>
+            <button class="show-more">Show More</button>
 
-    <div class="gallery-preview" id="gallery-preview-list">
-      <h2>Photo Gallery</h2>
-      <ul class="photo-list" style="  list-style-type: none;">
-<li>
+            <div class="gallery-preview" id="gallery-preview-list">
+                <h2>Photo Gallery</h2>
+                <ul class="photo-list" style="  list-style-type: none;">
+                    <li>
 
-    <img src="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/image%2FSecurity%20Incidents.png?alt=media&token=ebfc9cfb-0eba-46a5-b19b-eb8a2e5a279d" alt="Gallery">
-</li>
-        </ul>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/lndvconnect-6f4ac.appspot.com/o/image%2FSecurity%20Incidents.png?alt=media&token=ebfc9cfb-0eba-46a5-b19b-eb8a2e5a279d"
+                            alt="Gallery">
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-    </div> 
-        <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
+    <div class="announcement-hover" id="announcement-hover" style="display: none;" onload="addNotifications()">
 
-    <script >
-        function closeCurrentTab() {
+        <script>
+            function closeCurrentTab() {
 
-window.close(); // Close the current tab
-}
-    </script> 
-    
-    <script type="module" src="../../js/front-page/CalendarSapperatePage.js"></script>
+                window.close(); // Close the current tab
+            }
+        </script>
+
+        <script type="module" src="../../js/front-page/CalendarSapperatePage.js"></script>
 </body>
+
 </html>
